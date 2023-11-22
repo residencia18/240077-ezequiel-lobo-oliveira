@@ -34,7 +34,7 @@ body {
     grid: template rows 10px; ;
     padding-top: 10px;
     width: 100%;
-    grid
+   
 }
 #item1{
     grid-area: item1;
