@@ -1,3 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -14,6 +24,7 @@ body {
   
 }
 
+
 .destino {
     
     margin: 20px;
@@ -25,7 +36,8 @@ body {
     background-color: #ffc0cb;
 }
 .destino p {
-    font-size: 0.8rem; /* Ajuste o valor conforme necessário para diminuir o tamanho da fonte */
+   font-family: 'Roboto', sans-serif;
+   font-size: 0.8rem; /* Ajuste o valor conforme necessário para diminuir o tamanho da fonte */
 }
 #img {
     width: 100%;
@@ -37,20 +49,22 @@ body {
 }
 
 .destino h2 {
-    
-    margin-bottom: 10px;
+  
+    margin-top: 10px;
+    color: black;
+   
 }
 
 .destino ul {
+    font-family: 'Playfair Display', serif;
     list-style-type: none;
     padding: 0;
     text-align: left;
 }
 
 .pacote{
-    
-   width: 150px;
-    
+    margin-top: 10px;
+    width: 150px;
     margin-left: auto;
     margin-right: auto;
   
@@ -75,8 +89,8 @@ body {
 /* Media query para largura menor que 1200px */
 @media (max-width: 1200px) {
     .destino {
-        width: 100%;
+       width: 100%;
        max-width: 300px;
-        margin-right: 0;
+       margin-right: 0;
     }
 }
