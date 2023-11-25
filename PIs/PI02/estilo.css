@@ -1,17 +1,21 @@
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
+
+
 body {
     font-family: 'Roboto', sans-serif;
     color: #333;
     background-color: #f2f2f2;
     margin-bottom: 60px;
+    
 }
 
 .black-box {
@@ -23,51 +27,85 @@ body {
     text-align: center;
 }
 
-.container{ 
+.container {
     display: grid;
-    grid-template-columns: 1fr 1fr 20%;
+    grid-template-columns: 1fr 1fr 20%;/*Solicitado: define a largura do item 3 como 20%*/
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: "item1 item2 item3"
-                         "item4 item5 item5";
+    grid-template-areas: 
+        "item1 item2 item3"
+        "item4 item5 item5";
+        
     grid-gap: 5px;
     box-sizing: border-box;
-    grid: template rows 10px; ;
-    padding-top: 10px;
-    width: 100%;
-   
+    padding-top: 10px; 
+
+    width: 100%; 
+    max-width: 650px;
+    margin: 0 auto;
 }
-#item1{
+
+#header {
+    grid-area: header;
+    text-align: center;
+    background-color: rgb(168, 162, 162);
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 650px;
+    padding: 1px;
+    box-sizing: border-box;
+    background-color: rgb(132, 132, 245);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#item1 {
     grid-area: item1;
 }
-#item2{
+
+#item2 {
     grid-area: item2;
 }
-#item3{
+
+#item3 {
     grid-area: item3;
 }
-#item4{
+
+#item4 {
     grid-area: item4;
 }
-#item5{
+
+#item5 {
     grid-area: item5;
+    width: 400px;   /* Solicitado: define a largura do item 3 como 400px*/
+}
+
+#footer {
     
-}
-
-.item{
-    font-family: 'Varela Round', sans-serif;
-    background-color: #fff;
+    font-family: 'Playfair Display', serif;
     border: 1px solid #ddd;
-    box-sizing: border-box;
-    display: inline-block;
+    position: fixed;
+    bottom: 0;
     width: 100%;
+    max-width: 650px; /* Adicionado para limitar a largura do footer */
+    background-color: rgb(15, 15, 15);
+    height: 50px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    left: 50%;
+    transform: translate(-50%, 0%);
 }
 
-.item-especial{
+.item,
+.item-especial,
+.item-personalizado {
     font-family: 'Varela Round', sans-serif;
     background-color: #fff;
     border: 1px solid #ddd;
     box-sizing: border-box;
-    display: inline-block;
+    width: 100%;
 }
 
 .square {
@@ -80,21 +118,16 @@ body {
 }
 
 .item-personalizado {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    width: 100%;
     display: flex;
-    align-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-
 .img {
     text-align: center;
     display: grid;
-    grid-gap: 10px; 
-    margin: 10px; 
+    grid-gap: 10px;
+    margin: 10px;
 }
 
 @media (max-width: 500px) {
@@ -105,6 +138,9 @@ body {
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
+    }
+    #item5{
+        width:100% ;
     }
     .item-personalizado{
         width: 100%;
@@ -121,29 +157,7 @@ body {
         margin-right: 10px;
         width: 100%;
     }
-}
-
-.header {
-    text-align: center;
-    background-color: rgb(168, 162, 162);
-    font-family: 'Roboto', sans-serif;
-    font-family: 'Vina Sans', serif;
-    border: 1px solid #ddd;
-    width: 100%;
-    padding: 1px;
-    box-sizing: border-box;
-    background-color: rgb(132, 132, 245);
-}
-
-.footer {
-    font-family: 'Playfair Display', serif;
-    border: 1px solid #ddd;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color:rgb(15, 15, 15);
-    box-sizing: border-box;
-    height: 50px; 
-    color: white;
-    text-align: center;
+    #footer{
+        bottom: 0;
+    }
 }
