@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     
-    <title>Edit Client</title>
+    <title>Edit Employee</title>
 </head>
 <body>
     <div class="container mt-5">
-        <h2>Edit Client</h2>
-        <form action="/editarCliente/<%= dados.idCliente %>" method="post">
-            <!-- Client Table Data -->
+        <h2>Edit Employee</h2>
+        <form action="/editarFuncionario/<%= dados.idFuncionario %>" method="post">
+            <!-- Employee Table Data -->
             <div class="form-group">
                 <label for="nome">Nome</label>
                 <input type="text" name="nome" class="form-control" id="nome" value="<%= dados.nome %>">
@@ -21,11 +21,11 @@
                 <input type="email" name="email" class="form-control" id="email" value="<%= dados.email %>">
             </div>
             <div class="form-group">
-                <label for="senhaCli">Senha</label>
-                <input type="password" name="senhaCli" class="form-control" id="senhaCli" value="<%= dados.senhaCli %>">
+                <label for="senhaFun">Senha</label>
+                <input type="password" name="senhaFun" class="form-control" id="senhaFun" value="<%= dados.senhaFun %>">
             </div>
             
-            <button class="btn btn-primary" type="submit" name="btIncluirCliente">Inserir</button>
+            <button class="btn btn-primary" type="submit" name="btIncluirFuncionario">Inserir</button>
             <a href="/" class="btn btn-outline-primary btn-sm">Voltar</a>
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>

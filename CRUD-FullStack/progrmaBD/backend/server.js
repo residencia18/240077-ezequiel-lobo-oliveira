@@ -34,7 +34,19 @@ app.get("/", function (req, res) {
             return res.status(500).send("Internal Server Error");
         }
 
-        res.render("index.ejs", { dados: rows });
+        res.render("catalogoCarros.ejs", { dados: rows });
+    });
+});
+app.get("/catalogoCarros", function (req, res) {
+    const sql = "SELECT * FROM Carro";
+
+    connection.query(sql, function (err, rows) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        res.render("catalogoCarros.ejs", { dados: rows });
     });
 });
 
@@ -155,6 +167,26 @@ app.get("/editarFuncionario/:id", function (req, res) {
     });
 });
 
+// Assuming you have a route to handle the form submission for updating employee information
+app.post("/editarFuncionario/:id", function (req, res) {
+    const funcionarioId = req.params.id;
+    const { nome, email, senhaFun } = req.body;
+
+    // Assuming you have a SQL query to update employee information
+    const sql = "UPDATE Funcionario SET nome = ?, email = ?, senhaFun = ? WHERE idFuncionario = ?";
+
+    connection.query(sql, [nome, email, senhaFun, funcionarioId], function (err, result) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        // Assuming you want to redirect to the employee list page after successful update
+        res.redirect("/funcionarios");
+    });
+});
+
+
 
 app.get("/deleteFuncionario/:id", function (req, res) {
     const funcionarioId = req.params.id;
@@ -199,6 +231,26 @@ app.get("/editarCliente/:id", function (req, res) {
         res.render("editarCliente.ejs", { dados: rows[0] });
     });
 });
+
+// Assuming you have a route to handle the form submission for updating client information
+app.post("/editarCliente/:id", function (req, res) {
+    const clienteId = req.params.id;
+    const { nome, email, senhaCli } = req.body;
+
+    // Assuming you have a SQL query to update client information
+    const sql = "UPDATE Cliente SET nome = ?, email = ?, senhaCli = ? WHERE idCliente = ?";
+
+    connection.query(sql, [nome, email, senhaCli, clienteId], function (err, result) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        // Assuming you want to redirect to the client list page after a successful update
+        res.redirect("/clientes");
+    });
+});
+
 
 app.get("/clientes", function (req, res) {
     const sql = "SELECT * FROM Cliente";
