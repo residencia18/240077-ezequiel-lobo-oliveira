@@ -1,0 +1,14 @@
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\bin\Debug\net7.0\exemplos.exe
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\bin\Debug\net7.0\exemplos.deps.json
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\bin\Debug\net7.0\exemplos.runtimeconfig.json
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\bin\Debug\net7.0\exemplos.dll
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\bin\Debug\net7.0\exemplos.pdb
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\obj\Debug\net7.0\exemplos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\obj\Debug\net7.0\exemplos.AssemblyInfoInputs.cache
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\obj\Debug\net7.0\exemplos.AssemblyInfo.cs
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\obj\Debug\net7.0\exemplos.csproj.CoreCompileInputs.cache
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\obj\Debug\net7.0\exemplos.dll
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\obj\Debug\net7.0\refint\exemplos.dll
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\obj\Debug\net7.0\exemplos.pdb
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\obj\Debug\net7.0\exemplos.genruntimeconfig.cache
+C:\Users\Acer\OneDrive\Área de Trabalho\progrmaBD\exemplos\obj\Debug\net7.0\ref\exemplos.dll

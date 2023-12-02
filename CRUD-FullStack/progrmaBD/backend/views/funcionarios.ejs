@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Sua Página</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="table-responsive-sm">
+        <table class="table table-striped table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID Funcionário</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Senha</th>
+                    <th class="d-print-none">
+                        <a class="btn btn-sm btn-success" href="/inserirFuncionario">Novo registro</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (const funcionario of dados) { %>
+                    <tr>
+                        <td><%= funcionario.idFuncionario %></td>
+                        <td><%= funcionario.nome %></td>
+                        <td><%= funcionario.email %></td>
+                        <td><%= funcionario.senhaFun %></td>
+                        <td class="d-print-none">
+                            <a class="btn btn-sm btn-warning" href="/editarFuncionario/<%= funcionario.idFuncionario %>">Edita</a>
+                            <a class="btn btn-sm btn-danger" href="/deleteFuncionario/<%= funcionario.idFuncionario %>">Deleta</a>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

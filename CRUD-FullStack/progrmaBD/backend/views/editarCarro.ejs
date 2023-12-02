@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+    <title>Edit Car</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Edit Car</h2>
+        <form action="/editarCarro/<%= dados.idCarro %>" method="post">
+            <!-- Dados para inserir tabela Carro -->
+        <div class="form-group">
+            <label for="marca">Marca</label>
+            <input type="text" name="marca" class="form-control" id="marca" value="<%= dados.marca %>">
+        </div>
+        <div class="form-group">
+            <label for="modelo">Modelo</label>
+            <input type="text" name="modelo" class="form-control" id="modelo" value="<%= dados.modelo %>">
+        </div>
+        <div class="form-group">
+            <label for="ano">Ano</label>
+            <input type="number" name="ano" class="form-control" id="ano" value="<%= dados.ano %>">
+        </div>
+        <div class="form-group">
+            <label for="preco">Preço</label>
+            <input type="number" name="preco" class="form-control" id="preco" value="<%= dados.preco %>">
+        </div>
+        <div class="form-group">
+            <label for="idFuncionario">ID do Funcionário</label>
+            <input type="number" name="idFuncionario" class="form-control" id="idFuncionario" value="<%= dados.idFuncionario %>">
+        </div>
+        
+        <button class="btn btn-primary" type="submit" name="btIncuirCarro">Inserir</button>
+        <a href="/" class="btn btn-outline-primary btn-sm">Voltar</a>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>
