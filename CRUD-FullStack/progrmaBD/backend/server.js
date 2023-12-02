@@ -141,6 +141,21 @@ app.post("/inserirFuncionario", function (req, res) {
     });
 });
 
+app.get("/editarFuncionario/:id", function (req, res) {
+    const funcionarioId = req.params.id;
+    const sql = "SELECT * FROM Funcionario WHERE idFuncionario = ?";
+
+    connection.query(sql, [funcionarioId], function (err, rows) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        res.render("editarFuncionario.ejs", { dados: rows[0] });
+    });
+});
+
+
 app.get("/deleteFuncionario/:id", function (req, res) {
     const funcionarioId = req.params.id;
 
