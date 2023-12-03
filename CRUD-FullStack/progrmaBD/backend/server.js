@@ -436,29 +436,56 @@ app.get("/agrupar", function (req, res) {
     });
 });
 
+
+
+// Rota para selecionar funcionários que realizaram vendas com valor total superior a 10000
 app.get("/selecionar", function (req, res) {
-    res.render("selecionarMarca.ejs");
-});
-
-app.post("/selecionar", function (req, res) {
-    const quantidadeMinimaCarros = req.body.quantidadeMinimaCarros || 0;
-
     const sql = `
-        SELECT marca, COUNT(*) as total_carros
-        FROM Carro
-        GROUP BY marca
-        HAVING total_carros > ?
+        SELECT F.idFuncionario, F.nome, SUM(C.preco) as total_vendas
+        FROM Funcionario F
+        JOIN Carro C ON F.idFuncionario = C.idFuncionario
+        JOIN Compra CO ON C.idCarro = CO.idCarro
+        GROUP BY F.idFuncionario
+        HAVING total_vendas > 10000;
     `;
 
-    connection.query(sql, [quantidadeMinimaCarros], function (err, rows) {
+    connection.query(sql, function (err, rows) {
         if (err) {
             console.error("Error:", err.message);
             return res.status(500).send("Internal Server Error");
         }
 
-        res.render("marcasComMaisDeNCarros.ejs", { dados: rows, quantidadeMinimaCarros });
+        res.render("selecionarMarca.ejs", { dados: rows });
     });
 });
+
+// Rota para exibir informações dos funcionários
+app.get("/Desempenho", function (req, res) {
+    const sql = `
+        SELECT Funcionario.nome, COUNT(Compra.idCompra) AS totalCompras,
+               MIN(Compra.dataCompra) AS primeiraCompra,
+               MAX(Compra.dataCompra) AS ultimaCompra
+        FROM Funcionario
+        LEFT JOIN Carro ON Funcionario.idFuncionario = Carro.idFuncionario
+        LEFT JOIN Compra ON Carro.idCarro = Compra.idCarro
+        GROUP BY Funcionario.idFuncionario, Funcionario.nome;
+    `;
+
+    connection.query(sql, function (err, rows) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        res.render("funcionariosInfo.ejs", { dados: rows });
+    });
+});
+
+
+  
+
+  
+
 
 
 

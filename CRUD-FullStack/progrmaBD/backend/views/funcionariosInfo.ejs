@@ -1,0 +1,39 @@
+<!-- funcionariosInfo.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações dos Funcionários</title>
+</head>
+
+<body>
+
+    <h2>Informações dos Funcionários</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome do Funcionário</th>
+                <th>Total de Compras</th>
+                <th>Data da Primeira Compra</th>
+                <th>Data da Última Compra</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% dados.forEach(function(row) { %>
+                <tr>
+                    <td><%= row.nome %></td>
+                    <td><%= row.totalCompras %></td>
+                    <td><%= row.primeiraCompra %></td>
+                    <td><%= row.ultimaCompra %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

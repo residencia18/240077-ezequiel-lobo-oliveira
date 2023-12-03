@@ -1,0 +1,24 @@
+<!-- selecionarMarca.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionários com Vendas Superiores a 10000</title>
+</head>
+
+<body>
+
+    <h2>Funcionários com Vendas Superiores a 10000</h2>
+
+    <ul>
+        <% dados.forEach(function(row) { %>
+            <li><%= row.nome %>: <%= row.total_vendas %></li>
+        <% }); %>
+    </ul>
+
+</body>
+
+</html>
