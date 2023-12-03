@@ -34,7 +34,7 @@ app.get("/", function (req, res) {
             return res.status(500).send("Internal Server Error");
         }
 
-        res.render("catalogoCarros.ejs", { dados: rows });
+        res.render("index.ejs", { dados: rows });
     });
 });
 app.get("/catalogoCarros", function (req, res) {
@@ -46,9 +46,12 @@ app.get("/catalogoCarros", function (req, res) {
             return res.status(500).send("Internal Server Error");
         }
 
+        // Render the view with the correct variable
         res.render("catalogoCarros.ejs", { dados: rows });
     });
 });
+
+
 
 // Rota para inserir informações de carro
 app.get("/inserirCarro", function (req, res) {
@@ -322,6 +325,141 @@ app.get("/deleteCliente/:id", function (req, res) {
         });
     });
 });
+
+
+
+app.get("/mostrarCompras", function (req, res) {
+    const sql = "SELECT * FROM compra";
+
+    connection.query(sql, function (err, rows) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        // Pass the data to the template
+        res.render("mostrarCompras.ejs", { dadosCompras: rows });
+    });
+});
+
+
+app.get("/cancelar/:id", function (req, res) {
+    const clienteId = req.params.id;
+
+    const sqlDeleteRelacionados = "DELETE FROM compra WHERE idCarro = ?";
+    connection.query(sqlDeleteRelacionados, [clienteId], function (err, result) {
+        if (err) {
+            console.error("Error deleting related records:", err.message);
+            return res.status(500).send("Internal Server Error: " + err.message);
+        }
+
+            console.log("Cliente deleted successfully");
+
+            res.redirect("/mostrarCompras");
+        });
+    });
+
+// Route to handle the purchase
+
+
+
+app.get("/adicionarCompra", function (req, res) {
+
+        res.render("adicionarCompra.ejs");
+    });
+
+// Route to handle the purchase
+app.post('/adicionarCompra', (req, res) => {
+    const idCarro = req.body.idCarro;
+    const idCliente = req.body.idCliente;
+    const dataCompra = req.body.dataCompra;
+
+    // Inserir dados na tabela Compra
+    const inserirCompraQuery = "INSERT INTO Compra (idCarro, idCliente, dataCompra) VALUES (?, ?, ?)";
+    const parametros = [idCarro, idCliente, dataCompra];
+
+    connection.query(inserirCompraQuery, parametros, (erro, resultado) => {
+        if (erro) {
+            console.error("Error adding purchase:", erro.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        console.log("Compra adicionada com sucesso:", resultado);
+
+        // Redirecionar para a página de compras ou para onde desejar
+        res.redirect("/mostrarCompras");
+    });
+});
+app.get("/adicionarCompra", function (req, res) {
+    // Fetch client information
+    const sqlClientes = "SELECT idCliente, nome FROM Cliente";
+
+    connection.query(sqlClientes, function (err, rows) {
+        if (err) {
+            console.error("Error fetching clients:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        // Render the "adicionarCompra" page with client data
+        res.render("adicionarCompra.ejs", { clientes: rows });
+    });
+});
+
+
+app.get("/ordenar", function (req, res) {
+    // Lógica para ordenar carros por preço
+    const sql = "SELECT * FROM Carro ORDER BY preco ASC"; // ASC para ordem ascendente, DESC para descendente
+
+    connection.query(sql, function (err, rows) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        // Renderizar a página com a lista ordenada de carros
+        res.render("index.ejs", { dados: rows });
+    });
+});
+
+app.get("/agrupar", function (req, res) {
+    // Lógica para contar carros por marca
+    const sql = "SELECT marca, COUNT(*) as total_carros FROM Carro GROUP BY marca";
+
+    connection.query(sql, function (err, rows) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        // Renderizar a página com a contagem de carros por marca
+        res.render("index.ejs", { dados: rows });
+    });
+});
+
+app.get("/selecionar", function (req, res) {
+    res.render("selecionarMarca.ejs");
+});
+
+app.post("/selecionar", function (req, res) {
+    const quantidadeMinimaCarros = req.body.quantidadeMinimaCarros || 0;
+
+    const sql = `
+        SELECT marca, COUNT(*) as total_carros
+        FROM Carro
+        GROUP BY marca
+        HAVING total_carros > ?
+    `;
+
+    connection.query(sql, [quantidadeMinimaCarros], function (err, rows) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        res.render("marcasComMaisDeNCarros.ejs", { dados: rows, quantidadeMinimaCarros });
+    });
+});
+
 
 
 const PORT = 8080;

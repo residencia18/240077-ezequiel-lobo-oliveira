@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>Informações de Compra</title>
+    <title>Lista de Compras</title>
 </head>
 
 <body>
@@ -19,21 +19,20 @@
                         <th>ID Carro</th>
                         <th>ID Cliente</th>
                         <th>Data da Compra</th>
-                        <th class="d-print-none">
-                            <a class="btn btn-sm btn-success" href="/inserirCompra">Nova Compra</a>
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (const compra of compras) { %>
+                    <!-- Use the correct variable name -->
+                    <% for (const compra of dadosCompras) { %>
                         <tr>
                             <td><%= compra.idCompra %></td>
                             <td><%= compra.idCarro %></td>
                             <td><%= compra.idCliente %></td>
                             <td><%= compra.dataCompra %></td>
                             <td class="d-print-none">
-                                <a class="btn btn-sm btn-warning" href="/editarCompra/<%= compra.idCompra %>">Edita</a>
-                                <a class="btn btn-sm btn-danger" href="/deleteCompra/<%= compra.idCompra %>">Deleta</a>
+                                <!-- Remova os botões Editar e Deletar -->
+                                <!-- Adicione o botão Cancelar -->
+                                <a class="btn btn-sm btn-secondary" href="/cancelar/<%= compra.idCarro %>">Cancelar</a>
                             </td>
                         </tr>
                     <% } %>

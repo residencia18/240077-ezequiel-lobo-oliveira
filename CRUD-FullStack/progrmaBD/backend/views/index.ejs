@@ -22,10 +22,24 @@
                 <a class="nav-link" href="/clientes">Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/carros">Carros</a>
+                <a class="nav-link" href="/">Carros</a>
             </li>
         </ul>
     </div>
+    <!-- Adicione esta seção ao seu código HTML, dentro do <ul class="navbar-nav"> existente -->
+<ul class="nav-item">
+    <a class="nav-link" href="/ordenar">Ordenar</a>
+</ul>
+<ul class="nav-item">
+    <a class="nav-link" href="/agrupar">Agrupar</a>
+</ul>
+<ul class="nav-item">
+    <a class="nav-link" href="/selecionar">Selecionar</a>
+</ul>
+<ul class="nav-item">
+    <a class="nav-link" href="/somar">Somar</a>
+</ul>
+
 </nav>
 
 <div class="container mt-5">
@@ -64,6 +78,14 @@
     </div>
 </div>
 
+<h2>Contagem de Carros por Marca</h2>
+
+    <ul>
+        <% dados.forEach(function(row) { %>
+            <li><%= row.marca %>: <%= row.total_carros %> carros</li>
+        <% }); %>
+    </ul>
+    
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

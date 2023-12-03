@@ -24,7 +24,7 @@
                 <a class="nav-link" href="/clientes">Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/carros">Carros</a>
+                <a class="nav-link" href="/">Carros</a>
             </li>
         </ul>
     </div>
@@ -41,7 +41,10 @@
                     <th>Ano</th>
                     <th>Preço</th>
                     <th>ID Funcionário</th>
-                    <th class="d-print-none">Ações</th>
+                    <th class="d-print-none">
+                        <a class="btn btn-sm btn-success" href="/mostrarCompras">Compras</a>
+                    </th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -53,16 +56,37 @@
                         <td><%= carro.ano %></td>
                         <td><%= carro.preco %></td>
                         <td><%= carro.idFuncionario %></td>
-                        <td class="d-print-none">
-                            <!-- Adicionado o botão Comprar -->
-                            <a href="/comprarCarro/<%= carro.idCarro %>" class="btn btn-primary">Comprar</a>
-                        </td>
+                        
                     </tr>
                 <% } %>
             </tbody>
         </table>
+    </div> 
+</div>
+ <!-- Formulário para adicionar uma nova compra -->
+ <!-- Formulário para adicionar uma nova compra -->
+ <div class="row mt-4">
+    <div class="col-md-6 mx-auto">
+        <h2 class="text-center">Nova Compra</h2>
+        <form method="POST" action="/adicionarCompra">
+            <div class="form-group">
+                <label for="idCarro">ID do Carro:</label>
+                <input type="text" class="form-control" id="idCarro" name="idCarro" required>
+            </div>
+            <div class="form-group">
+                <label for="idCliente">ID do Cliente:</label>
+                <input type="text" class="form-control" id="idCliente" name="idCliente" required>
+            </div>
+            <div class="form-group">
+                <label for="dataCompra">Data da Compra:</label>
+                <input type="date" class="form-control" id="dataCompra" name="dataCompra" required>
+            </div>
+            <!-- Adicione outros campos conforme necessário -->
+            <button type="submit" class="btn btn-success btn-block">Adicionar Compra</button>
+        </form>
     </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
