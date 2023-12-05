@@ -73,7 +73,6 @@ app.get("/catalogoCarros", function (req, res) {
 app.get("/adicionarCarro", function (req, res) {
     res.render("inserirCarro.ejs", { dados: {} });
 });
-
 app.post("/inserirCarro", function (req, res) {
     const sql = "INSERT INTO Carro (marca, modelo, ano, preco, idFuncionario) VALUES (?, ?, ?, ?, ?)";
     const dadosCarro = [req.body.marca, req.body.modelo, req.body.ano, req.body.preco, req.body.idFuncionario];
@@ -156,7 +155,7 @@ app.get("/inserirFuncionario", function (req, res) {
     res.render("inserirFuncionario.ejs", { dados: {} });
 });
 
-// Rota para processar o formulário de inserção de funcionário
+
 app.post("/inserirFuncionario", function (req, res) {
     const sql = "INSERT INTO Funcionario (nome, email, senhaFun) VALUES (?, ?, ?)";
     const dadosFuncionario = [req.body.nome, req.body.email, req.body.senha];
@@ -164,16 +163,12 @@ app.post("/inserirFuncionario", function (req, res) {
     connection.query(sql, dadosFuncionario, function (err, result) {
         if (err) {
             if (err.code === 'ER_DUP_ENTRY') {
-                // Send a JSON response with the error message
                 return res.status(400).json({ error: 'Duplicate entry. Email already exists.' });
             } else {
-                // Send a JSON response with a general error message
                 console.error(err.message);
                 return res.status(500).json({ error: 'Internal Server Error' });
             }
         }
-
-        // If no error, send a JSON response indicating success
         res.json({ success: true, insertId: result.insertId });
     });
 });
@@ -194,12 +189,11 @@ app.get("/editarFuncionario/:id", function (req, res) {
     });
 });
 
-// Assuming you have a route to handle the form submission for updating employee information
+
 app.post("/editarFuncionario/:id", function (req, res) {
     const funcionarioId = req.params.id;
     const { nome, email, senhaFun } = req.body;
 
-    // Assuming you have a SQL query to update employee information
     const sql = "UPDATE Funcionario SET nome = ?, email = ?, senhaFun = ? WHERE idFuncionario = ?";
 
     connection.query(sql, [nome, email, senhaFun, funcionarioId], function (err, result) {
@@ -207,8 +201,6 @@ app.post("/editarFuncionario/:id", function (req, res) {
             console.error("Error:", err.message);
             return res.status(500).send("Internal Server Error");
         }
-
-        // Assuming you want to redirect to the employee list page after successful update
         res.redirect("/funcionarios");
     });
 });
@@ -217,15 +209,6 @@ app.post("/editarFuncionario/:id", function (req, res) {
 
 app.get("/deleteFuncionario/:id", function (req, res) {
     const funcionarioId = req.params.id;
-
-    // Antes de excluir o funcionário, exclua registros relacionados em outras tabelas, se necessário.
-    // Substitua 'outraTabela' pelo nome real da tabela relacionada.
-    const sqlDeleteRelacionados = "DELETE FROM funcionario WHERE idFuncionario = ?";
-    connection.query(sqlDeleteRelacionados, [funcionarioId], function (err, result) {
-        if (err) {
-            console.error("Error deleting related records:", err.message);
-            return res.status(500).send("Internal Server Error: " + err.message);
-        }
 
         const sqlDeleteFuncionario = "DELETE FROM Funcionario WHERE idFuncionario = ?";
         connection.query(sqlDeleteFuncionario, [funcionarioId], function (err, result) {
@@ -239,10 +222,6 @@ app.get("/deleteFuncionario/:id", function (req, res) {
             res.redirect("/funcionarios");
         });
     });
-});
-
-
-// Rota para mostrar informações de clientes
 
 
 app.get("/editarCliente/:id", function (req, res) {
@@ -504,7 +483,7 @@ app.get('/ordenarPorPreco', (req, res) => {
 
 
 
-// Rota para selecionar funcionários que realizaram vendas com valor total superior a 10000
+
 app.get("/selecionar", function (req, res) {
     const sql = `
         SELECT F.idFuncionario, F.nome, SUM(C.preco) as total_vendas
@@ -548,15 +527,19 @@ app.get("/selecionar", function (req, res) {
 // Rota para exibir informações dos funcionários
 app.get("/Desempenho", function (req, res) {
     const sql = `
-        SELECT Funcionario.nome, COUNT(Compra.idCompra) AS totalCompras,
-               MIN(Compra.dataCompra) AS primeiraCompra,
-               MAX(Compra.dataCompra) AS ultimaCompra
-        FROM Funcionario
+    SELECT 
+        Funcionario.nome, 
+        COUNT(Compra.idCompra) AS totalCompras,
+        MIN(Compra.dataCompra) AS primeiraCompra,
+        MAX(Compra.dataCompra) AS ultimaCompra
+    FROM 
+        Funcionario
         LEFT JOIN Carro ON Funcionario.idFuncionario = Carro.idFuncionario
         LEFT JOIN Compra ON Carro.idCarro = Compra.idCarro
-        GROUP BY Funcionario.idFuncionario, Funcionario.nome;
+    GROUP BY 
+        Funcionario.nome
+        WITH ROLLUP;
     `;
-
     connection.query(sql, function (err, rows) {
         if (err) {
             console.error("Error:", err.message);
@@ -585,7 +568,6 @@ GROUP BY
 WITH ROLLUP;
 
     `;
-
     connection.query(sql, function (err, rows) {
         if (err) {
             console.error("Error:", err.message);
