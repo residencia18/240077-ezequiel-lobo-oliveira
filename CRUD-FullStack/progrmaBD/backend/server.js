@@ -3,6 +3,7 @@ const app = express();
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
+app.use(express.static('views/imagens'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,9 +35,24 @@ app.get("/", function (req, res) {
             return res.status(500).send("Internal Server Error");
         }
 
-        res.render("index.ejs", { dados: rows });
+        res.render("index.ejs", { carros: rows });
     });
 });
+
+app.get("/carros", function (req, res) {
+    const sql = "SELECT * FROM Carro";
+
+    connection.query(sql, function (err, rows) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        res.render("carros.ejs", { carros: rows });
+    });
+});
+
+
 app.get("/catalogoCarros", function (req, res) {
     const sql = "SELECT * FROM Carro";
 
@@ -54,7 +70,7 @@ app.get("/catalogoCarros", function (req, res) {
 
 
 // Rota para inserir informações de carro
-app.get("/inserirCarro", function (req, res) {
+app.get("/adicionarCarro", function (req, res) {
     res.render("inserirCarro.ejs", { dados: {} });
 });
 
@@ -67,7 +83,7 @@ app.post("/inserirCarro", function (req, res) {
             return console.error(err.message);
         }
         console.log(`Inserted ID: ${result.insertId}`);
-        res.redirect("/");
+        res.redirect("/carros");
     });
 });
 
@@ -96,7 +112,7 @@ app.post("/editarCarro/:id", function (req, res) {
             return res.status(500).send("Internal Server Error");
         }
 
-        res.redirect("/");
+        res.redirect("/carros");
     });
 });
 
@@ -114,7 +130,7 @@ app.get("/deleteCarro/:id", function (req, res) {
     
         console.log("Carro deleted successfully");
     
-        res.redirect("/");
+        res.redirect("/carros");
     });
 });
 
@@ -142,19 +158,27 @@ app.get("/inserirFuncionario", function (req, res) {
 
 // Rota para processar o formulário de inserção de funcionário
 app.post("/inserirFuncionario", function (req, res) {
-
-    
     const sql = "INSERT INTO Funcionario (nome, email, senhaFun) VALUES (?, ?, ?)";
     const dadosFuncionario = [req.body.nome, req.body.email, req.body.senha];
 
     connection.query(sql, dadosFuncionario, function (err, result) {
         if (err) {
-            return console.error(err.message);
+            if (err.code === 'ER_DUP_ENTRY') {
+                // Send a JSON response with the error message
+                return res.status(400).json({ error: 'Duplicate entry. Email already exists.' });
+            } else {
+                // Send a JSON response with a general error message
+                console.error(err.message);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
         }
-        console.log(`Inserted ID: ${result.insertId}`);
-        res.redirect("/funcionarios");
+
+        // If no error, send a JSON response indicating success
+        res.json({ success: true, insertId: result.insertId });
     });
 });
+
+
 
 app.get("/editarFuncionario/:id", function (req, res) {
     const funcionarioId = req.params.id;
@@ -321,7 +345,7 @@ app.get("/deleteCliente/:id", function (req, res) {
 
             console.log("Cliente deleted successfully");
 
-            res.redirect("/");
+            res.redirect("/clientes");
         });
     });
 });
@@ -406,22 +430,39 @@ app.get("/adicionarCompra", function (req, res) {
 });
 
 
-app.get("/ordenar", function (req, res) {
-    // Lógica para ordenar carros por preço
-    const sql = "SELECT * FROM Carro ORDER BY preco ASC"; // ASC para ordem ascendente, DESC para descendente
-
-    connection.query(sql, function (err, rows) {
-        if (err) {
-            console.error("Error:", err.message);
-            return res.status(500).send("Internal Server Error");
-        }
-
-        // Renderizar a página com a lista ordenada de carros
-        res.render("index.ejs", { dados: rows });
+app.get('/ordenarPorPreco', (req, res) => {
+    // SQL query to select cars ordered by price
+    const sql = 'SELECT * FROM Carro ORDER BY preco ASC';
+  
+    // Execute the query
+    connection.query(sql, (error, results) => {
+      if (error) {
+        console.error('Error executing SQL query:', error);
+        res.status(500).send('Internal Server Error');
+        return;
+      }
+  
+      // Render your HTML template with the sorted car data
+      res.render('carros.ejs', { carros: results });
     });
-});
+  });
 
-app.get("/agrupar", function (req, res) {
+  app.get('/ordenarPorAno', (req, res) => {
+    const sql = 'SELECT * FROM Carro ORDER BY ano ASC';
+  
+    connection.query(sql, (error, results) => {
+      if (error) {
+        console.error('Error executing SQL query:', error);
+        res.status(500).send('Internal Server Error');
+        return;
+      }
+
+      res.render('carros.ejs', { carros: results });
+    });
+  });
+  
+ 
+  app.get("/agrupar", function (req, res) {
     // Lógica para contar carros por marca
     const sql = "SELECT marca, COUNT(*) as total_carros FROM Carro GROUP BY marca";
 
@@ -431,10 +472,35 @@ app.get("/agrupar", function (req, res) {
             return res.status(500).send("Internal Server Error");
         }
 
+        // HTML da tabela
+        const tableHtml = `
+        <div class="container mt-5">
+            <h2>Contagem de Carros por Marca</h2>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Total de Carros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows.map(row => `
+                        <tr>
+                            <td>${row.marca}</td>
+                            <td>${row.total_carros}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
+    `;
+    
+
         // Renderizar a página com a contagem de carros por marca
-        res.render("index.ejs", { dados: rows });
+        res.render("selecionarMarca.ejs", { dados: rows, tabelaHtml: tableHtml });
     });
 });
+
 
 
 
@@ -446,18 +512,38 @@ app.get("/selecionar", function (req, res) {
         JOIN Carro C ON F.idFuncionario = C.idFuncionario
         JOIN Compra CO ON C.idCarro = CO.idCarro
         GROUP BY F.idFuncionario
-        HAVING total_vendas > 10000;
+        HAVING total_vendas > 50000;
     `;
-
     connection.query(sql, function (err, rows) {
         if (err) {
             console.error("Error:", err.message);
             return res.status(500).send("Internal Server Error");
         }
-
-        res.render("selecionarMarca.ejs", { dados: rows });
+        const tableHtml = `
+            <div class="container">
+                <h2>Funcionários com Vendas Superiores a 50000</h2>
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Nome do Funcionário</th>
+                            <th>Total de Vendas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rows.map(row => `
+                            <tr>
+                                <td>${row.nome}</td>
+                                <td>${row.total_vendas}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
+        `;
+        res.render("selecionarMarca.ejs", { dados: rows, tabelaHtml: tableHtml });
     });
 });
+
 
 // Rota para exibir informações dos funcionários
 app.get("/Desempenho", function (req, res) {
@@ -482,9 +568,35 @@ app.get("/Desempenho", function (req, res) {
 });
 
 
-  
+// Rota para exibir informações dos clientes
+app.get("/DesempenhoCliente", function (req, res) {
+    const sql = `
+    SELECT
+    Cliente.nome,
+    COUNT(Compra.idCompra) AS totalCompras,
+    MIN(Compra.dataCompra) AS primeiraCompra,
+    MAX(Compra.dataCompra) AS ultimaCompra
+FROM
+    Compra
+RIGHT JOIN
+    Cliente ON Cliente.idCliente = Compra.idCliente
+GROUP BY
+    Cliente.nome
+WITH ROLLUP;
 
-  
+    `;
+
+    connection.query(sql, function (err, rows) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        res.render("clientesInfo.ejs", { dados: rows });
+    });
+});
+
+
 
 
 

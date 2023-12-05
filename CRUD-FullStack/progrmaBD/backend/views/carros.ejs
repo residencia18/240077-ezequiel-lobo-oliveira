@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -69,21 +75,53 @@
             </ul>
         </div>
     </nav>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOrder" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Ordenar
+                    </a>
+                    <div class="dropdown-menu w-100" aria-labelledby="navbarDropdownOrder">
+                        <a class="dropdown-item" href="/ordenarPorPreco">Preço</a>
+                        <a class="dropdown-item" href="/ordenarPorAno">Ano</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/agrupar">Agrupar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/selecionar">Selecionar</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <!-- Botão Adicionar Verde com link -->
+        <a href="/adicionarCarro" class="btn btn-success ml-auto">Adicionar</a>
+    </nav>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <% carros.forEach(function(carro) { %>
                 <div class="col-md-4 mb-4">
                     <div class="card car-card h-100">
                         <img src="carro.png" alt="<%= carro.modelo %>" class="card-img-top" style="object-fit: cover; height: 200px;">
-    
+
                         <div class="card-body text-center">
                             <h4 class="card-title" style="font-family: 'Arial', sans-serif;"><strong><%= carro.modelo %></strong></h5>
                             <ul class="list-unstyled">
                                 <li><h5><strong><%= carro.marca %></strong></h5></li>
                                 <li><h5><strong><%= carro.ano %></strong></h5></li>
                                 <li><h5><strong>R$ <%= carro.preco %></strong></h5></li>
-                                <% /* Oculta o ID do Funcionário */ %>
+                                <!-- Botões Editar e Deletar -->
+                                <div class="mt-3">
+                                    <a href="/editarCarro/<%= carro.idCarro %>" class="btn btn-primary btn-sm">Editar</a>
+                                    <a href="/deleteCarro/<%= carro.idCarro %>" class="btn btn-danger btn-sm">Deletar</a>
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -94,7 +132,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Adiciona eventos de hover para os itens do menu
+            // Adicione eventos de hover para os itens do menu
             var navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(function(navLink) {
                 navLink.addEventListener('mouseover', function() {
