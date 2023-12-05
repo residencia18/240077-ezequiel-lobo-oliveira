@@ -238,7 +238,7 @@ app.get("/editarCliente/:id", function (req, res) {
     });
 });
 
-// Assuming you have a route to handle the form submission for updating client information
+
 app.post("/editarCliente/:id", function (req, res) {
     const clienteId = req.params.id;
     const { nome, email, senhaCli } = req.body;
@@ -251,8 +251,6 @@ app.post("/editarCliente/:id", function (req, res) {
             console.error("Error:", err.message);
             return res.status(500).send("Internal Server Error");
         }
-
-        // Assuming you want to redirect to the client list page after a successful update
         res.redirect("/clientes");
     });
 });
@@ -271,16 +269,13 @@ app.get("/clientes", function (req, res) {
     });
 });
 
-// Rota para exibir formulário de inserção de cliente
+
 app.get("/inserirCliente", function (req, res) {
     res.render("inserirCliente.ejs", { dados: {} });
 });
-
-// Rota para processar o formulário de inserção de cliente
 app.post("/inserirCliente", function (req, res) {
     const sql = "INSERT INTO Cliente (nome, email, telefone, endereco, senhaCli) VALUES (?, ?, ?, ?, ?)";
     const dadosCliente = [req.body.nome, req.body.email, req.body.telefone, req.body.endereco, req.body.senha];
-
     connection.query(sql, dadosCliente, function (err, result) {
         if (err) {
             return console.error(err.message);
@@ -314,20 +309,12 @@ app.get("/deleteCliente/:id", function (req, res) {
             console.error("Error deleting related records:", err.message);
             return res.status(500).send("Internal Server Error: " + err.message);
         }
-
-        const sqlDeleteCliente = "DELETE FROM Cliente WHERE idCliente = ?";
-        connection.query(sqlDeleteCliente, [clienteId], function (err, result) {
-            if (err) {
-                console.error("Error deleting cliente:", err.message);
-                return res.status(500).send("Internal Server Error: " + err.message);
-            }
-
             console.log("Cliente deleted successfully");
 
             res.redirect("/clientes");
         });
     });
-});
+
 
 
 
@@ -376,52 +363,37 @@ app.post('/adicionarCompra', (req, res) => {
     const idCarro = req.body.idCarro;
     const idCliente = req.body.idCliente;
     const dataCompra = req.body.dataCompra;
-
-    // Inserir dados na tabela Compra
     const inserirCompraQuery = "INSERT INTO Compra (idCarro, idCliente, dataCompra) VALUES (?, ?, ?)";
     const parametros = [idCarro, idCliente, dataCompra];
-
     connection.query(inserirCompraQuery, parametros, (erro, resultado) => {
         if (erro) {
             console.error("Error adding purchase:", erro.message);
             return res.status(500).send("Internal Server Error");
         }
-
         console.log("Compra adicionada com sucesso:", resultado);
-
-        // Redirecionar para a página de compras ou para onde desejar
         res.redirect("/mostrarCompras");
     });
 });
 app.get("/adicionarCompra", function (req, res) {
-    // Fetch client information
     const sqlClientes = "SELECT idCliente, nome FROM Cliente";
-
     connection.query(sqlClientes, function (err, rows) {
         if (err) {
             console.error("Error fetching clients:", err.message);
             return res.status(500).send("Internal Server Error");
         }
-
-        // Render the "adicionarCompra" page with client data
         res.render("adicionarCompra.ejs", { clientes: rows });
     });
 });
 
 
 app.get('/ordenarPorPreco', (req, res) => {
-    // SQL query to select cars ordered by price
     const sql = 'SELECT * FROM Carro ORDER BY preco ASC';
-  
-    // Execute the query
     connection.query(sql, (error, results) => {
       if (error) {
         console.error('Error executing SQL query:', error);
         res.status(500).send('Internal Server Error');
         return;
       }
-  
-      // Render your HTML template with the sorted car data
       res.render('carros.ejs', { carros: results });
     });
   });
@@ -442,7 +414,6 @@ app.get('/ordenarPorPreco', (req, res) => {
   
  
   app.get("/agrupar", function (req, res) {
-    // Lógica para contar carros por marca
     const sql = "SELECT marca, COUNT(*) as total_carros FROM Carro GROUP BY marca";
 
     connection.query(sql, function (err, rows) {
@@ -450,8 +421,6 @@ app.get('/ordenarPorPreco', (req, res) => {
             console.error("Error:", err.message);
             return res.status(500).send("Internal Server Error");
         }
-
-        // HTML da tabela
         const tableHtml = `
         <div class="container mt-5">
             <h2>Contagem de Carros por Marca</h2>
@@ -522,6 +491,46 @@ app.get("/selecionar", function (req, res) {
         res.render("selecionarMarca.ejs", { dados: rows, tabelaHtml: tableHtml });
     });
 });
+
+app.get("/selecionarCarros", function (req, res) {
+    const sql = `
+        SELECT C.modelo, C.preco
+        FROM Funcionario F
+        JOIN Carro C ON F.idFuncionario = C.idFuncionario
+        JOIN Compra CO ON C.idCarro = CO.idCarro
+        GROUP BY C.idCarro
+        HAVING SUM(C.preco) < 50000;
+    `;
+    connection.query(sql, function (err, rows) {
+        if (err) {
+            console.error("Error:", err.message);
+            return res.status(500).send("Internal Server Error");
+        }
+        const tableHtml = `
+            <div class="container">
+                <h2>Carros com Vendas Abaixo de 50000</h2>
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rows.map(row => `
+                            <tr>
+                                <td>${row.modelo}</td>
+                                <td>${row.preco}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
+        `;
+        res.render("selecionarMarca.ejs", { dados: rows, tabelaHtml: tableHtml });
+    });
+});
+
 
 
 // Rota para exibir informações dos funcionários

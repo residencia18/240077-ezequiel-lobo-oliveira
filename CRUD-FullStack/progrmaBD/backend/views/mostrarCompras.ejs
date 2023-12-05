@@ -3,6 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
@@ -71,36 +76,37 @@
         </ul>
     </div>
 </nav>
-    <div class="container mt-5">
-        <div class="table-responsive-sm">
-            <table class="table table-striped table-sm">
-                <thead class="thead-dark">
+<div class="container mt-5">
+    <div class="table-responsive-sm">
+        <table class="table table-striped table-light table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID Compra</th>
+                    <th>ID Carro</th>
+                    <th>ID Cliente</th>
+                    <th>Data da Compra</th>
+                    <th class="d-print-none">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Use the correct variable name -->
+                <% for (const compra of dadosCompras) { %>
                     <tr>
-                        <th>ID Compra</th>
-                        <th>ID Carro</th>
-                        <th>ID Cliente</th>
-                        <th>Data da Compra</th>
+                        <td><%= compra.idCompra %></td>
+                        <td><%= compra.idCarro %></td>
+                        <td><%= compra.idCliente %></td>
+                        <td><%= compra.dataCompra %></td>
+                        <td class="d-print-none">
+                            <!-- Remova os botões Editar e Deletar -->
+                            <!-- Adicione o botão Cancelar -->
+                            <a class="btn btn-sm btn-secondary" href="/cancelar/<%= compra.idCarro %>">Cancelar</a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <!-- Use the correct variable name -->
-                    <% for (const compra of dadosCompras) { %>
-                        <tr>
-                            <td><%= compra.idCompra %></td>
-                            <td><%= compra.idCarro %></td>
-                            <td><%= compra.idCliente %></td>
-                            <td><%= compra.dataCompra %></td>
-                            <td class="d-print-none">
-                                <!-- Remova os botões Editar e Deletar -->
-                                <!-- Adicione o botão Cancelar -->
-                                <a class="btn btn-sm btn-secondary" href="/cancelar/<%= compra.idCarro %>">Cancelar</a>
-                            </td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
-        </div>
+                <% } %>
+            </tbody>
+        </table>
     </div>
+</div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
