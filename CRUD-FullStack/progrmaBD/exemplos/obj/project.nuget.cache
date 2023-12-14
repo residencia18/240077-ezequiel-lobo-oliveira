@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "yyk3j86lV5bvCFPAQwhwxh0q7zegETkilNlhIjKRj59gp2+o0exzLVyk6KBY3yexUBLqH+LlOjNO2WKjPMFGww==",
+  "dgSpecHash": "sJaVmTV4UPjmp/z3lLtHsWJAkpiGQtcn0PB4f7Pxw4SrDRO6Kn7A3+5gr5x0CwKlGsVNLGcPm1wNnKUPDjDbNQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Acer\\OneDrive\\Área de Trabalho\\residência\\FRONT\\CRUD-FullStack\\progrmaBD\\exemplos\\exemplos.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Acer\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\Acer\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\Acer\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\Acer\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
+  ],
   "logs": []
 }
