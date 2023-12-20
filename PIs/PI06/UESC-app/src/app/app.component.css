@@ -1,0 +1,133 @@
+/* app.component.css */
+
+#header {
+    grid-area: header;
+    text-align: center;
+    background-color: rgb(168, 162, 162);
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 650px;
+    padding: 1px;
+    box-sizing: border-box;
+    background-color: rgb(132, 132, 245);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #item1, #item2, #item3, #item4, #item5 {
+    font-family: 'Varela Round', sans-serif;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  .square {
+    background-color: rgb(168, 162, 162);
+    padding: 1px;
+    margin-bottom: 10px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 100%;
+  }
+  
+  .item-personalizado {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .img {
+    text-align: center;
+    display: grid;
+    grid-gap: 10px;
+    margin: 10px;
+  }
+  
+  #footer {
+    font-family: 'Playfair Display', serif;
+    border: 1px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 650px;
+    background-color: rgb(15, 15, 15);
+    height: 50px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 20%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+      "item1 item2 item3"
+      "item4 item5 item5";
+    grid-gap: 5px;
+    box-sizing: border-box;
+    padding-top: 10px; 
+    width: 100%; 
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: #f2f2f2;
+    margin-bottom: 60px;
+  }
+  
+  .black-box {
+    background-color: black;
+    color: white;
+    width: 300px;
+    height: 20px;
+    margin: 10px auto;
+    text-align: center;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  @media (max-width: 500px) {
+    .container{
+      grid-template-columns: 1fr;
+      display: grid;
+      grid-gap: 5px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+    #item5{
+      width:100%;
+    }
+    .item-personalizado{
+      width: 100%;
+      display:inline-block;
+      align-items: center;
+    }
+    .item-especial {
+      width: 100%;
+    }
+    .img img:not(:first-child) {
+      display: none;
+    }
+    .img1{
+      margin-right: 10px;
+      width: 100%;
+    }
+    #footer{
+      bottom: 0;
+    }
+  }
+  

@@ -1,0 +1,9 @@
+/* servicos.component.css */
+.item {
+    font-family: 'Varela Round', sans-serif;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
