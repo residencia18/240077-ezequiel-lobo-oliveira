@@ -1,3 +1,4 @@
+using CleanArchitecture.Domain.Entities;
 namespace CleanArchitecture.Domain.Interfaces;
 
 public interface IBaseRepository<T> where T :BaseEntity
