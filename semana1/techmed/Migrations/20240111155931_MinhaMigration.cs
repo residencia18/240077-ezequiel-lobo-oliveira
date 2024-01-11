@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace techmed.Migrations
 {
     /// <inheritdoc />
-    public partial class initialCreate : Migration
+    public partial class MinhaMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,10 +20,11 @@ namespace techmed.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CRM = table.Column<int>(type: "int", nullable: false),
-                    especialidade = table.Column<string>(type: "longtext", nullable: false)
+                    CRM = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    salario = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Especialidade = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Salario = table.Column<float>(type: "float", nullable: false),
                     Nome = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CPF = table.Column<string>(type: "longtext", nullable: false)
@@ -41,9 +42,9 @@ namespace techmed.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    endereco = table.Column<string>(type: "longtext", nullable: false)
+                    Endereco = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    telefone = table.Column<string>(type: "longtext", nullable: false)
+                    Telefone = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Nome = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),

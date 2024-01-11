@@ -28,7 +28,7 @@ public abstract class Pessoa{
 public class Medico : Pessoa{
   public string CRM {get; set;}
   public string Especialidade {get; set;}
-  public decimal Salario {get; set;}
+  public float Salario {get; set;}
 }
 
 public class Paciente:Pessoa{

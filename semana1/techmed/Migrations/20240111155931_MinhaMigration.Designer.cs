@@ -10,8 +10,8 @@ using techmed;
 namespace techmed.Migrations
 {
     [DbContext(typeof(TechmedContext))]
-    [Migration("20240111055251_initialCreate")]
-    partial class initialCreate
+    [Migration("20240111155931_MinhaMigration")]
+    partial class MinhaMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,19 +31,20 @@ namespace techmed.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("CRM")
-                        .HasColumnType("int");
+                    b.Property<string>("CRM")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Especialidade")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("especialidade")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<decimal>("salario")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<float>("Salario")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -60,15 +61,15 @@ namespace techmed.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Endereco")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("endereco")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("telefone")
+                    b.Property<string>("Telefone")
                         .IsRequired()
                         .HasColumnType("longtext");
 
