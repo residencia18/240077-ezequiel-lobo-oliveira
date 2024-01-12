@@ -54,7 +54,7 @@ public class Paciente : Pessoa
 {
     public required string Endereco { get; set; }
     public required string Telefone { get; set; }
-    public List<Atendimentos> Atendimentos { get; set; }
+    public ICollection<Atendimentos> Atendimentos { get;}
 }
 
 public class Atendimentos
@@ -62,7 +62,13 @@ public class Atendimentos
     public int Id { get; set; }
     public DateTime DataHora { get; set; }
     public int MedicoId { get; set; }
-    public Medico Medico { get; set; }
+    public required Medico Medico { get; set; }
     public int PacienteId { get; set; }
-    public Paciente Paciente { get; set; }
+    public required Paciente Paciente { get; set; }
+    
+}
+public class Exame{
+    public int id{get;set;}
+    
+
 }
