@@ -53,3 +53,41 @@ e2e/*.map
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,angular
+# Arquivos e diretórios específicos para projetos Angular
+node_modules/
+/dist/
+/e2e/
+
+# Arquivos específicos para projetos Node.js
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Arquivos específicos para projetos CSS
+*.css.map
+
+# Arquivos específicos para Visual Studio
+.vscode/
+
+# Arquivos específicos para HTML
+*.html~
+
+# Arquivos específicos para sistemas Linux
+*~
+
+# Arquivos de configuração para diversos editores
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Arquivos de configuração para o sistema operacional
+.DS_Store
+Thumbs.db
+
+# Dependendo do seu ambiente de desenvolvimento, você pode precisar adicionar mais regras.
+
+# Adicione regras específicas para arquivos que você deseja ignorar
+# Exemplo: /path/to/file

@@ -1,0 +1,16 @@
+/* src/app/carrinho/carrinho.component.css */
+:host {
+    display: block;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
