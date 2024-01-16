@@ -12,7 +12,7 @@ import {
   ObjetosComponent,
   PropriedadesComponent,
   ValorPropriedadeComponent
-} from './index';  // Certifique-se de que os caminhos estão corretos
+} from './index';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import {
     ObjetosComponent,
     PropriedadesComponent,
     ValorPropriedadeComponent,
-    EstilizarCategoriasDirective,  // Adicione as diretivas aqui
+    EstilizarCategoriasDirective,
     EstilizarVeiculosDirective
   ],
   imports: [

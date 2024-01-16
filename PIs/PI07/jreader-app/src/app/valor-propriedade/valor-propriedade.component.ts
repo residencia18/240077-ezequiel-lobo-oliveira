@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./valor-propriedade.component.css']
 })
 export class ValorPropriedadeComponent {
-  @Input() valorSelecionado: any | null = null;
+  @Input() valorPropriedade: any;
 }

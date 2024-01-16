@@ -7,10 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  [x: string]: any;
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   categoriaSelecionada: string | null = null;
   veiculoSelecionado: any | null = null;
   propriedadeSelecionada: string | null = null;
+  valorPropriedade: any; // Adicionando a propriedade valorPropriedade
 
   // Dados JSON fornecidos
   veiculos = {
@@ -96,6 +99,7 @@ export class AppComponent {
       }
     ]
   };
+
   veiculosSelecionados: any[] = [];
 
   selecionarCategoria(categoria: string): void {
