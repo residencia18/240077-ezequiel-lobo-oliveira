@@ -8,6 +8,9 @@ import { JsonReaderService } from './services/json-reader.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   categorias: string[] = [];
   categoriaSelecionada: string | null = null;
   veiculos: any = {};

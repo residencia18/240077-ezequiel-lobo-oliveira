@@ -1,5 +1,6 @@
 <!-- src/app/app.component.html -->
-<div>
+<div class="container">
+  <div class="categories">
     <h2>Categorias</h2>
     <ul>
       <li *ngFor="let categoria of categorias" (click)="selecionarCategoria(categoria)">
@@ -7,7 +8,7 @@
       </li>
     </ul>
   </div>
-  
+
   <div *ngIf="categoriaSelecionada">
     <h2>Veículos da Categoria {{ categoriaSelecionada }}</h2>
     <ul>
@@ -16,7 +17,7 @@
       </li>
     </ul>
   </div>
-  
+
   <div *ngIf="veiculoSelecionado">
     <h2>Propriedades do Veículo</h2>
     <ul>
@@ -25,9 +26,9 @@
       </li>
     </ul>
   </div>
-  
+
   <div *ngIf="propriedadeSelecionada">
     <h2>Valor da Propriedade {{ propriedadeSelecionada }}</h2>
-    <p>{{ valorPropriedade }}</p>
+    <p>{{ veiculoSelecionado[propriedadeSelecionada] }}</p>
   </div>
-  
+</div>
