@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   propriedadesVeiculoSelecionado: string[] = [];
   propriedadeSelecionada: string | null = null;
   valorPropriedade: any;
+  selectedVehicles: any[] = [];
 
   constructor(private jsonReaderService: JsonReaderService) {}
 
@@ -49,5 +50,19 @@ export class AppComponent implements OnInit {
   selecionarPropriedade(propriedade: string): void {
     this.propriedadeSelecionada = propriedade;
     this.valorPropriedade = this.veiculoSelecionado[propriedade];
+  }
+
+  addToFooter(): void {
+    if (this.veiculoSelecionado) {
+      this.selectedVehicles.push({ ...this.veiculoSelecionado });
+      this.updateSelectedVehiclesJSON();
+    }
+  }
+
+  updateSelectedVehiclesJSON(): void {
+    // Lógica para atualizar o arquivo JSON com os veículos selecionados
+    // Essa lógica dependerá de como você está gerenciando ou armazenando os dados.
+    // Você pode usar o serviço HTTP para fazer uma solicitação à sua API e armazenar os dados no banco de dados.
+    console.log('Atualizando JSON com veículos selecionados:', this.selectedVehicles);
   }
 }
