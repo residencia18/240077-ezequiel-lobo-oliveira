@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { EstilizarCategoriasDirective } from '../diretivas/estilizar-categorias.directive';
 import { EstilizarVeiculosDirective } from '../diretivas/estilizar-veiculos.directive';
 
@@ -13,6 +14,8 @@ import {
   PropriedadesComponent,
   ValorPropriedadeComponent
 } from './index';
+
+import { JsonReaderService } from './services/json-reader.service'; // Adicione esta linha
 
 @NgModule({
   declarations: [
@@ -27,9 +30,12 @@ import {
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    JsonReaderService // Adicione esta linha
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
