@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -53,17 +54,67 @@ namespace techmed.Controllers
             }).ToArray();
         }
 
+        [HttpPost("InsertMedico", Name = "InsertMedico")]
+        public IActionResult InsertMedico([FromBody] Medico newMedico)
+        {
+            if (newMedico != null)
+            {
+                return Ok($"Inserted new Medico: {newMedico.Name}");
+            }
+            else
+            {
+                return BadRequest("Invalid Medico data");
+            }
+        }
+
+        [HttpPut("UpdateMedico/{medicoId}", Name = "UpdateMedico")]
+        public IActionResult UpdateMedico(int medicoId, [FromBody] Medico updatedMedico)
+        {
+            if (updatedMedico != null && medicoId > 0)
+            {
+                return Ok($"Updated Medico with ID {medicoId}");
+            }
+            else
+            {
+                return BadRequest("Invalid Medico data or ID");
+            }
+        }
+
+        [HttpPost("InsertCliente", Name = "InsertCliente")]
+        public IActionResult InsertCliente([FromBody] Cliente newCliente)
+        {
+            if (newCliente != null)
+            {
+                return Ok($"Inserted new Cliente: {newCliente.Name}");
+            }
+            else
+            {
+                return BadRequest("Invalid Cliente data");
+            }
+        }
+
+        [HttpPut("UpdateCliente/{clienteId}", Name = "UpdateCliente")]
+        public IActionResult UpdateCliente(int clienteId, [FromBody] Cliente updatedCliente)
+        {
+            if (updatedCliente != null && clienteId > 0)
+            {
+                return Ok($"Updated Cliente with ID {clienteId}");
+            }
+            else
+            {
+                return BadRequest("Invalid Cliente data or ID");
+            }
+        }
+
         [HttpDelete("DeleteMedico/{medicoId}", Name = "DeleteMedico")]
         public IActionResult DeleteMedico(int medicoId)
         {
             if (medicoId > 0)
             {
-                
                 return Ok($"Deleted Medico with ID {medicoId}");
             }
             else
             {
-                
                 return NotFound($"Medico with ID {medicoId} not found");
             }
         }
@@ -73,7 +124,6 @@ namespace techmed.Controllers
         {
             if (clienteId > 0)
             {
-                
                 return Ok($"Deleted Cliente with ID {clienteId}");
             }
             else
