@@ -1,0 +1,7 @@
+<!-- resultado-da-pesquisa.component.html -->
+<div *ngFor="let item of resultado">
+    <h3><a [href]="getArticleLink(item)" target="_blank">{{ item.title }}</a></h3>
+    <p>{{ item.snippet }}</p>
+    <p><a [href]="getArticleLink(item)" target="_blank">Ver mais</a></p>
+  </div>
+  
