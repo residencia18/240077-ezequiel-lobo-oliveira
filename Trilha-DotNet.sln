@@ -15,6 +15,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "semana3", "semana3", "{9D51
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cliente", "semana3\techmed\Cliente.csproj", "{48EC5A6E-DCD6-48A0-AD46-AB11D4907E08}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "semana4", "semana4", "{CA3B96F4-C728-43EE-A0B6-01A56561C07A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechMed.Core", "TechMed.Core\TechMed.Core.csproj", "{4884C5CC-832C-4912-B4D7-A9E8FED97025}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechMed.Infras", "TechMed.Infras\TechMed.Infras.csproj", "{46A2A719-0DDC-4ADA-95F7-32FD7D8FDB31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +43,14 @@ Global
 		{48EC5A6E-DCD6-48A0-AD46-AB11D4907E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48EC5A6E-DCD6-48A0-AD46-AB11D4907E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48EC5A6E-DCD6-48A0-AD46-AB11D4907E08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4884C5CC-832C-4912-B4D7-A9E8FED97025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4884C5CC-832C-4912-B4D7-A9E8FED97025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4884C5CC-832C-4912-B4D7-A9E8FED97025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4884C5CC-832C-4912-B4D7-A9E8FED97025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46A2A719-0DDC-4ADA-95F7-32FD7D8FDB31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46A2A719-0DDC-4ADA-95F7-32FD7D8FDB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46A2A719-0DDC-4ADA-95F7-32FD7D8FDB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46A2A719-0DDC-4ADA-95F7-32FD7D8FDB31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
