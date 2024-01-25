@@ -8,37 +8,28 @@ import { Observable, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class WikipediaService {
-  private apiUrl = '/api/w/api.php';
+  private apiUrl = 'https://en.wikipedia.org/w/api.php'; // Updated API URL
 
   constructor(private http: HttpClient) {}
 
-  searchArticles(term: any){
+  searchArticles(term: string): Observable<any> {
     const params = {
       action: 'query',
       format: 'json',
       list: 'search',
       utf8: '1',
-      origin:'*',
-      srsearch: term,
+      origin: '*',
+      srsearch: encodeURIComponent(term), // Properly encode the search term
     };
 
     return this.http
-      .get(this.apiUrl, { params, responseType: 'text' })
+      .get(this.apiUrl, { params })
       .pipe(
         map((response: any) => {
-          try {
-            // Attempt to parse JSON response
-            const jsonResponse = JSON.parse(response);
-
-            // Check if the response has the expected structure
-            if (jsonResponse.query && jsonResponse.query.search) {
-              return jsonResponse;
-            } else {
-              throw new Error('Invalid JSON response structure');
-            }
-          } catch (error) {
-            // Handle parsing error
-            throw new Error('Error parsing JSON response');
+          if (response.query && response.query.search) {
+            return response;
+          } else {
+            throw new Error('Invalid JSON response structure');
           }
         }),
         catchError((error: HttpErrorResponse) => {
