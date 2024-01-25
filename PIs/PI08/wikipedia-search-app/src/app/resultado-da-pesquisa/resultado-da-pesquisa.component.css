@@ -1,0 +1,45 @@
+/* resultado-da-pesquisa.component.css */
+:host {
+    display: block;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .resultado-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 16px 0;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .resultado-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .resultado-titulo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .resultado-snippet {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 12px;
+  }
+  
+  .resultado-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    margin-top: 8px;
+  }
+  
+  .resultado-link:hover {
+    text-decoration: underline;
+  }
+  
