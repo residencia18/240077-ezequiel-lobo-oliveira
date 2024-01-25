@@ -8,7 +8,7 @@ import { WikipediaService } from './wikipedia.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  resultadoPesquisa: any[] = [];
+  resultadoPesquisa: any = [];
 
   constructor(private wikipediaService: WikipediaService) {}
 

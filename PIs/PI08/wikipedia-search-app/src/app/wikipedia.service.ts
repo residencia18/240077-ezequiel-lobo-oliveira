@@ -12,11 +12,13 @@ export class WikipediaService {
 
   constructor(private http: HttpClient) {}
 
-  searchArticles(term: string): Observable<any> {
+  searchArticles(term: any){
     const params = {
       action: 'query',
       format: 'json',
       list: 'search',
+      utf8: '1',
+      origin:'*',
       srsearch: term,
     };
 
