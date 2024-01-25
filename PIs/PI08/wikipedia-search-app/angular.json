@@ -56,10 +56,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "buildTarget": "wikipedia-search-app:build",
             "proxyConfig": "proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "wikipedia-search-app:build:production"
+            }
           }
         },
-        
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
