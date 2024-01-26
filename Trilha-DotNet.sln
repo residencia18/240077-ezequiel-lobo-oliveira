@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechMed.Core", "TechMed.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechMed.Infras", "TechMed.Infras\TechMed.Infras.csproj", "{46A2A719-0DDC-4ADA-95F7-32FD7D8FDB31}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechMed.WebAPI", "TechMed.WebAPI\TechMed.WebAPI.csproj", "{378C4085-2529-45CB-BFAE-48BF645C2E8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{46A2A719-0DDC-4ADA-95F7-32FD7D8FDB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46A2A719-0DDC-4ADA-95F7-32FD7D8FDB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46A2A719-0DDC-4ADA-95F7-32FD7D8FDB31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{378C4085-2529-45CB-BFAE-48BF645C2E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{378C4085-2529-45CB-BFAE-48BF645C2E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{378C4085-2529-45CB-BFAE-48BF645C2E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{378C4085-2529-45CB-BFAE-48BF645C2E8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
