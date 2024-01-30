@@ -1,5 +1,6 @@
 namespace TechAdvocacia.Core.Entities;
 
-public class Pessoa
-{
+public abstract class Pessoa : BaseEntity{
+    public required string Nome {get; set;}
+  
 }
