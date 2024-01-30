@@ -1,4 +1,4 @@
-namespace TechMed.Application.InputModels
+namespace TechAdvocacia.Application.InputModels
 {
     public class NewAdvogadoInputModel
     {
