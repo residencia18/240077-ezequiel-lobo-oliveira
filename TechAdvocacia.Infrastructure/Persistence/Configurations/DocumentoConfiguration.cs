@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TechAdvocacia.Domain.Entities;
+using TechAdvocacia.Core.Entities;
 
 public class DocumentoConfiguration : IEntityTypeConfiguration<Documento>
 {
