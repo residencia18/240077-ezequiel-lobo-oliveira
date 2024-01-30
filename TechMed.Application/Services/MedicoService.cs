@@ -2,6 +2,7 @@ using TechMed.Application.Services.Interfaces;
 using TechMed.Application.ViewModels;
 using TechMed.Application.InputModels;
 using TechMed.Infrastructure.Persistence.Interfaces;
+using TechMed.Core.Entities;
 
 
 namespace TechMed.Application.Services;

@@ -3,6 +3,7 @@ using TechMed.Infrastructure.Persistence.Interfaces;
 using TechMed.Application.InputModels;
 using TechMed.Application.ViewModels;
 using TechMed.Application.Services;
+using TechMed.Core.Entities;
 
 namespace TechMed.WebAPI.Controllers;
 
