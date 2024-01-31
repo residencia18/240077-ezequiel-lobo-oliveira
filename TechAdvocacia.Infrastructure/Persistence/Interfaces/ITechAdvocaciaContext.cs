@@ -1,5 +1,5 @@
 namespace TechAdvocacia.Infrastructure.Persistence.Interfaces;
 
-public interface ITechAdvociaContext
+public interface ITechAdvocaciaContext
 {
 }
