@@ -1,5 +1,5 @@
-using TechMed.Infrastructure.Persistence;
-using TechMed.Infrastructure.Persistence.Interfaces;
+using TechAdvocacia.Infrastructure.Persistence;
+using TechAdvocacia.Infrastructure.Persistence.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

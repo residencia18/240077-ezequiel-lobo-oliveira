@@ -1,6 +1,6 @@
-namespace TechMed.Application.Services.Interfaces;
-using TechMed.Application.ViewModels;
-using TechMed.Application.InputModels;
+namespace TechAdvocacia.Application.Services.Interfaces;
+using TechAdvocacia.Application.ViewModels;
+using TechAdvocacia.Application.InputModels;
 
 public interface IMedicoService
 {

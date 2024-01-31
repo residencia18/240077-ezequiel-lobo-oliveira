@@ -1,11 +1,11 @@
-using TechMed.Application.Services.Interfaces;
-using TechMed.Application.ViewModels;
-using TechMed.Application.InputModels;
-using TechMed.Infrastructure.Persistence.Interfaces;
-using TechMed.Core.Entities;
+using TechAdvocacia.Application.Services.Interfaces;
+using TechAdvocacia.Application.ViewModels;
+using TechAdvocacia.Application.InputModels;
+using TechAdvocacia.Infrastructure.Persistence.Interfaces;
+using TechAdvocacia.Core.Entities;
 
 
-namespace TechMed.Application.Services;
+namespace TechAdvocacia.Application.Services;
 
 public class MedicoService : IMedicoService
 {

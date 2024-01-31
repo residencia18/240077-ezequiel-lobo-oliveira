@@ -1,4 +1,4 @@
-namespace TechMed.Core.Entities;
+namespace TechAdvocacia.Core.Entities;
 
 public class Paciente : Pessoa
 {

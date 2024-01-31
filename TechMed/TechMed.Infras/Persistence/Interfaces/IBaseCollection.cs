@@ -1,6 +1,6 @@
 
 
-namespace TechMed.Infrastructure.Persistence.Interfaces;
+namespace TechAdvocacia.Infrastructure.Persistence.Interfaces;
 public interface IBaseCollection<T>
 {  
    void Create(T obj);

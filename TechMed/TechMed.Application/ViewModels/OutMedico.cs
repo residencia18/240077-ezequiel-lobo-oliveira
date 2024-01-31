@@ -1,4 +1,4 @@
-namespace TechMed.Application.ViewModels;
+namespace TechAdvocacia.Application.ViewModels;
 
 public class OutMedico
 { 

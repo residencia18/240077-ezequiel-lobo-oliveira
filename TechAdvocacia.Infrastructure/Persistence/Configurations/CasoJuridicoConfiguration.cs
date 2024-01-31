@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TechAdvocacia.Core.Entities;
-namespace TechMed.Infrastructure.Persistence.Configurations;
+namespace TechAdvocacia.Infrastructure.Persistence.Configurations;
 public class CasoJuridicoConfigurations : IEntityTypeConfiguration<CasoJuridico>
 {
    public void Configure(EntityTypeBuilder<CasoJuridico> builder)

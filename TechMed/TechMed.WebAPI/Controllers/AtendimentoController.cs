@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using TechMed.Infrastructure.Persistence.Interfaces;
-using TechMed.Core.Entities;
+using TechAdvocacia.Infrastructure.Persistence.Interfaces;
+using TechAdvocacia.Core.Entities;
 
-namespace TechMed.WebAPI.Controllers;
+namespace TechAdvocacia.WebAPI.Controllers;
 
 [ApiController]
 [Route("/api/v0.1/")]

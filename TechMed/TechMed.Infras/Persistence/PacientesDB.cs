@@ -1,7 +1,7 @@
-using TechMed.Core.Entities;
-using TechMed.Infrastructure.Persistence.Interfaces;
+using TechAdvocacia.Core.Entities;
+using TechAdvocacia.Infrastructure.Persistence.Interfaces;
 
-namespace TechMed.Infrastructure.Persistence;
+namespace TechAdvocacia.Infrastructure.Persistence;
 public class PacientesDB : IPacienteCollection
 {
    private readonly List<Paciente> _pacientes = new List<Paciente>();

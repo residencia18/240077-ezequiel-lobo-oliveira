@@ -1,7 +1,7 @@
 using TechAdvocacia.Application.InputModels;
 using TechAdvocacia.Application.ViewModels;
 
-namespace TechMed.Application.Services.Interfaces;
+namespace TechAdvocacia.Application.Services.Interfaces;
 public interface ICasoJuridicoService
 {
    public List<CasoJuridicoViewModel> GetAll();

@@ -1,6 +1,6 @@
-using TechMed.Core.Entities;
+using TechAdvocacia.Core.Entities;
 
-namespace TechMed.Infrastructure.Persistence.Interfaces;
+namespace TechAdvocacia.Infrastructure.Persistence.Interfaces;
 public interface IPacienteCollection : IBaseCollection<Paciente>
 {  
 

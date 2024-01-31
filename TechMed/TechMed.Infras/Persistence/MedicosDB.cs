@@ -1,7 +1,7 @@
-using TechMed.Infrastructure.Persistence.Interfaces;
-using TechMed.Core.Entities;
+using TechAdvocacia.Infrastructure.Persistence.Interfaces;
+using TechAdvocacia.Core.Entities;
 
-namespace TechMed.Infrastructure.Persistence;
+namespace TechAdvocacia.Infrastructure.Persistence;
 public class MedicosDB : IMedicoCollection
 {
    private readonly List<Medico> _medicos = new List<Medico>();

@@ -1,6 +1,6 @@
-using TechMed.Infrastructure.Persistence.Interfaces;
+using TechAdvocacia.Infrastructure.Persistence.Interfaces;
 
-using TechMed.Infrastructure.Persistence;
+using TechAdvocacia.Infrastructure.Persistence;
 public class TechMedContext : IDatabaseFake, ITechMedContext
 {
    public IMedicoCollection MedicosCollection { get; } = new MedicosDB();

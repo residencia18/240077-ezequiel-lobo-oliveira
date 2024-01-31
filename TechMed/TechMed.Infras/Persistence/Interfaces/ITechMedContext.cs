@@ -1,4 +1,4 @@
-namespace TechMed.Infrastructure.Persistence.Interfaces;
+namespace TechAdvocacia.Infrastructure.Persistence.Interfaces;
 public interface ITechMedContext : IDatabaseFake
 {
     

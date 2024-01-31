@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using TechAdvocacia.Application.ViewModels;
 using TechAdvocacia.Application.InputModels;
-using TechMed.Application.Services.Interfaces;
+using TechAdvocacia.Application.Services.Interfaces;
 using System.Collections.Generic;
 using TechAdvocacia.Application.Services.Interfaces;
 
-namespace TechMed.WebAPI.Controllers
+namespace TechAdvocacia.WebAPI.Controllers
 {
     [ApiController]
     [Route("/api/v0.1/")]
