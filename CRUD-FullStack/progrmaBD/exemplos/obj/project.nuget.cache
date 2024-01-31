@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J0GtUegtxo2qfi4LynXlxqiytaaUm0Jyf5LXaoM9m8L46DZTlmfMll+Y5QCOAqfF+NV0FDU1yBucK+jBiZWDcw==",
+  "dgSpecHash": "PD5lt/XWFdVg4hPjuT2SO9WQ1Yk56y60ikde/U+neRruF8oa7r32ylvABDFK8SGJ5YrBRrjtBSDZHIjmXXhMsQ==",
   "success": true,
-  "projectFilePath": "/home/ezequiel/Secretária/FRONT/CRUD-FullStack/progrmaBD/exemplos/exemplos.csproj",
+  "projectFilePath": "/home/ezequiel/Secretária/FRONT-1/CRUD-FullStack/progrmaBD/exemplos/exemplos.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
