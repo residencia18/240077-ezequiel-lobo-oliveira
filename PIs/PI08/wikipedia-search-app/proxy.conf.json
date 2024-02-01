@@ -1,7 +1,0 @@
-{
-    "/api": {
-      "target": "https://en.wikipedia.org",
-      "secure": false
-    }
-  }
-  
