@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using TechAdvocacia.Core.Entities;
+using TechAdvocacia.Infrastructure.Persistence.Interfaces;
 namespace TechAdvocacia.Infrastructure.Persistence;
 
-public class TechAdvocaciaDbContext : DbContext 
+public class TechAdvocaciaDbContext : DbContext , ITechAdvocaciaContext
 {
    public DbSet<Advogado> Advogados { get; set; }
    public DbSet<Cliente> Clientes { get; set; }

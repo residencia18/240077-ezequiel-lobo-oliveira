@@ -4,10 +4,9 @@ using TechAdvocacia.Application.Services.Interfaces;
 using TechAdvocacia.Infrastructure.Persistence;
 using TechAdvocacia.Infrastructure.Persistence.Interfaces;
 using TechAdvocacia.Core.Entities;
-using TechAdvocacia.Infrastructure.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 
 builder.Services.AddSingleton<ITechAdvocaciaContext, TechAdvocaciaContext>();
