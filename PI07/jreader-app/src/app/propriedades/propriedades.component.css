@@ -1,0 +1,19 @@
+.property-item {
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  background-color: #3a3a3a;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.property-item:hover {
+  background-color: #4a4a4a;
+  transform: scale(1.05);
+}
+
+.property-item:active {
+  transform: scale(0.95);
+}

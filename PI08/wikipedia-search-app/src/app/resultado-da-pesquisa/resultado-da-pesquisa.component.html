@@ -1,0 +1,6 @@
+<!-- resultado-da-pesquisa.component.html -->
+<div *ngFor="let article of resultado" class="resultado-item">
+  <h3 class="resultado-titulo" [innerHTML]="article.title"></h3>
+  <p class="resultado-snippet" [innerHTML]="article.snippet"></p>
+  <a class="resultado-link" [href]="getArticleLink(article)" target="_blank">Read more</a>
+</div>
