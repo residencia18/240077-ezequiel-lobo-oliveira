@@ -9,11 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
-builder.Services.AddSingleton<ITechAdvocaciaContext, TechAdvocaciaContext>();
 builder.Services.AddScoped<IAdvogadoService, AdvogadoService>();
 
 builder.Services.AddDbContext<TechAdvocaciaDbContext>(options => {
-    var connectionString = builder.Configuration.GetConnectionString("TechMedDb");
+    var connectionString = builder.Configuration.GetConnectionString("TechAdvocaciadDb");
     var serverVersion = ServerVersion.AutoDetect(connectionString);
     options.UseMySql(connectionString, serverVersion);
 });
