@@ -6,6 +6,7 @@ using TechAdvocacia.Infrastructure.Persistence;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IAdvogadoService, AdvogadoService>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
 
 
 builder.Services.AddDbContext<TechAdvocaciaDbContext>(options => {
