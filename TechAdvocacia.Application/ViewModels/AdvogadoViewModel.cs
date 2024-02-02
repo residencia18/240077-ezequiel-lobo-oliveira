@@ -1,9 +1,6 @@
-namespace TechAdvocacia.Application.ViewModels
+namespace TechAdvocacia.Application.ViewModels;
+public class AdvogadoViewModel
 {
-    public class AdvogadoViewModel
-    {
-        public int MedicoId { get; set; }
-        public string Nome { get; set; } = null!;
-        
-    }
+    public int AdvogadoId { get; set; }
+    public required string Nome { get; set; }
 }

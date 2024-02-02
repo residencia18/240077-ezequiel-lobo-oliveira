@@ -7,27 +7,25 @@ using TechAdvocacia.Core.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-builder.Services.AddScoped<IAdvogadoService, AdvogadoService>();
-
+// Add services to the container.
 builder.Services.AddDbContext<TechAdvocaciaDbContext>(options => {
-    var connectionString = builder.Configuration.GetConnectionString("TechAdvocaciadDb");
+    var connectionString = builder.Configuration.GetConnectionString("TechAdvocaciaDb");
     var serverVersion = ServerVersion.AutoDetect(connectionString);
     options.UseMySql(connectionString, serverVersion);
 });
 
+builder.Services.AddScoped<IAdvogadoService, AdvogadoService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TechAdvocacia.WebAPI v1"));
 }
 
 app.UseHttpsRedirection();

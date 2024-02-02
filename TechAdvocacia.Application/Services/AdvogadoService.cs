@@ -1,44 +1,79 @@
-using TechAdvocacia.Application.Services.Interfaces;
 using TechAdvocacia.Application.InputModels;
+using TechAdvocacia.Application.Services.Interfaces;
 using TechAdvocacia.Application.ViewModels;
-using TechAdvocacia.Infrastructure.Persistence.Interfaces;
 using TechAdvocacia.Core.Entities;
+using TechAdvocacia.Core.Exceptions;
+using TechAdvocacia.Infrastructure.Persistence;
 
 namespace TechAdvocacia.Application.Services;
 public class AdvogadoService : IAdvogadoService
 {
-    public int Create(NewAdvogadoInputModel medico)
+    private readonly TechAdvocaciaDbContext _context;
+    public AdvogadoService(TechAdvocaciaDbContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
     }
-
-    public int CreateAtendimento(int AdvogadoId, NewCasoJuridicoInputModel atendimento)
+    public int Create(NewAdvogadoInputModel advogado)
     {
-        throw new NotImplementedException();
+        var _advogado = new Advogado
+        {
+            Nome = advogado.Nome
+        };
+
+        _context.Advogados.Add(_advogado);
+        _context.SaveChanges();
+
+        return _advogado.AdvogadoId;
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        var _advogado = GetDbAdvogado(id);
+
+        _context.Advogados.Remove(_advogado);
+        _context.SaveChanges();
     }
 
-    public List<AdvogadoViewModel> GetAll()
+     public List<AdvogadoViewModel> GetAll()
     {
-        throw new NotImplementedException();
+        var advogados = _context.Advogados.Select(advogado => new AdvogadoViewModel()
+        {
+            AdvogadoId = advogado.AdvogadoId,
+            Nome = advogado.Nome
+        });
+
+        return advogados.ToList();
     }
 
-    public AdvogadoViewModel? GetByCrm(string crm)
+    public AdvogadoViewModel GetById(int id)
     {
-        throw new NotImplementedException();
+        var _advogado = GetDbAdvogado(id);
+
+        return new AdvogadoViewModel
+        {
+            AdvogadoId = _advogado.AdvogadoId,
+            Nome = _advogado.Nome
+        };
     }
 
-    public AdvogadoViewModel? GetById(int id)
+    public void Update(int id, NewAdvogadoInputModel advogado)
     {
-        throw new NotImplementedException();
-    }
+        var _advogado = GetDbAdvogado(id);
 
-    public void Update(int id, NewAdvogadoInputModel medico)
+        _advogado.Nome = advogado.Nome;
+
+        _context.Advogados.Update(_advogado);
+        _context.SaveChanges();
+    }
+    public Advogado GetDbAdvogado(int id)
     {
-        throw new NotImplementedException();
+        var _advogado = _context.Advogados.FirstOrDefault(advogado => advogado.AdvogadoId == id);
+
+        if (_advogado is null)
+        {
+            throw new AdvogadoNotFoundException();
+        }
+
+        return _advogado;
     }
 }
