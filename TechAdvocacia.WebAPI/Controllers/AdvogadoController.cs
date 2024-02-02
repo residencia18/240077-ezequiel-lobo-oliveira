@@ -3,7 +3,7 @@ using TechAdvocacia.Application.ViewModels;
 using TechAdvocacia.Application.InputModels;
 using TechAdvocacia.Application.Services.Interfaces;
 using System.Collections.Generic;
-using TechAdvocacia.Application.Services.Interfaces;
+
 
 namespace TechAdvocacia.WebAPI.Controllers
 {
