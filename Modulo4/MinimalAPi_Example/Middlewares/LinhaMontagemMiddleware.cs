@@ -1,4 +1,8 @@
 using System.Text;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace Modulo4.LinhaDeMontagem;
 public class AddChassiMiddleware
@@ -116,6 +120,31 @@ public class LinhaDeMontagemDescricao
             });
 
             await _next(context);
+        }
+    }
+
+    
+
+    public class RequestTimingMiddleware
+    {
+        private readonly RequestDelegate _next;
+        private readonly ILogger<RequestTimingMiddleware> _logger;
+
+        public RequestTimingMiddleware(RequestDelegate next, ILogger<RequestTimingMiddleware> logger)
+        {
+            _next = next;
+            _logger = logger;
+        }
+
+        public async Task InvokeAsync(HttpContext context)
+        {
+            var watch = Stopwatch.StartNew();
+            await _next(context);
+            watch.Stop();
+
+            var elapsedMs = watch.ElapsedMilliseconds;
+            _logger.LogInformation("Request levou: {ElapsedMilliseconds}ms", elapsedMs);
+            
         }
     }
 

@@ -8,7 +8,10 @@ builder.Services.AddScoped<LinhaDeMontagemDescricao>();
 var app = builder.Build();
 //app.UseHttpsRedirection();
 
+app.UseMiddleware<RequestTimingMiddleware>();
+
 app.UseMiddleware<CustomHeaderMiddleware>();
+
 app.UseMiddleware<AddChassiMiddleware>();
 app.UseMiddleware<AddMotorMiddleware>();
 app.UseMiddleware<AddPortasMiddleware>();
