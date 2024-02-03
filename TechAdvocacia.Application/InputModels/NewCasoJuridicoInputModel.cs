@@ -1,9 +1,9 @@
-namespace TechAdvocacia.Application.InputModels
+using TechAdvocacia.Core.Entities;
+
+namespace TechAdvocacia.Application.InputModels;
+public class NewCasoJuridicoInputModel
 {
-   public class NewCasoJuridicoInputModel
-   {
-      public DateTime DataHora { get; set; }
-      public int ClienteId { get; set; }
-      public int AdvogadoId { get; set; }
-   }
+   
+    public required int AdvogadoId { get; set; }
+    public required int ClienteId { get; set; }
 }

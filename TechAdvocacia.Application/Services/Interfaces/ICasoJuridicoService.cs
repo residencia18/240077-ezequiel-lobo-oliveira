@@ -4,9 +4,9 @@ using TechAdvocacia.Application.ViewModels;
 namespace TechAdvocacia.Application.Services.Interfaces;
 public interface ICasoJuridicoService
 {
-   public List<CasoJuridicoViewModel> GetAll();
-   public CasoJuridicoViewModel? GetById(int id);
-   public List<CasoJuridicoViewModel> GetByPacienteId(int ClienteId);
-   public List<CasoJuridicoViewModel> GetByMedicoId(int AdvogadoId);
-   public int Create(NewCasoJuridicoInputModel CasoJuridico);
+    public int Create(NewCasoJuridicoInputModel casoJuridico);
+    public void Update(int id, NewCasoJuridicoInputModel casoJuridico);
+    public void Delete(int id);
+    public CasoJuridicoViewModel GetById(int id);
+    public List<CasoJuridicoViewModel> GetAll();
 }

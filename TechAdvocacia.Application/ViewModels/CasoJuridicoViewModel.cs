@@ -1,9 +1,8 @@
 namespace TechAdvocacia.Application.ViewModels;
-
-   public class CasoJuridicoViewModel
-   {
-      public int CasoJuridicoId { get; set; }
-      public DateTime DataHora { get; set; }
-      public ClienteViewModel Cliente { get; set; } = null!;
-      public AdvogadoViewModel Advogado { get; set; } = null!;
-   }
+public class CasoJuridicoViewModel
+{
+    public int CasoJuridicoId { get; set; }
+    public required AdvogadoViewModel Advogado { get; set; }
+    public required ClienteViewModel Cliente { get; set; }
+    public required ICollection<DocumentoViewModel> Documentos { get; set; }
+}
