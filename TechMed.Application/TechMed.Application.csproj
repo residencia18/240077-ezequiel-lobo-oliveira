@@ -1,4 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\TechMed.Infrastructure\TechMed.Infrastructure.csproj" />
+    <ProjectReference Include="..\TechMed.Core\TechMed.Core.csproj" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
