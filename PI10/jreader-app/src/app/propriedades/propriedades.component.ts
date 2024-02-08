@@ -1,5 +1,5 @@
 // src/app/propriedades/propriedades.component.ts
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommunicationService } from '../services/communication.service';
 
 @Component({
@@ -8,20 +8,17 @@ import { CommunicationService } from '../services/communication.service';
   styleUrls: ['./propriedades.component.css']
 })
 export class PropriedadesComponent {
-  propriedades: string[] = [];
-  veiculoSelecionado: any | null = null;
+  @Input() propriedades: string[] = [];
 
   constructor(private communicationService: CommunicationService) {}
 
   ngOnInit(): void {
-    this.communicationService.veiculoSelecionado$.subscribe(veiculo => {
-      this.veiculoSelecionado = veiculo;
-      // Aqui você pode carregar as propriedades do veículo selecionado
-      // this.propriedades = this.loadPropriedades(veiculo);
+    this.communicationService.veiculoSelecionado$.subscribe((veiculo: any) => { // Corrigido para veiculoSelecionado$
+      
     });
   }
 
   selecionarPropriedade(propriedade: string): void {
-    // Faça o que for necessário com a propriedade selecionada
+    
   }
 }

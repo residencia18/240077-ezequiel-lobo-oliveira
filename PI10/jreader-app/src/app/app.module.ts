@@ -1,14 +1,21 @@
-// src/app/app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AppComponent } from './app.component';
-import { CarrinhoComponent } from './carrinho/carrinho.component';
-import { ClassesComponent } from './classes/classes.component';
-import { ObjetosComponent } from './objetos/objetos.component';
-import { PropriedadesComponent } from './propriedades/propriedades.component';
-import { CommunicationService } from './services/communication.service'; // Importe o serviço de comunicação
+import { EstilizarCategoriasDirective } from '../diretivas/estilizar-categorias.directive';
+import { EstilizarVeiculosDirective } from '../diretivas/estilizar-veiculos.directive';
+
+import {
+  AppComponent,
+  CarrinhoComponent,
+  ClassesComponent,
+  ObjetosComponent,
+  PropriedadesComponent,
+  ValorPropriedadeComponent
+} from './index';
+
+import { JsonReaderService } from './services/json-reader.service'; // Adicione esta linha
+import { CommunicationService } from './services/communication.service'; // Adicione esta linha
 
 @NgModule({
   declarations: [
@@ -16,7 +23,10 @@ import { CommunicationService } from './services/communication.service'; // Impo
     CarrinhoComponent,
     ClassesComponent,
     ObjetosComponent,
-    PropriedadesComponent
+    PropriedadesComponent,
+    ValorPropriedadeComponent,
+    EstilizarCategoriasDirective,
+    EstilizarVeiculosDirective
   ],
   imports: [
     BrowserModule,
@@ -24,7 +34,8 @@ import { CommunicationService } from './services/communication.service'; // Impo
     HttpClientModule
   ],
   providers: [
-    CommunicationService // Forneça o serviço de comunicação
+    JsonReaderService,
+    CommunicationService 
   ],
   bootstrap: [AppComponent]
 })

@@ -22,26 +22,26 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarVeiculos();
-    this.communicationService.categoriaSelecionada$.subscribe(categoria => {
-      this.selecionarCategoria(categoria);
-    });
-    this.communicationService.veiculoSelecionado$.subscribe(veiculo => {
-      this.selecionarVeiculo(veiculo);
-    });
   }
 
   carregarVeiculos(): void {
-    // Supondo que você tenha a lógica para carregar os veículos do serviço JsonReaderService
+    this.communicationService.getVeiculos().subscribe((data: any) => { 
+      this.categorias = Object.keys(data);
+      this.veiculos = data;
+    });
   }
 
   selecionarCategoria(categoria: string): void {
     this.categoriaSelecionada = categoria;
-    // Supondo que você tenha a lógica para selecionar os veículos da categoria
+    this.veiculosCategoriaSelecionada = this.veiculos[categoria];
+    this.veiculoSelecionado = null;
+    this.propriedadeSelecionada = null;
   }
 
   selecionarVeiculo(veiculo: any): void {
     this.veiculoSelecionado = { ...veiculo };
-    // Supondo que você tenha a lógica para selecionar as propriedades do veículo
+    this.propriedadesVeiculoSelecionado = Object.keys(veiculo);
+    this.propriedadeSelecionada = null;
   }
 
   selecionarPropriedade(propriedade: string): void {
@@ -52,8 +52,11 @@ export class AppComponent implements OnInit {
   addToFooter(): void {
     if (this.veiculoSelecionado) {
       this.selectedVehicles.push({ ...this.veiculoSelecionado });
-      // Supondo que você tenha a lógica para atualizar o JSON com os veículos selecionados
-      console.log('Atualizando JSON com veículos selecionados:', this.selectedVehicles);
+      this.updateSelectedVehiclesJSON();
     }
+  }
+
+  updateSelectedVehiclesJSON(): void {
+    console.log('Atualizando JSON com veículos selecionados:', this.selectedVehicles);
   }
 }
