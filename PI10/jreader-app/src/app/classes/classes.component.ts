@@ -1,5 +1,5 @@
-// src/app/classes/classes.component.ts
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommunicationService } from '../services/communication.service';
 
 @Component({
   selector: 'app-classes',
@@ -7,13 +7,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent {
-  @Output() categoriaSelecionada = new EventEmitter<string>();
+  categorias = ['Carros', 'Motos', 'Caminhões'];
 
-  categorias = ['Aviões', 'Carros', 'Barcos'];
-  categoriaSelecionadaAtual: string | null = null;
+  constructor(private communicationService: CommunicationService) { }
 
   selecionarCategoria(categoria: string): void {
-    this.categoriaSelecionadaAtual = categoria;
-    this.categoriaSelecionada.emit(categoria);
+    this.communicationService.enviarCategoriaSelecionada(categoria);
   }
 }

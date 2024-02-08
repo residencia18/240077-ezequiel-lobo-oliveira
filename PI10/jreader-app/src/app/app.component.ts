@@ -1,6 +1,6 @@
 // src/app/app.component.ts
 import { Component, OnInit } from '@angular/core';
-import { JsonReaderService } from './services/json-reader.service';
+import { CommunicationService } from './services/communication.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,6 @@ import { JsonReaderService } from './services/json-reader.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title(title: any) {
-    throw new Error('Method not implemented.');
-  }
   categorias: string[] = [];
   categoriaSelecionada: string | null = null;
   veiculos: any = {};
@@ -21,30 +18,30 @@ export class AppComponent implements OnInit {
   valorPropriedade: any;
   selectedVehicles: any[] = [];
 
-  constructor(private jsonReaderService: JsonReaderService) {}
+  constructor(private communicationService: CommunicationService) {}
 
   ngOnInit(): void {
     this.carregarVeiculos();
+    this.communicationService.categoriaSelecionada$.subscribe(categoria => {
+      this.selecionarCategoria(categoria);
+    });
+    this.communicationService.veiculoSelecionado$.subscribe(veiculo => {
+      this.selecionarVeiculo(veiculo);
+    });
   }
 
   carregarVeiculos(): void {
-    this.jsonReaderService.getVeiculos().subscribe((data) => {
-      this.categorias = Object.keys(data);
-      this.veiculos = data;
-    });
+    // Supondo que você tenha a lógica para carregar os veículos do serviço JsonReaderService
   }
 
   selecionarCategoria(categoria: string): void {
     this.categoriaSelecionada = categoria;
-    this.veiculosCategoriaSelecionada = this.veiculos[categoria];
-    this.veiculoSelecionado = null;
-    this.propriedadeSelecionada = null;
+    // Supondo que você tenha a lógica para selecionar os veículos da categoria
   }
 
   selecionarVeiculo(veiculo: any): void {
     this.veiculoSelecionado = { ...veiculo };
-    this.propriedadesVeiculoSelecionado = Object.keys(veiculo);
-    this.propriedadeSelecionada = null;
+    // Supondo que você tenha a lógica para selecionar as propriedades do veículo
   }
 
   selecionarPropriedade(propriedade: string): void {
@@ -55,14 +52,8 @@ export class AppComponent implements OnInit {
   addToFooter(): void {
     if (this.veiculoSelecionado) {
       this.selectedVehicles.push({ ...this.veiculoSelecionado });
-      this.updateSelectedVehiclesJSON();
+      // Supondo que você tenha a lógica para atualizar o JSON com os veículos selecionados
+      console.log('Atualizando JSON com veículos selecionados:', this.selectedVehicles);
     }
-  }
-
-  updateSelectedVehiclesJSON(): void {
-    // Lógica para atualizar o arquivo JSON com os veículos selecionados
-    // Essa lógica dependerá de como você está gerenciando ou armazenando os dados.
-    // Você pode usar o serviço HTTP para fazer uma solicitação à sua API e armazenar os dados no banco de dados.
-    console.log('Atualizando JSON com veículos selecionados:', this.selectedVehicles);
   }
 }

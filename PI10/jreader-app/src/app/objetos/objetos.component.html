@@ -1,10 +1,8 @@
-<!-- src/app/objetos/objetos.component.html -->
 <div>
-    <h2>Objetos</h2>
-    <ul>
-      <li *ngFor="let veiculo of veiculos" appEstilizarVeiculos [cor]="'green'" (click)="selecionarVeiculo(veiculo)">
-        {{ veiculo.Name }}
-      </li>
-    </ul>
-  </div>
-  
+  <h2>Veículos</h2>
+  <ul>
+    <li *ngFor="let veiculo of veiculos" (click)="selecionarVeiculo(veiculo)">
+      {{ veiculo.name }}
+    </li>
+  </ul>
+</div>

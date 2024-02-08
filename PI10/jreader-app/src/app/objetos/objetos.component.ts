@@ -1,5 +1,4 @@
-// src/app/objetos/objetos.component.ts
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-objetos',
@@ -8,10 +7,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ObjetosComponent {
   @Input() categoriaSelecionada: string | null = null;
-  @Input() veiculos: any[] = [];
-  @Output() veiculoSelecionado = new EventEmitter<any>();
+  veiculos: any[] = []; // Certifique-se de preencher este array com os veículos correspondentes à categoria selecionada
 
   selecionarVeiculo(veiculo: any): void {
-    this.veiculoSelecionado.emit(veiculo);
+    // Lógica para selecionar um veículo
   }
 }
