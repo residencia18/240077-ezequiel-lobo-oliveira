@@ -14,8 +14,8 @@ import {
   ValorPropriedadeComponent
 } from './index';
 
-import { JsonReaderService } from './services/json-reader.service'; // Adicione esta linha
-import { CommunicationService } from './services/communication.service'; // Adicione esta linha
+import { JsonReaderService } from './services/json-reader.service'; 
+import { CommunicationService } from './services/communication.service'; 
 
 @NgModule({
   declarations: [

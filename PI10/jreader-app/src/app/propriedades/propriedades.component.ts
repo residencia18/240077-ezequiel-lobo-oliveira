@@ -1,6 +1,5 @@
-// src/app/propriedades/propriedades.component.ts
+// propriedades.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommunicationService } from '../services/communication.service';
 
 @Component({
   selector: 'app-propriedades',
@@ -8,17 +7,12 @@ import { CommunicationService } from '../services/communication.service';
   styleUrls: ['./propriedades.component.css']
 })
 export class PropriedadesComponent {
-  @Input() propriedades: string[] = [];
-
-  constructor(private communicationService: CommunicationService) {}
-
-  ngOnInit(): void {
-    this.communicationService.veiculoSelecionado$.subscribe((veiculo: any) => { // Corrigido para veiculoSelecionado$
-      
-    });
-  }
+  @Input() veiculoSelecionado: any | null = null;
+  @Input() propriedadesVeiculoSelecionado: string[] = [];
+  @Input() propriedadeSelecionada: string | null = null;
+  @Input() valorPropriedade: any;
 
   selecionarPropriedade(propriedade: string): void {
-    
+    this.propriedadeSelecionada = propriedade;
   }
 }

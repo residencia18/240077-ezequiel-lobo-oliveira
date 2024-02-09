@@ -1,3 +1,4 @@
+// objetos.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -9,8 +10,6 @@ export class ObjetosComponent {
   @Input() categoriaSelecionada: string | null = null;
   @Input() veiculos: any[] = [];
   @Output() veiculoSelecionado = new EventEmitter<any>();
-
-  constructor() {}
 
   selecionarVeiculo(veiculo: any): void {
     this.veiculoSelecionado.emit(veiculo);

@@ -1,8 +1,8 @@
-<div>
-  <h2>Veículos</h2>
+<div *ngIf="categoriaSelecionada">
+  <h2>Veículos da Categoria {{ categoriaSelecionada }}</h2>
   <ul>
-    <li *ngFor="let veiculo of veiculos" (click)="selecionarVeiculo(veiculo)">
-      {{ veiculo.name }}
+    <li *ngFor="let veiculo of veiculosCategoriaSelecionada" (click)="selecionarVeiculo(veiculo)">
+      {{ veiculo.Name }}
     </li>
   </ul>
 </div>

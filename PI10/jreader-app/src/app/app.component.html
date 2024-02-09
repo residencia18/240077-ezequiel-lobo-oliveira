@@ -1,4 +1,3 @@
-<!-- src/app/app.component.html -->
 <div>
   <h2>Categorias</h2>
   <ul>
@@ -8,38 +7,7 @@
   </ul>
 </div>
 
-<div *ngIf="categoriaSelecionada">
-  <h2>Veículos da Categoria {{ categoriaSelecionada }}</h2>
-  <ul>
-    <li *ngFor="let veiculo of veiculosCategoriaSelecionada" (click)="selecionarVeiculo(veiculo)">
-      {{ veiculo.Name }}
-    </li>
-  </ul>
-</div>
-
-<div *ngIf="veiculoSelecionado">
-  <h2>Propriedades do Veículo</h2>
-  <ul>
-    <li *ngFor="let propriedade of propriedadesVeiculoSelecionado" (click)="selecionarPropriedade(propriedade)">
-      {{ propriedade }}
-    </li>
-  </ul>
-</div>
-
-<div *ngIf="propriedadeSelecionada">
-  <h2>Valor da Propriedade {{ propriedadeSelecionada }}</h2>
-  <p>{{ valorPropriedade }}</p>
-</div>
-
-<div>
-  <button (click)="addToFooter()">Adicionar</button>
-</div>
-
-<div *ngIf="selectedVehicles.length > 0">
-  <h2>Veículos Selecionados</h2>
-  <ul>
-    <li *ngFor="let vehicle of selectedVehicles">
-      {{ vehicle.Name }}
-    </li>
-  </ul>
-</div>
+<app-classes (categoriaSelecionada)="selecionarCategoria($event)"></app-classes>
+<app-objetos [categoriaSelecionada]="categoriaSelecionada"></app-objetos>
+<app-propriedades></app-propriedades>
+<app-carrinho [veiculosSelecionados]="selectedVehicles"></app-carrinho>
