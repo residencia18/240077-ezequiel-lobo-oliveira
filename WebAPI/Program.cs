@@ -1,5 +1,5 @@
-using Middleware.Extensions;
-using Modulo4.LinhaDeMontagem;
+
+using LinhaDeMontagem;
 
 var builder = WebApplication.CreateBuilder(args);
 

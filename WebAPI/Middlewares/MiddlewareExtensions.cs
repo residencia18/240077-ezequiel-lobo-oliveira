@@ -1,7 +1,8 @@
-using Modulo4.LinhaDeMontagem;
+using System.Text;
+namespace LinhaDeMontagem;
 
-namespace Middleware.Extensions
-{
+
+
     public static class MiddlewareExtensions
     {
         public static IApplicationBuilder UseAddChassiMiddleware(this IApplicationBuilder app)
@@ -14,4 +15,3 @@ namespace Middleware.Extensions
             return app.UseMiddleware<AddMotorMiddleware>();
         }
     }
-}

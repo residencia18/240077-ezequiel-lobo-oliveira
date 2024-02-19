@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Modulo4.LinhaDeMontagem;
+namespace LinhaDeMontagem;
 public class AddChassiMiddleware
 {
     private readonly RequestDelegate _next;
@@ -17,65 +17,7 @@ public class AddChassiMiddleware
     }
 }
 
-public class AddMotorMiddleware
-{
-    private readonly RequestDelegate _next;
-    public AddMotorMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
-    public async Task Invoke(HttpContext context, LinhaDeMontagemDescricao descricao)
-    {
-        descricao.AdicionarEtapa("Motor", "Motor adicionado");
-        await _next(context);
-    }
-}
 
-public class AddPortasMiddleware
-{
-    private readonly RequestDelegate _next;
-    public AddPortasMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
-    public async Task Invoke(HttpContext context, LinhaDeMontagemDescricao descricao)
-    {
-        descricao.AdicionarEtapa("Portas", "Portas adicionadas");
-        await _next(context);
-        descricao.AdicionarEtapa("Portas", $"Maçanetas {descricao.Cor} adicionadas");
-    }
-
-}
-
-public class AddPinturaMiddleware
-{
-    private readonly RequestDelegate _next;
-    public AddPinturaMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
-    public async Task Invoke(HttpContext context, LinhaDeMontagemDescricao descricao)
-    {
-        var cores = new string[] { "Preto", "Branco", "Vermelho", "Azul" };
-        descricao.Cor = cores[new Random().Next(0, cores.Length)];
-        descricao.AdicionarEtapa("Pintura", $"Pintura adicionada na cor {descricao.Cor}");
-        await _next(context);
-    }
-}
-public class AddInternoMiddleware
-{
-    private readonly RequestDelegate _next;
-    public AddInternoMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
-    public async Task Invoke(HttpContext context, LinhaDeMontagemDescricao descricao)
-    {
-        descricao.AdicionarEtapa("Acabamento Interno", $"Acabamento Interno adicionado na cor {descricao.Cor}");
-        if (!context.Response.HasStarted)
-            await _next(context);
-    }
-}
 
 public class LinhaDeMontagemDescricao
 {
