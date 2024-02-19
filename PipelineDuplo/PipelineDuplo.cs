@@ -10,10 +10,10 @@ public class PipelineDuplo<T>
     
    }
    public T Processar (T entrada){
-      foreach(var etapa in etapas){
-         entrada = etapa.Processar(entrada);
+      for(int i=0; i<etapas.Count-1; i++){
+         etapas[i].ProximaEtapa= etapas[i+1];
 
    }
-   return entrada;
+   return etapas[0].Processar(entrada);
    }
 }
