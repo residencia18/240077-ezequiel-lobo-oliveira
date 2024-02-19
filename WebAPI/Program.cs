@@ -10,9 +10,10 @@ var app = builder.Build();
 
 app.UseAddChassiMiddleware();
 app.UseAddMotorMiddleware();
-app.UseMiddleware<AddPortasMiddleware>();
-app.UseMiddleware<AddPinturaMiddleware>();
-app.UseMiddleware<AddInternoMiddleware>();
+app.UseAddPortasMiddleware();
+app.UseAddPinturaMiddleware();
+app.UseAddInternoMiddleware();
+
 
 
 app.Run();
