@@ -3,7 +3,7 @@ using JWT.Enum;
 
 namespace JWT.Dtos;
 
-public class UsuarioCriacao
+public class UsuarioCriacaoDto
 {
     [Required(ErrorMessage = "O campo usuario é obrigatório")]
     public string Usuario { get; set; }

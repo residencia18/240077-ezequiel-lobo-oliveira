@@ -2,7 +2,7 @@ using JWT.Model;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace WT.Model;
+namespace JWT.Data;
 
 public class AppDbContext : DbContext
 {

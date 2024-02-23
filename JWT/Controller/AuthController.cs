@@ -9,7 +9,7 @@ namespace JWT.Controller;
 public class AuthController : ControllerBase
 {
     [HttpPost]
-    public async Task<ActionResult>Resister( UsuarioCriacao usuarioRegister){
+    public async Task<ActionResult>Resister( UsuarioCriacaoDto usuarioRegister){
         return Ok();
     }
 }
