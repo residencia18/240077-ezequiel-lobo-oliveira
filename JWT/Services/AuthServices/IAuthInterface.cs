@@ -1,8 +1,12 @@
-namespace JWT.Services.AuthServices;
-using JWT.Dtos;
+﻿using JWT.Dtos;
 using JWT.Model;
+using JWT.Dtos;
 
-public interface IAuthInterface
+namespace JWT.Services.AuthService
 {
-    Task<Response<UsuarioCriacaoDto>> Resgistrar (UsuarioCriacaoDto usuarioRegistro);
+    public interface IAuthInterface
+    {
+        Task<Response<UsuarioCriacaoDto>> Registrar(UsuarioCriacaoDto usuarioRegistro);
+        Task<Response<string>> Login(UsuarioLoginDto usuarioLogin);
+    }
 }

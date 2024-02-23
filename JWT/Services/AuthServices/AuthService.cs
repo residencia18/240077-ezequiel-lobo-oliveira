@@ -1,66 +1,119 @@
+using JWT.Data;
 using JWT.Dtos;
 using JWT.Model;
-using JWT.Data;
 using JWT.Services.SenhaServices;
+using Microsoft.EntityFrameworkCore;
 
-namespace JWT.Services.AuthServices;
-
-
-
-
-public class AuthService : IAuthInterface
+namespace JWT.Services.AuthService
 {
-    private readonly AppDbContext _context;
-    private readonly ISenhaInterface _senhaInterface;
-    public AuthService(AppDbContext context, ISenhaInterface senhaInterface)
+    public class AuthService : IAuthInterface
     {
-        _context = context;
-        _senhaInterface = senhaInterface;
-
-    }
-
-    public async Task<Response<UsuarioCriacaoDto>> Resgistrar (UsuarioCriacaoDto usuarioRegistro)
-    {
-        Response<UsuarioCriacaoDto> respostaServico = new Response<UsuarioCriacaoDto>();
-        try
+        private readonly AppDbContext _context;
+        private readonly ISenhaInterface _senhaInterface;
+        public AuthService(AppDbContext context, ISenhaInterface senhaInterface)
         {
-            if(!VerificaSeEmaileUsuarioJaExiste(usuarioRegistro))
+            _context = context;
+            _senhaInterface = senhaInterface;
+        }
+
+
+        public async Task<Response<UsuarioCriacaoDto>> Registrar(UsuarioCriacaoDto usuarioRegistro)
+        {
+            Response<UsuarioCriacaoDto> respostaServico = new Response<UsuarioCriacaoDto>();
+
+            try
             {
-                respostaServico.Dados = null;
-                respostaServico.Status = false;
-                respostaServico.Mensagem = "Email ou Usuario já existe";
+                if (!VerificaSeEmaileUsuarioJaExiste(usuarioRegistro))
+                {
+                    respostaServico.Dados = null;
+                    respostaServico.Status = false;
+                    respostaServico.Mensagem = "Email/Usuário já cadastrados!";
+                    return respostaServico;
+                }
+
+                _senhaInterface.CriarSenhaHash(usuarioRegistro.Senha, out byte[] senhaHash, out byte[] senhaSalt);
+
+                UsuarioModel usuario = new UsuarioModel()
+                {
+                    Usuario = usuarioRegistro.Usuario,
+                    Email = usuarioRegistro.Email,
+                    Cargo = usuarioRegistro.Cargo,
+                    SenhaHash = senhaHash,
+                    SenhaSalt = senhaSalt
+                };
+
+                _context.Add(usuario);
+                await _context.SaveChangesAsync();
+
+                respostaServico.Mensagem = "Usuário criado com sucesso!";
+
 
             }
-            _senhaInterface.CriarSenhaHash(usuarioRegistro.Senha, out byte[] senhaHash, out byte[] senhaSalt);
-            UsuarioModel usuario = new UsuarioModel
+            catch (Exception ex)
             {
-                Usuario = usuarioRegistro.Usuario,
-                Email = usuarioRegistro.Email,
-                SenhaHash = senhaHash,
-                SenhaSalt = senhaSalt,
-                Cargo = usuarioRegistro.Cargo
-            };
 
-            _context.Add(usuario);
-            await _context.SaveChangesAsync();
-            respostaServico.Mensagem = "Usuario criado com sucesso";
+                respostaServico.Dados = null;
+                respostaServico.Mensagem = ex.Message;
+                respostaServico.Status = false;
+
+
+            }
+
+            return respostaServico;
         }
-        catch (Exception ex)
+
+        public async Task<Response<string>> Login(UsuarioLoginDto usuarioLogin)
         {
-           respostaServico.Dados = null;
-           respostaServico.Mensagem = ex.Message;
-           respostaServico.Status = false;
+            Response<string> respostaServico = new Response<string>();
+
+            try
+            {
+
+                var usuario = await _context.Usuarios.FirstOrDefaultAsync(userBanco => userBanco.Email == usuarioLogin.Email);
+
+                if(usuario == null)
+                {
+                    respostaServico.Mensagem = "Credenciais inválidas!";
+                    respostaServico.Status = false;
+                    return respostaServico;
+                }
+
+                if (!_senhaInterface.VerificaSenhaHash(usuarioLogin.Senha, usuario.SenhaHash, usuario.SenhaSalt))
+                {
+                    respostaServico.Mensagem = "Credenciais inválidas!";
+                    respostaServico.Status = false;
+                    return respostaServico;
+                }
+
+                var token = _senhaInterface.CriarToken(usuario);
+
+                respostaServico.Dados = token;
+                respostaServico.Mensagem = "Usuário logado com sucesso!";
+
+
+            }catch (Exception ex)
+            {
+                respostaServico.Dados = null;
+                respostaServico.Mensagem = ex.Message;
+                respostaServico.Status = false;
+            }
+
+
+            return respostaServico;
         }
-        return respostaServico;
 
-    }
 
-    private bool VerificaSeEmaileUsuarioJaExiste(UsuarioCriacaoDto usuarioRegistro)
-    {
-        var usuario = _context.Usuarios.FirstOrDefault(u => u.Email == usuarioRegistro.Email  || u.Usuario == usuarioRegistro.Usuario);
-        
-        if(usuario != null){ return false;}
-        return true;
+        public bool VerificaSeEmaileUsuarioJaExiste(UsuarioCriacaoDto usuarioRegistro)
+        {
+            var usuario = _context.Usuarios.FirstOrDefault(userBanco => userBanco.Email == usuarioRegistro.Email || userBanco.Usuario == usuarioRegistro.Usuario);
+
+            if (usuario != null) return false;
+
+            return true;
+
+
+        }
+
+
     }
 }
-
