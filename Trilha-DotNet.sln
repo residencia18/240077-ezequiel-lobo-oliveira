@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWT", "JWT\JWT.csproj", "{26314F17-0794-41DF-88AC-179E529FA230}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWT", "JWT\JWT.csproj", "{6410253E-5788-4EAE-9588-249D912BD577}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{26314F17-0794-41DF-88AC-179E529FA230}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26314F17-0794-41DF-88AC-179E529FA230}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26314F17-0794-41DF-88AC-179E529FA230}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26314F17-0794-41DF-88AC-179E529FA230}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6410253E-5788-4EAE-9588-249D912BD577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6410253E-5788-4EAE-9588-249D912BD577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6410253E-5788-4EAE-9588-249D912BD577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6410253E-5788-4EAE-9588-249D912BD577}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1F03F90B-CCAE-47CD-99BB-B07ECFAB389B}
+		SolutionGuid = {812E3360-4F21-41E1-8D43-DA66A7A5FDF4}
 	EndGlobalSection
 EndGlobal
