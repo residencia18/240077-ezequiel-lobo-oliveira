@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MvcMovie.Data;
-using MvcMovie.Models;
+using Mvc.Data;
+using Mvc.Models;
 
 namespace MvcMovie.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly MvcMovieContext _context;
+        private readonly MvcContext _context;
 
-        public MoviesController(MvcMovieContext context)
+        public MoviesController(MvcContext context)
         {
             _context = context;
         }
@@ -24,7 +24,7 @@ namespace MvcMovie.Controllers
         {
               return _context.Movie != null ? 
                           View(await _context.Movie.ToListAsync()) :
-                          Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+                          Problem("Entity set 'MvcContext.Movie'  is null.");
         }
 
         // GET: Movies/Details/5
