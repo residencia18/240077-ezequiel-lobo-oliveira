@@ -4,6 +4,11 @@ using ResTIConnect.Infrastructure.Context;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+
 namespace ResTIConnect.Application.Services
 {
     public class UsuarioService : IUsuarioService
@@ -17,14 +22,30 @@ namespace ResTIConnect.Application.Services
             _enderecoservice = enderecoservice;
         }
 
+        private string ComputeSha256Hash(string input)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
         public int Create(NewUsuarioInputModel usuario)
         {
+            var senhaCriptografada = ComputeSha256Hash(usuario.Senha);
+
             var _usuario = new Usuario
             {
                 Nome = usuario.Nome,
                 Apelido = usuario.Apelido,
                 Email = usuario.Email,
-                Senha = usuario.Senha,
+                Senha = senhaCriptografada, 
                 Telefone = usuario.Telefone,
                 Endereco = new Endereco
                 {
@@ -46,7 +67,31 @@ namespace ResTIConnect.Application.Services
             return _usuario.UsuarioId;
         }
 
-        public List<UsuarioViewModel> GetAll()
+        
+
+        public void Update(int id, NewUsuarioInputModel usuario)
+        {
+            var _usuarioDb = GetByDbId(id);
+
+            _usuarioDb.Nome = usuario.Nome;
+            _usuarioDb.Apelido = usuario.Apelido;
+            _usuarioDb.Email = usuario.Email;
+            _usuarioDb.Senha = ComputeSha256Hash(usuario.Senha); // Atualize o hash da senha
+            _usuarioDb.Telefone = usuario.Telefone;
+            _enderecoservice.Update(_usuarioDb.Endereco.EnderecoId, usuario.Endereco);
+
+            _context.Usuarios.Update(_usuarioDb);
+            _context.SaveChanges();
+        }
+
+        public bool VerifyPassword(int id, string senha)
+        {
+            var usuario = GetByDbId(id);
+            var senhaCriptografada = ComputeSha256Hash(senha);
+            return usuario.Senha == senhaCriptografada;
+        }
+
+         public List<UsuarioViewModel> GetAll()
         {
             var user = _context.Usuarios
                 .Select(u => new UsuarioViewModel
@@ -145,20 +190,6 @@ namespace ResTIConnect.Application.Services
             return user;
         }
 
-        public void Update(int id, NewUsuarioInputModel usuario)
-        {
-            var _usuarioDb = GetByDbId(id);
-
-            _usuarioDb.Nome = usuario.Nome;
-            _usuarioDb.Apelido = usuario.Apelido;
-            _usuarioDb.Email = usuario.Email;
-            _usuarioDb.Senha = usuario.Senha;
-            _usuarioDb.Telefone = usuario.Telefone;
-            _enderecoservice.Update(_usuarioDb.Endereco.EnderecoId, usuario.Endereco);
-
-            _context.Usuarios.Update(_usuarioDb);
-            _context.SaveChanges();
-        }
 
         public void Delete(int id)
         {
@@ -214,5 +245,7 @@ namespace ResTIConnect.Application.Services
 
             return usuarios;
         }
+
+        
     }
 }
