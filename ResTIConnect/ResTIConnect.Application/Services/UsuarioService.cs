@@ -246,6 +246,19 @@ namespace ResTIConnect.Application.Services
             return usuarios;
         }
 
+        public int? Login(string email, string senha)
+        {
+            
+            var senhaCriptografada = ComputeSha256Hash(senha);
+
+            
+            var usuario = _context.Usuarios.SingleOrDefault(u => u.Email == email && u.Senha == senhaCriptografada);
+
+            
+            return usuario?.UsuarioId;
+        }
+
+
         
     }
 }

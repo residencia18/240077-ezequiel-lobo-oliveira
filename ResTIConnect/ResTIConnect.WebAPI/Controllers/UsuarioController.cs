@@ -1,7 +1,7 @@
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
-using ResTIConnect.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace ResTIConnect.WebAPI.Controllers
 {
@@ -11,65 +11,88 @@ namespace ResTIConnect.WebAPI.Controllers
     {
         private readonly IUsuarioService _usuarioService;
 
-        public List<UsuarioViewModel> Usuarios => _usuarioService.GetAll();
-
         public UsuarioController(IUsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
         }
 
         [HttpGet("usuarios")]
-        public IActionResult Get()
+        public IActionResult GetAllUsuarios()
         {
-            return Ok(Usuarios);
+            var usuarios = _usuarioService.GetAll();
+            return Ok(usuarios);
         }
 
         [HttpGet("usuario/{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetUsuarioById(int id)
         {
             var usuario = _usuarioService.GetById(id);
             return Ok(usuario);
         }
 
         [HttpGet("usuario/perfil/{perfilId}")]
-        public IActionResult GetByPerfilId(int perfilId)
+        public IActionResult GetUsuariosByPerfilId(int perfilId)
         {
-            var usuario = _usuarioService.GetByPerfilId(perfilId);
-            return Ok(usuario);
+            var usuarios = _usuarioService.GetByPerfilId(perfilId);
+            return Ok(usuarios);
         }
 
         [HttpGet("usuario/endereco/{estado}")]
-        public IActionResult GetByEstado(string estado)
+        public IActionResult GetUsuariosByEstado(string estado)
         {
-            var usuario = _usuarioService.GetByEstado(estado);
-            return Ok(usuario);
+            var usuarios = _usuarioService.GetByEstado(estado);
+            return Ok(usuarios);
         }
 
         [HttpPost("usuario")]
-        public IActionResult Post([FromBody] NewUsuarioInputModel usuario)
+        public IActionResult CreateUsuario([FromBody] NewUsuarioInputModel usuario)
         {
-            _usuarioService.Create(usuario);
-            return CreatedAtAction(nameof(Get), usuario);
+            var usuarioId = _usuarioService.Create(usuario);
+            return CreatedAtAction(nameof(GetUsuarioById), new { id = usuarioId }, usuario);
         }
 
         [HttpPut("usuario/{id}")]
-        public IActionResult Put(int id, [FromBody] NewUsuarioInputModel usuario)
+        public IActionResult UpdateUsuario(int id, [FromBody] NewUsuarioInputModel usuario)
         {
             if (_usuarioService.GetById(id) == null)
-                return NoContent();
+                return NotFound();
 
             _usuarioService.Update(id, usuario);
             return Ok(_usuarioService.GetById(id));
         }
 
         [HttpDelete("usuario/{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteUsuario(int id)
         {
             if (_usuarioService.GetById(id) == null)
-                return NoContent();
+                return NotFound();
 
             _usuarioService.Delete(id);
-            return Ok();
+            return NoContent();
         }
+
+        [HttpPost("login")]
+        
+        public IActionResult Login([FromBody] NewLoginInputModel loginInput)
+        {
+            try
+            {
+                var usuarioId = _usuarioService.Login(loginInput.Email, loginInput.Senha);
+
+                if (usuarioId != null)
+                {
+                    return Ok(new { UsuarioId = usuarioId });
+                }
+                else
+                {
+                    return Unauthorized("Credenciais inválidas");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
+            }
+        }
+
     }
 }

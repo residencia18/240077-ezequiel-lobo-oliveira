@@ -9,5 +9,6 @@ namespace ResTIConnect.Application.Services.Interfaces
         List<UsuarioViewModel> GetBySistemaId(int sistemaId);
         List<UsuarioViewModel> GetByEstado(string estado);
         List<UsuarioViewModel> GetByPerfilId(int perfilId);
+        int? Login(string email, string senha);
     }
 }
