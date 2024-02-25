@@ -10,13 +10,20 @@ namespace ResTIConnect.WebAPI.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly ILoginService _loginService;
+        
 
-        public UsuarioController(IUsuarioService usuarioService)
+        public UsuarioController(IUsuarioService usuarioService, ILoginService loginService)
         {
             _usuarioService = usuarioService;
+            _loginService = loginService;
+    
         }
 
+        
+
         [HttpGet("usuarios")]
+        
         public IActionResult GetAllUsuarios()
         {
             var usuarios = _usuarioService.GetAll();
@@ -71,28 +78,7 @@ namespace ResTIConnect.WebAPI.Controllers
             return NoContent();
         }
 
-        [HttpPost("login")]
         
-        public IActionResult Login([FromBody] NewLoginInputModel loginInput)
-        {
-            try
-            {
-                var usuarioId = _usuarioService.Login(loginInput.Email, loginInput.Senha);
-
-                if (usuarioId != null)
-                {
-                    return Ok(new { UsuarioId = usuarioId });
-                }
-                else
-                {
-                    return Unauthorized("Credenciais inválidas");
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
-            }
-        }
 
     }
 }

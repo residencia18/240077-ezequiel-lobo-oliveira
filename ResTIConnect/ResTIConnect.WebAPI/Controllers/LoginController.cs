@@ -1,0 +1,26 @@
+using Microsoft.AspNetCore.Mvc;
+using ResTIConnect.Application.InputModels;
+using ResTIConnect.Application.Services.Interfaces;
+
+namespace TechMed.WebAPI.Controllers;
+[ApiController]
+[Route("/api/v0.1/")]
+public class LoginController : ControllerBase
+{
+    private readonly ILoginService _loginService;
+    public LoginController(ILoginService loginService)
+    {
+        _loginService = loginService;
+    }
+
+    [HttpPost("login")]
+    public IActionResult Login([FromBody] NewLoginInputModel user)
+    {
+        var userViewModel = _loginService.Authenticate(user);
+        if (userViewModel is null)
+        {
+            return Unauthorized();
+        }
+        return Ok(userViewModel);
+    }
+}

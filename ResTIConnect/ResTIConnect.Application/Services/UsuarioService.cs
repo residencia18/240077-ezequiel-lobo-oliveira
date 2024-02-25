@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using ResTIConnect.Infrastructure.Auth;
 
 namespace ResTIConnect.Application.Services
 {
@@ -15,30 +16,20 @@ namespace ResTIConnect.Application.Services
     {
         private readonly ResTIConnectDbContext _context;
         private readonly IEnderecoService _enderecoservice;
+        private readonly IAuthService _authService;
 
-        public UsuarioService(ResTIConnectDbContext context, IEnderecoService enderecoservice)
+        public UsuarioService(ResTIConnectDbContext context, IEnderecoService enderecoservice, IAuthService authService)
         {
             _context = context;
             _enderecoservice = enderecoservice;
+            _authService = authService;
         }
 
-        private string ComputeSha256Hash(string input)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
+       
 
         public int Create(NewUsuarioInputModel usuario)
         {
-            var senhaCriptografada = ComputeSha256Hash(usuario.Senha);
+            var senhaCriptografada = _authService.ComputeSha256Hash(usuario.Senha);
 
             var _usuario = new Usuario
             {
@@ -76,7 +67,7 @@ namespace ResTIConnect.Application.Services
             _usuarioDb.Nome = usuario.Nome;
             _usuarioDb.Apelido = usuario.Apelido;
             _usuarioDb.Email = usuario.Email;
-            _usuarioDb.Senha = ComputeSha256Hash(usuario.Senha); // Atualize o hash da senha
+            _usuarioDb.Senha = _authService.ComputeSha256Hash(usuario.Senha); // Atualize o hash da senha
             _usuarioDb.Telefone = usuario.Telefone;
             _enderecoservice.Update(_usuarioDb.Endereco.EnderecoId, usuario.Endereco);
 
@@ -84,12 +75,7 @@ namespace ResTIConnect.Application.Services
             _context.SaveChanges();
         }
 
-        public bool VerifyPassword(int id, string senha)
-        {
-            var usuario = GetByDbId(id);
-            var senhaCriptografada = ComputeSha256Hash(senha);
-            return usuario.Senha == senhaCriptografada;
-        }
+        
 
          public List<UsuarioViewModel> GetAll()
         {
@@ -249,7 +235,7 @@ namespace ResTIConnect.Application.Services
         public int? Login(string email, string senha)
         {
             
-            var senhaCriptografada = ComputeSha256Hash(senha);
+            var senhaCriptografada = _authService.ComputeSha256Hash(senha);
 
             
             var usuario = _context.Usuarios.SingleOrDefault(u => u.Email == email && u.Senha == senhaCriptografada);
