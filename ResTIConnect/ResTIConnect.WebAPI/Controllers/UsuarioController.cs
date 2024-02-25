@@ -1,7 +1,7 @@
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
+using ResTIConnect.Application.ViewModels;
 
 namespace ResTIConnect.WebAPI.Controllers
 {
@@ -10,10 +10,12 @@ namespace ResTIConnect.WebAPI.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly ILoginService _loginService;
 
-        public UsuarioController(IUsuarioService usuarioService)
+        public UsuarioController(IUsuarioService usuarioService, ILoginService loginService)
         {
             _usuarioService = usuarioService;
+            _loginService = loginService;
         }
 
         [HttpGet("usuarios")]
@@ -72,28 +74,13 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] NewLoginInputModel loginInput)
+        public IActionResult Post([FromBody] NewLoginInputModel login)
         {
-            try
-            {
-                var usuarioId = _usuarioService.Login(loginInput.Email, loginInput.Senha);
-
-                if (usuarioId != null)
-                {
-                    var token = _usuarioService.GenerateJwtToken(usuarioId.Value);
-                    return Ok(new { token });
-                }
-                else
-                {
-                    return Unauthorized("Credenciais inválidas");
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
-            }
+            var result = _loginService.Authenticate(login);
+            if (result is not null)
+                return Ok(result);
+            else
+                return BadRequest("Usuário ou senha inválidos");
         }
-
-
     }
 }
