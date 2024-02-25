@@ -1,7 +1,6 @@
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 
 
 namespace ResTIConnect.WebAPI.Controllers
@@ -11,21 +10,13 @@ namespace ResTIConnect.WebAPI.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
-        private readonly ILoginService _loginService;
-        
 
-        public UsuarioController(IUsuarioService usuarioService, ILoginService loginService)
+        public UsuarioController(IUsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
-            _loginService = loginService;
-    
         }
 
-        
-
         [HttpGet("usuarios")]
-        [Authorize]
-        
         public IActionResult GetAllUsuarios()
         {
             var usuarios = _usuarioService.GetAll();
@@ -40,7 +31,6 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("usuario/perfil/{perfilId}")]
-        [Authorize]
         public IActionResult GetUsuariosByPerfilId(int perfilId)
         {
             var usuarios = _usuarioService.GetByPerfilId(perfilId);
@@ -48,7 +38,6 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("usuario/endereco/{estado}")]
-        [Authorize]
         public IActionResult GetUsuariosByEstado(string estado)
         {
             var usuarios = _usuarioService.GetByEstado(estado);
@@ -56,7 +45,6 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPost("usuario")]
-        [Authorize]
         public IActionResult CreateUsuario([FromBody] NewUsuarioInputModel usuario)
         {
             var usuarioId = _usuarioService.Create(usuario);
@@ -64,7 +52,6 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPut("usuario/{id}")]
-        [Authorize]
         public IActionResult UpdateUsuario(int id, [FromBody] NewUsuarioInputModel usuario)
         {
             if (_usuarioService.GetById(id) == null)
@@ -75,7 +62,6 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpDelete("usuario/{id}")]
-        [Authorize]
         public IActionResult DeleteUsuario(int id)
         {
             if (_usuarioService.GetById(id) == null)
@@ -86,17 +72,28 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPost("login")]
-    public IActionResult Login([FromBody] NewLoginInputModel user)
-    {
-        var userViewModel = _loginService.Authenticate(user);
-        if (userViewModel is null)
+        public IActionResult Login([FromBody] NewLoginInputModel loginInput)
         {
-            return Unauthorized();
-        }
-        return Ok(userViewModel);
-    }
+            try
+            {
+                var usuarioId = _usuarioService.Login(loginInput.Email, loginInput.Senha);
 
-        
+                if (usuarioId != null)
+                {
+                    var token = _usuarioService.GenerateJwtToken(usuarioId.Value);
+                    return Ok(new { token });
+                }
+                else
+                {
+                    return Unauthorized("Credenciais inválidas");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
+            }
+        }
+
 
     }
 }
