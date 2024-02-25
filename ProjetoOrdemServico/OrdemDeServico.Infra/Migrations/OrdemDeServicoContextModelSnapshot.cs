@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ResTIConnect.Infrastructure.Persistence;
+using OrdemDeServico.Infrastructure.Persistence;
 
 #nullable disable
 
@@ -261,6 +261,31 @@ namespace OrdemDeServico.Infra.Migrations
                     b.HasIndex("ServicoId");
 
                     b.ToTable("ServicoOrdemServico", (string)null);
+                });
+
+            modelBuilder.Entity("OrdemDeServico.Domain.Entities.Usuario", b =>
+                {
+                    b.Property<int>("UsuarioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("UsuarioId");
+
+                    b.ToTable("usuarios", (string)null);
                 });
 
             modelBuilder.Entity("OrdemDeServico.Domain.Entities.Cliente", b =>

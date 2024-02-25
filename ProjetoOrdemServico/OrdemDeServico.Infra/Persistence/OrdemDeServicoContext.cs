@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OrdemDeServico.Domain.Entities;
 
-namespace ResTIConnect.Infrastructure.Persistence;
+namespace OrdemDeServico.Infrastructure.Persistence;
 
 public class OrdemDeServicoContext : DbContext
 {
@@ -13,6 +13,7 @@ public class OrdemDeServicoContext : DbContext
     public DbSet<Pagamento> Pagamentos { get; set; }
     public DbSet<OrdemServico> OrdensServico { get; set; }
     public DbSet<Servico> Servicos { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
 
     public OrdemDeServicoContext(DbContextOptions<OrdemDeServicoContext> options) : base(options)
     {
