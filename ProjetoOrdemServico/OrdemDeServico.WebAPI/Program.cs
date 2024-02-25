@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using OrdemDeServico.Application.Services;
 using OrdemDeServico.Application.Services.Interfaces;
-using ResTIConnect.Infrastructure.Persistence;
+using OrdemDeServico.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,33 @@ builder.Services.AddDbContext<OrdemDeServicoContext>(options =>
     options.UseMySql(connectionString, serverVersion);
 });
 
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BasicAuth", Version = "v1" });
+    c.AddSecurityDefinition("basic", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        In = ParameterLocation.Header,
+        Description = "Basic Authorization header using the Bearer scheme."
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                          new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "basic"
+                                }
+                            },
+                            new string[] {}
+                    }
+                });
+});
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
