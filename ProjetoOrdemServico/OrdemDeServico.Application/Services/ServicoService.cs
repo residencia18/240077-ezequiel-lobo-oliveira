@@ -2,7 +2,7 @@ using OrdemDeServico.Application.InputModels;
 using OrdemDeServico.Application.Services.Interfaces;
 using OrdemDeServico.Application.ViewModels;
 using OrdemDeServico.Domain.Entities;
-using ResTIConnect.Infrastructure.Persistence;
+using OrdemDeServico.Infrastructure.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;

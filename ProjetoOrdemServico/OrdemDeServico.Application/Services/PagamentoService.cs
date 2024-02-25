@@ -3,7 +3,8 @@ using OrdemDeServico.Application.Services.Interfaces;
 using OrdemDeServico.Application.ViewModels;
 using OrdemDeServico.Domain;
 using OrdemDeServico.Domain.Entities;
-using ResTIConnect.Infrastructure.Persistence;
+using OrdemDeServico.Infrastructure.Persistence;
+using OrdemDeServico.Domain.Exceptions;
 
 namespace OrdemDeServico.Application.Services;
 

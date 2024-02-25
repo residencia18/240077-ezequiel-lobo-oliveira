@@ -4,7 +4,8 @@ using OrdemDeServico.Application.ViewModels;
 using OrdemDeServico.Domain;
 using OrdemDeServico.Domain.Entities;
 using OrdemDeServico.Domain.Exceptions;
-using ResTIConnect.Infrastructure.Persistence;
+using OrdemDeServico.Infrastructure.Persistence;
+
 
 namespace OrdemDeServico.Application.Services;
 
