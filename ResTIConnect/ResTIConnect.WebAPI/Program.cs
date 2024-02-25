@@ -10,16 +10,16 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adicionando serviços ao contêiner de injeção de dependência
+
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPerfilService, PerfilService>();
 builder.Services.AddScoped<IEnderecoService, EnderecoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ISistemaService, SistemaService>();
 builder.Services.AddScoped<IEventoService, EventoService>();
-builder.Services.AddScoped<ILoginService, LoginService>(); // Adicionando a injeção de dependência para ILoginService
+builder.Services.AddScoped<ILoginService, LoginService>(); 
 
-// Configuração do banco de dados
+
 builder.Services.AddDbContext<ResTIConnectDbContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("resticonnectdb");
@@ -27,7 +27,6 @@ builder.Services.AddDbContext<ResTIConnectDbContext>(options =>
     options.UseMySql(connectionString, serverVersion);
 });
 
-// Configuração da autenticação JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -43,7 +42,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Configuração dos controladores e do Swagger
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -76,7 +75,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// Configuração do pipeline de solicitação HTTP
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -87,7 +86,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication(); // Adicionando autenticação JWT ao pipeline de solicitação HTTP
+app.UseAuthentication(); 
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

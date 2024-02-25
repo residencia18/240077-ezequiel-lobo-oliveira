@@ -1,29 +1,46 @@
+using Microsoft.EntityFrameworkCore;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
+using ResTIConnect.Domain.Entities;
 using ResTIConnect.Infrastructure.Auth;
+using ResTIConnect.Infrastructure.Context;
 
-namespace ResTIConnect.Application.Services;
-public class LoginService : ILoginService
+namespace ResTIConnect.Application.Services
 {
-    private readonly IAuthService _authService;
-    public LoginService(IAuthService authService) {
-        _authService = authService;
-    }
-    public LoginViewModel? Authenticate(NewLoginInputModel user)
+    public class LoginService : ILoginService
     {
-        var passHashed = _authService.ComputeSha256Hash(user.Password);
-        var admHashed = _authService.ComputeSha256Hash("admin");
+        private readonly IAuthService _authService;
+        private readonly ResTIConnectDbContext _dbContext;
 
-        if (user.Username == "admin" && passHashed == admHashed)
+        public LoginService(IAuthService authService, ResTIConnectDbContext dbContext)
         {
-            var token = _authService.GenerateJwtToken(user.Username, "admin");
+            _authService = authService;
+            _dbContext = dbContext;
+        }
+
+        public LoginViewModel? Authenticate(NewLoginInputModel user)
+        {
+            
+            var userFromDb = _dbContext.Usuarios.FirstOrDefault(u => u.Email == user.Email);
+
+           
+            if (userFromDb == null || userFromDb.Senha != _authService.ComputeSha256Hash(user.Senha))
+            {
+                return null;
+            }
+
+           
+            string defaultRole = "user";
+
+            
+            var token = _authService.GenerateJwtToken(user.Email, defaultRole);
+            
+           
             return new LoginViewModel
             {
-                Username = user.Username,
+                Username = user.Email,
                 Token = token
             };
         }
-
-        return null;
     }
 }

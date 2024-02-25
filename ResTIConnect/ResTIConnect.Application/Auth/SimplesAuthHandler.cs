@@ -1,41 +1,66 @@
-using System.Text;
 using Microsoft.AspNetCore.Http;
-namespace ResTIConnect.Application.Auth;
-public class SimpleAuthHandler
+using ResTIConnect.Application.Auth;
+using ResTIConnect.Application.InputModels;
+using ResTIConnect.Application.Services.Interfaces;
+using System;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ResTIConnect.Application.Auth
 {
-   private readonly RequestDelegate _next;
-   public SimpleAuthHandler(RequestDelegate next)
-   {
-      _next = next;
-   }
+    public class SimpleAuthHandler
+    {
+        private readonly RequestDelegate _next;
+        private readonly ILoginService _loginService;
 
-   public async Task InvokeAsync(HttpContext context)
-   {
-      //verificar se existe a chave Authorization no Header da requisição
-      if(!context.Request.Headers.ContainsKey("Authorization"))
-      {
-         //context.Response.Headers.Add("WWW-Authenticate", "Basic");
-         context.Response.StatusCode = 401;
-         await context.Response.WriteAsync("Authorization header is missing");
-         return;
-      }
-      
-      //verificar se o valor da chave Authorization é igual
-      //ao username e password esperados "Basic username:password"
-      var header = context.Request.Headers["Authorization"].ToString();
-      var encondedUsernamePassword = header.Substring(6);
-      var decodedUsernamePassword = Encoding.UTF8.GetString(Convert.FromBase64String(encondedUsernamePassword));
-      string[] usernamePassword = decodedUsernamePassword.Split(":");
-      var username = usernamePassword[0];
-      var password = usernamePassword[1];
+        public SimpleAuthHandler(RequestDelegate next, ILoginService loginService)
+        {
+            _next = next;
+            _loginService = loginService;
+        }
 
-      if(username != "admin" || password != "admin")
-      {
-         context.Response.StatusCode = 401;
-         await context.Response.WriteAsync("Invalid username or password");
-         return;
-      }
+        public async Task InvokeAsync(HttpContext context)
+        {
+            // Verifica se existe a chave Authorization no Header da requisição
+            if (!context.Request.Headers.ContainsKey("Authorization"))
+            {
+                context.Response.StatusCode = 401;
+                await context.Response.WriteAsync("Authorization header is missing");
+                return;
+            }
 
-      await _next(context);
-   }
+            
+            var header = context.Request.Headers["Authorization"].ToString();
+            var encodedToken = header.Substring(7); 
+
+            
+            var decodedToken = Encoding.UTF8.GetString(Convert.FromBase64String(encodedToken));
+            var credentials = decodedToken.Split(":");
+
+            
+            var email = credentials[0];
+            var senha = credentials[1];
+
+            
+            var loginInputModel = new NewLoginInputModel
+            {
+                Email = email,
+                Senha = senha
+            };
+
+            
+            var loginViewModel = _loginService.Authenticate(loginInputModel);
+
+           
+            if (loginViewModel == null)
+            {
+                context.Response.StatusCode = 401;
+                await context.Response.WriteAsync("Invalid email or password");
+                return;
+            }
+
+            
+            await _next(context);
+        }
+    }
 }

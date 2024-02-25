@@ -1,6 +1,7 @@
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace ResTIConnect.WebAPI.Controllers
@@ -23,6 +24,7 @@ namespace ResTIConnect.WebAPI.Controllers
         
 
         [HttpGet("usuarios")]
+        [Authorize]
         
         public IActionResult GetAllUsuarios()
         {
@@ -38,6 +40,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("usuario/perfil/{perfilId}")]
+        [Authorize]
         public IActionResult GetUsuariosByPerfilId(int perfilId)
         {
             var usuarios = _usuarioService.GetByPerfilId(perfilId);
@@ -45,6 +48,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpGet("usuario/endereco/{estado}")]
+        [Authorize]
         public IActionResult GetUsuariosByEstado(string estado)
         {
             var usuarios = _usuarioService.GetByEstado(estado);
@@ -52,6 +56,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPost("usuario")]
+        [Authorize]
         public IActionResult CreateUsuario([FromBody] NewUsuarioInputModel usuario)
         {
             var usuarioId = _usuarioService.Create(usuario);
@@ -59,6 +64,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpPut("usuario/{id}")]
+        [Authorize]
         public IActionResult UpdateUsuario(int id, [FromBody] NewUsuarioInputModel usuario)
         {
             if (_usuarioService.GetById(id) == null)
@@ -69,6 +75,7 @@ namespace ResTIConnect.WebAPI.Controllers
         }
 
         [HttpDelete("usuario/{id}")]
+        [Authorize]
         public IActionResult DeleteUsuario(int id)
         {
             if (_usuarioService.GetById(id) == null)
@@ -77,6 +84,17 @@ namespace ResTIConnect.WebAPI.Controllers
             _usuarioService.Delete(id);
             return NoContent();
         }
+
+        [HttpPost("login")]
+    public IActionResult Login([FromBody] NewLoginInputModel user)
+    {
+        var userViewModel = _loginService.Authenticate(user);
+        if (userViewModel is null)
+        {
+            return Unauthorized();
+        }
+        return Ok(userViewModel);
+    }
 
         
 

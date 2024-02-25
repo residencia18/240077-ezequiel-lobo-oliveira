@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
@@ -14,6 +15,7 @@ public class EnderecoController : ControllerBase
     public EnderecoController(IEnderecoService endereco) => _enderecoService = endereco;
 
     [HttpGet("enderecos")]
+    [Authorize]
     public IActionResult Get()
     {
         return Ok(Enderecos);
@@ -29,6 +31,7 @@ public class EnderecoController : ControllerBase
     }
 
     [HttpPost("endereco")]
+    [Authorize]
     public IActionResult Post([FromBody] NewEnderecoInputModel endereco)
     {
         _enderecoService.Create(endereco);
@@ -37,6 +40,7 @@ public class EnderecoController : ControllerBase
     }
 
     [HttpPut("endereco/{id}")]
+    [Authorize]
     public IActionResult Put(int id, [FromBody] NewEnderecoInputModel endereco)
     {
         if (_enderecoService.GetById(id) == null)
@@ -46,6 +50,7 @@ public class EnderecoController : ControllerBase
     }
 
     [HttpDelete("endereco/{id}")]
+    [Authorize]
     public IActionResult Delete(int id)
     {
         if (_enderecoService.GetById(id) == null)
