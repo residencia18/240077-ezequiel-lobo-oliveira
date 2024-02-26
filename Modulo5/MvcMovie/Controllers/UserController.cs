@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mvc.Data;
 using Mvc.Models;
@@ -24,21 +20,18 @@ namespace Mvc.Controllers
         // GET: User
         public async Task<IActionResult> Index()
         {
-              return _context.User != null ? 
-                          View(await _context.User.ToListAsync()) :
-                          Problem("Entity set 'MvcContext.User'  is null.");
+            return View(await _context.Users.ToListAsync());
         }
 
         // GET: User/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(m => m.UserId == id);
             if (user == null)
             {
                 return NotFound();
@@ -54,16 +47,14 @@ namespace Mvc.Controllers
         }
 
         // POST: User/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Email,Password")] User user)
+        public async Task<IActionResult> Create([Bind("UserId,Name,Email,Password")] User user)
         {
             if (ModelState.IsValid)
             {
-                var _encryptedPassword = Utils.ComputeSha256Hash(user.Password);
-                user.Password = _encryptedPassword;
+                var encryptedPassword = Utils.ComputeSha256Hash(user.Password);
+                user.Password = encryptedPassword;
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -74,12 +65,12 @@ namespace Mvc.Controllers
         // GET: User/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -88,13 +79,11 @@ namespace Mvc.Controllers
         }
 
         // POST: User/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Password")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,Name,Email,Password")] User user)
         {
-            if (id != user.Id)
+            if (id != user.UserId)
             {
                 return NotFound();
             }
@@ -103,14 +92,14 @@ namespace Mvc.Controllers
             {
                 try
                 {
-                    var _encryptedPassword = Utils.ComputeSha256Hash(user.Password);
-                    user.Password = _encryptedPassword;
+                    var encryptedPassword = Utils.ComputeSha256Hash(user.Password);
+                    user.Password = encryptedPassword;
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.Id))
+                    if (!UserExists(user.UserId))
                     {
                         return NotFound();
                     }
@@ -127,13 +116,12 @@ namespace Mvc.Controllers
         // GET: User/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(m => m.UserId == id);
             if (user == null)
             {
                 return NotFound();
@@ -147,23 +135,15 @@ namespace Mvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.User == null)
-            {
-                return Problem("Entity set 'MvcContext.User'  is null.");
-            }
-            var user = await _context.User.FindAsync(id);
-            if (user != null)
-            {
-                _context.User.Remove(user);
-            }
-            
+            var user = await _context.Users.FindAsync(id);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UserExists(int id)
         {
-          return (_context.User?.Any(e => e.Id == id)).GetValueOrDefault();
+            return _context.Users.Any(e => e.UserId == id);
         }
     }
 }
