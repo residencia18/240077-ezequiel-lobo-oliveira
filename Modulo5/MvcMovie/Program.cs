@@ -3,15 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Mvc.Data;
 var builder = WebApplication.CreateBuilder(args);
 
-if (builder.Environment.IsDevelopment())
+builder.Services.AddDbContext<MvcContext>(options =>
 {
-    builder.Services.AddDbContext<MvcContext>(options =>
-        options.UseSqlite(builder.Configuration.GetConnectionString("MvcContext")));
-}
-else
-{
-    //TODO: configurar MySql
-}
+  var connectionString = builder.Configuration.GetConnectionString("MoviesDb");
+  var serverVersion = ServerVersion.AutoDetect(connectionString);
+  options.UseMySql(connectionString, serverVersion);
+}, ServiceLifetime.Transient);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
