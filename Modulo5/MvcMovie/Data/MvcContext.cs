@@ -1,21 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Mvc.Models;
+using Mvc.Models; // Supondo que Mvc.Models é o namespace onde suas entidades estão definidas
 
 namespace Mvc.Data
 {
     public class MvcContext : DbContext
-    {
-        public MvcContext (DbContextOptions<MvcContext> options)
-            : base(options)
+    { 
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<User> Users { get; set; } 
+
+        public MvcContext(DbContextOptions<MvcContext> dbContextOptions) : base(dbContextOptions)
         {
+
         }
 
-        public DbSet<Mvc.Models.Movie> Movie { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-        public DbSet<Mvc.Models.User> User { get; set; } = default!;
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MvcContext).Assembly);
+        }
+
+       
     }
 }
