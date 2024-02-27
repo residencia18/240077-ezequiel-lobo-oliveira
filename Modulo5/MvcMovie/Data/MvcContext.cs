@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Mvc.Models; // Supondo que Mvc.Models é o namespace onde suas entidades estão definidas
-
+using Mvc.Models; 
 namespace Mvc.Data
 {
     public class MvcContext : DbContext
