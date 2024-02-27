@@ -7,6 +7,8 @@ namespace Mvc.Data
     { 
         public DbSet<Movie> Movies { get; set; }
         public DbSet<User> Users { get; set; } 
+        public DbSet<Artist> Artists { get; set; }
+        public DbSet<Studio> Studios { get; set; }
 
         public MvcContext(DbContextOptions<MvcContext> dbContextOptions) : base(dbContextOptions)
         {
