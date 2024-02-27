@@ -1,13 +1,21 @@
-
+// StudioConfigurations.cs
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mvc.Models; 
+using Mvc.Models;
 
-namespace Mvc.Data.Configuratios;
-public class StudioConfigurations : IEntityTypeConfiguration<Studio>
+namespace Mvc.Data.Configurations
 {
-    public void Configure(EntityTypeBuilder<Studio> builder)
+    public class StudioConfigurations : IEntityTypeConfiguration<Studio>
     {
-        builder.HasKey(m => m.StudioId);
+        public void Configure(EntityTypeBuilder<Studio> builder)
+        {
+            builder.HasKey(s => s.StudioId);
+
+           
+            builder.HasMany(s => s.Movies)
+                   .WithOne(m => m.Studio)
+                   .HasForeignKey(m => m.StudioId);
+                   
+        }
     }
 }

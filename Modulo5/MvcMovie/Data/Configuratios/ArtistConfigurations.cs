@@ -1,13 +1,24 @@
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mvc.Models; 
+using Mvc.Models;
 
-namespace Mvc.Data.Configuratios;
-public class ArtistConfigurations : IEntityTypeConfiguration<Artist>
+namespace Mvc.Data.Configurations
 {
-    public void Configure(EntityTypeBuilder<Artist> builder)
+    public class ArtistConfigurations : IEntityTypeConfiguration<Artist>
     {
-        builder.HasKey(m => m.ArtistId);
+        public void Configure(EntityTypeBuilder<Artist> builder)
+        {
+            builder.HasKey(a => a.ArtistId);
+
+            builder
+                .HasMany(a => a.Movies)
+                .WithMany(m => m.Artists)
+                .UsingEntity(j =>
+                {
+                    j.ToTable("MovieArtists"); 
+                    j.HasOne(typeof(Artist)).WithMany().HasForeignKey("ArtistId").OnDelete(DeleteBehavior.Cascade); 
+                    j.HasOne(typeof(Movie)).WithMany().HasForeignKey("MovieId").OnDelete(DeleteBehavior.Cascade); 
+                });
+        }
     }
 }

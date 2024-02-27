@@ -1,13 +1,16 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mvc.Models; 
+using Mvc.Models;
 
-namespace Mvc.Data.Configuratios;
-public class MovieConfigurations : IEntityTypeConfiguration<Movie>
+namespace Mvc.Data.Configurations
 {
-    public void Configure(EntityTypeBuilder<Movie> builder)
+    public class MovieConfigurations : IEntityTypeConfiguration<Movie>
     {
-        builder.HasKey(m => m.MovieId);
+        public void Configure(EntityTypeBuilder<Movie> builder)
+        {
+            builder.HasKey(m => m.MovieId);
+
+        }
     }
 }
