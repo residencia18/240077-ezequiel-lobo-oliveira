@@ -5,6 +5,8 @@ namespace Mvc.Models;
 public class Movie
 {
     public int MovieId { get; set; }
+    
+    [Required(ErrorMessage = "O campo título é obrigatório.")]
     public string? Title { get; set; }
 
     [DataType(DataType.Date)]

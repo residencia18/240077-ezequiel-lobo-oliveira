@@ -1,11 +1,17 @@
-namespace Mvc.Models;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-public class Artist
+namespace Mvc.Models
 {
-    public int ArtistId { get; set; }
-    public  required string Name { get; set; }
-    public string? Bio { get; set; }
-    public string? Site { get; set; }
-    public ICollection<Movie> Movies { get; set; } = new List<Movie>();
-    
+    public class Artist
+    {
+        public int ArtistId { get; set; }
+        
+        [Required(ErrorMessage = "O campo nome é obrigatório.")]
+        public required string Name { get; set; }
+        
+        public string? Bio { get; set; }
+        public string? Site { get; set; }
+        public ICollection<Movie> Movies { get; set; } = new List<Movie>();
+    }
 }
