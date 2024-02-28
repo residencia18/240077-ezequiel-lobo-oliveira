@@ -1,23 +1,21 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using Mvc.AppUtils;
+using Mvc.Auth;
 using Mvc.Data;
 using Mvc.Models;
 
-namespace Mvc.Controllers
+
+namespace MvcMovie.Controllers
 {
     public class LoginController : Controller
     {
         private readonly MvcContext _context;
-        private readonly IConfiguration _configuration;
+        private readonly IAuthService _authService;
 
-        public LoginController(MvcContext context, IConfiguration configuration)
+        public LoginController(MvcContext context, IAuthService authService)
         {
             _context = context;
-            _configuration = configuration;
+            _authService = authService;
         }
 
         public IActionResult Index()
@@ -31,40 +29,24 @@ namespace Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var _token = GenerateJwtToken(login.Email, login.Password);                
+                var _encriptedPassword = _authService.ComputeSha256Hash(login.Password);
+                var user = _context.Users.FirstOrDefault(user =>
+                    user.Email == login.Email && user.Password == _encriptedPassword
+                );
+
+                if (user is null)
+                {
+                    return Problem("Invalid Credentials: Login or Password invalid.");
+                }
+
+                var token = _authService.GenerateJwtToken(login.Email, "Admin");
+                HttpContext.Response.Cookies.Append("Token", token);
+
                 return RedirectToAction("Index", "Home");
             }
             return View(login);
         }
 
-        public string GenerateJwtToken(string email, string role)
-        {
-            var issuer = _configuration["Jwt:Issuer"];
-            var audience = _configuration["Jwt:Audience"];
-            var key = _configuration["Jwt:Key"];
-            //cria uma chave utilizando criptografia simétrica
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
-            //cria as credenciais do token
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[]
-            {
-                new Claim("email", email)
-            };
-
-            var token = new JwtSecurityToken( //cria o token
-               issuer: issuer, //emissor do token
-               audience: audience, //destinatário do token
-               claims: claims, //informações do usuário
-               expires: DateTime.Now.AddMinutes(30), //tempo de expiração do token
-               signingCredentials: credentials //credenciais do token
-            );
-
-            var tokenHandler = new JwtSecurityTokenHandler(); //cria um manipulador de token
-
-            var stringToken = tokenHandler.WriteToken(token);
-
-            return stringToken;
-        }
+        
     }
 }
