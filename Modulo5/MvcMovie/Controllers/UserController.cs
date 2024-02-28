@@ -4,17 +4,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mvc.Data;
 using Mvc.Models;
-using Mvc.AppUtils;
+
+using Mvc.Auth;
 
 namespace Mvc.Controllers
 {
     public class UserController : Controller
     {
         private readonly MvcContext _context;
+        private readonly IAuthService _authService;
 
-        public UserController(MvcContext context)
+        public UserController(MvcContext context, IAuthService authService)
         {
             _context = context;
+            _authService = authService;
         }
 
         // GET: User
@@ -53,7 +56,7 @@ namespace Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var encryptedPassword = Utils.ComputeSha256Hash(user.Password);
+                var encryptedPassword = _authService.ComputeSha256Hash(user.Password);
                 user.Password = encryptedPassword;
                 _context.Add(user);
                 await _context.SaveChangesAsync();
@@ -92,7 +95,7 @@ namespace Mvc.Controllers
             {
                 try
                 {
-                    var encryptedPassword = Utils.ComputeSha256Hash(user.Password);
+                    var encryptedPassword = _authService.ComputeSha256Hash(user.Password);
                     user.Password = encryptedPassword;
                     _context.Update(user);
                     await _context.SaveChangesAsync();
