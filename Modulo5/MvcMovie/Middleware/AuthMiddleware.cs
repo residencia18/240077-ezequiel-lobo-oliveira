@@ -1,19 +1,61 @@
+using System;
 using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using NuGet.Common;
-using NuGet.Protocol;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
 
-namespace Mvc.Middlewares;
-public class AuthMiddleware
+namespace Mvc.Middlewares
 {
-   private readonly RequestDelegate _next;
-   public AuthMiddleware(RequestDelegate next)
-   {
-      _next = next;
-   }
-   public async Task InvokeAsync(HttpContext context)
-   {
-      context.Request.Headers.Authorization = "Bearer " + context.Request.Cookies["Token"];
-      await _next(context);
-   }
+    public class AuthMiddleware
+    {
+        private readonly RequestDelegate _next;
+
+        public AuthMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
+
+        public async Task InvokeAsync(HttpContext context)
+        {
+            if (!context.Request.Headers.ContainsKey("Authorization"))
+            {
+                context.Response.StatusCode = 401; 
+                await context.Response.WriteAsync("Authorization header is missing.");
+                return;
+            }
+
+            var token = context.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var jwtToken = tokenHandler.ReadJwtToken(token);
+
+                var emailClaim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == "email");
+                var roleClaim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role);
+
+                if (emailClaim == null || roleClaim == null)
+                {
+                    context.Response.StatusCode = 401; // Unauthorized
+                    await context.Response.WriteAsync("Invalid token claims.");
+                    return;
+                }
+
+                
+                if (roleClaim.Value != "Admin" && context.Request.Path.StartsWithSegments("/admin"))
+                {
+                    context.Response.StatusCode = 403;
+                    await context.Response.WriteAsync("You don't have permission to access this resource.");
+                    return;
+                }
+
+                await _next(context);
+            }
+            catch (Exception ex)
+            {
+                context.Response.StatusCode = 401; 
+                await context.Response.WriteAsync("Invalid token: " + ex.Message);
+            }
+        }
+    }
 }
