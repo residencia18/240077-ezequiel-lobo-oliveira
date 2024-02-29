@@ -24,6 +24,7 @@ namespace Mvc.Controllers
         }
 
         // GET: Artist/Details/5
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

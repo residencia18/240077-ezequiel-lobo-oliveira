@@ -25,6 +25,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies/Details/5
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
