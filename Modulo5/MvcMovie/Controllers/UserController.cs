@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mvc.Data;
 using Mvc.Models;
-
 using Mvc.Auth;
 using Microsoft.AspNetCore.Authorization;
 
@@ -22,12 +21,14 @@ namespace Mvc.Controllers
         }
 
         // GET: User
+        
         public async Task<IActionResult> Index()
         {
             return View(await _context.Users.ToListAsync());
         }
 
         // GET: User/Details/5
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,6 +46,7 @@ namespace Mvc.Controllers
         }
 
         // GET: User/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -54,7 +56,7 @@ namespace Mvc.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,Name,Email,Password")] User user)
+        public async Task<IActionResult> Create([Bind("UserId,Name,Email,Password,Role")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -68,6 +70,7 @@ namespace Mvc.Controllers
         }
 
         // GET: User/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -87,7 +90,7 @@ namespace Mvc.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,Name,Email,Password")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,Name,Email,Password,Role")] User user)
         {
             if (id != user.UserId)
             {
@@ -120,6 +123,7 @@ namespace Mvc.Controllers
         }
 
         // GET: User/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

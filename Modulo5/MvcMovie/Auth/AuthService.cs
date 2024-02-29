@@ -43,7 +43,8 @@ namespace Mvc.Auth
 
             var claims = new[]
             {
-                new Claim("email", email)
+                new Claim("email", email),
+                new Claim(ClaimTypes.Role, role)
             };
 
             var token = new JwtSecurityToken(
