@@ -131,6 +131,7 @@ namespace Mvc.Controllers
 
         // POST: Studio/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
