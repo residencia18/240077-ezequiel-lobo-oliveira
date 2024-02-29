@@ -6,6 +6,7 @@ using Mvc.Data;
 using Mvc.Models;
 
 using Mvc.Auth;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Mvc.Controllers
 {
@@ -51,6 +52,7 @@ namespace Mvc.Controllers
 
         // POST: User/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserId,Name,Email,Password")] User user)
         {
@@ -83,6 +85,7 @@ namespace Mvc.Controllers
 
         // POST: User/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UserId,Name,Email,Password")] User user)
         {

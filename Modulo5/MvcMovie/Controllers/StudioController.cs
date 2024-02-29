@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mvc.Data;
@@ -47,6 +48,7 @@ namespace Mvc.Controllers
 
         // POST: Studio/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StudioId,Name,Site")] Studio studio)
         {
@@ -77,6 +79,7 @@ namespace Mvc.Controllers
 
         // POST: Studio/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("StudioId,Name,Site")] Studio studio)
         {

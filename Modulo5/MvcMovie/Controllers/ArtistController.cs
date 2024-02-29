@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mvc.Data;
@@ -48,6 +49,7 @@ namespace Mvc.Controllers
 
         // POST: Artist/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ArtistId,Name,Bio,Site")] Artist artist)
         {
@@ -78,6 +80,7 @@ namespace Mvc.Controllers
 
         // POST: Artist/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ArtistId,Name,Bio,Site")] Artist artist)
         {

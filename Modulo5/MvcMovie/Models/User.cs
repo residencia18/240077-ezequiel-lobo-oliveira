@@ -4,8 +4,8 @@ namespace Mvc.Models;
 public class User
 {
     public int UserId { get; set; }
-    
-     [Required(ErrorMessage = "O campo nome é obrigatório.")]
+
+    [Required(ErrorMessage = "O campo nome é obrigatório.")]
     public required string Name { get; set; }
     
     [Required(ErrorMessage = "O campo email é obrigatório.")]
