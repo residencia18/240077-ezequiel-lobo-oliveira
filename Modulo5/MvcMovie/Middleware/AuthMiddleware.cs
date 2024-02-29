@@ -17,6 +17,14 @@ namespace Mvc.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
+         var path = context.Request.Path;
+            if (path.StartsWithSegments("/Login") || path.StartsWithSegments("/Home"))
+            {
+                await _next(context);
+                return;
+            }
+
+
             if (!context.Request.Headers.ContainsKey("Authorization"))
             {
                 context.Response.StatusCode = 401; 
