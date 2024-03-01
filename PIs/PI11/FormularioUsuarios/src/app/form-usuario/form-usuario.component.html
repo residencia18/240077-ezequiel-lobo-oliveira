@@ -1,4 +1,20 @@
 <form [formGroup]="form" (ngSubmit)="submitForm()">
-   
+    <div>
+      <label for="nomeUsuario">Nome do Usuário:</label>
+      <input type="text" id="nomeUsuario" formControlName="nomeUsuario">
+      <div *ngIf="form.get('nomeUsuario').hasError('required') && form.get('nomeUsuario').touched">
+        O nome de usuário é obrigatório.
+      </div>
+      <div *ngIf="form.get('nomeUsuario').hasError('maxLength') && form.get('nomeUsuario').touched">
+        O nome de usuário não pode exceder 12 caracteres.
+      </div>
+      <div *ngIf="form.get('nomeUsuario').hasError('noSpaces') && form.get('nomeUsuario').touched">
+        O nome de usuário não pode conter espaços.
+      </div>
+    </div>
+  
+    <!-- Adicione os outros campos de acordo com os requisitos -->
+  
+    <button type="submit" [disabled]="!form.valid">Enviar</button>
   </form>
   
