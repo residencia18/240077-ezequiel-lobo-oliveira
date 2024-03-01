@@ -1,65 +1,89 @@
-<!-- form-usuario.component.html -->
+<form id="user-form" [formGroup]="userForm" (ngSubmit)="submitForm()">
+    <div>
+        <h2>Dados de Login</h2>
+        <div class="form-group">
+            <div class="form-group">
+                <label>Nome de Usuário</label>
+                <input formControlName="userName" type="text" class="form-control" placeholder="Nome de Usuário" />
+                <div *ngIf="!userForm.get('userName')?.pristine && userForm.get('userName')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of userForm.get('userName')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" formControlName="password" class="form-control" placeholder="Senha" />
+                <div *ngIf="!userForm.get('password')?.pristine && userForm.get('password')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of userForm.get('password')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="form-container">
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <mat-form-field class="mat-form-field">
-        <input matInput formControlName="username" placeholder="Nome de Usuário">
-        <mat-error *ngIf="userForm.get('username').errors?.required">O nome de usuário é obrigatório.</mat-error>
-        <mat-error *ngIf="userForm.get('username').errors?.pattern">Não deve conter espaços e deve ter no máximo 12 caracteres.</mat-error>
-      </mat-form-field>
-  
-      <mat-form-field class="mat-form-field">
-        <input matInput formControlName="password" type="password" placeholder="Senha">
-        <mat-error *ngIf="userForm.get('password').errors?.required">A senha é obrigatória.</mat-error>
-        <mat-error *ngIf="userForm.get('password').errors?.minlength">A senha deve ter no mínimo 4 caracteres.</mat-error>
-        <mat-error *ngIf="userForm.get('password').errors?.pattern">A senha deve conter pelo menos uma letra maiúscula e um símbolo.</mat-error>
-      </mat-form-field>
-  
-      <mat-form-field class="mat-form-field">
-        <input matInput formControlName="email" placeholder="Email">
-        <mat-error *ngIf="userForm.get('email').errors?.required">O email é obrigatório.</mat-error>
-        <mat-error *ngIf="userForm.get('email').errors?.email">O email deve ser válido.</mat-error>
-      </mat-form-field>
-  
-      <mat-form-field class="mat-form-field">
-        <input matInput formControlName="nomeCompleto" placeholder="Nome Completo">
-        <mat-error *ngIf="userForm.get('nomeCompleto').errors?.required">O nome completo é obrigatório.</mat-error>
-      </mat-form-field>
-  
-      <mat-form-field class="mat-form-field">
-        <input matInput formControlName="telefone" placeholder="Telefone">
-        <mat-error *ngIf="userForm.get('telefone').errors?.pattern">O telefone deve ser um número válido de 10 ou 11 dígitos.</mat-error>
-      </mat-form-field>
-  
-      <mat-form-field class="mat-form-field">
-        <input matInput formControlName="endereco" placeholder="Endereço">
-        <mat-error *ngIf="userForm.get('endereco').errors?.required">O endereço é obrigatório.</mat-error>
-      </mat-form-field>
-  
-      <mat-form-field class="mat-form-field">
-        <input matInput formControlName="dataNascimento" placeholder="Data de Nascimento" [matDatepicker]="picker">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="userForm.get('dataNascimento').errors?.required">A data de nascimento é obrigatória.</mat-error>
-        <mat-error *ngIf="userForm.get('dataNascimento').errors?.idadeMinima">O usuário deve ter no mínimo 18 anos.</mat-error>
-      </mat-form-field>
-  
-      <mat-form-field class="mat-form-field">
-        <mat-label>Gênero</mat-label>
-        <mat-select formControlName="genero">
-          <mat-option *ngFor="let option of generoOptions" [value]="option">{{ option }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="userForm.get('genero').errors?.required">O gênero é obrigatório.</mat-error>
-      </mat-form-field>
-  
-      <mat-form-field class="mat-form-field">
-        <mat-label>Profissão</mat-label>
-        <mat-select formControlName="profissao">
-          <mat-option *ngFor="let option of profissaoOptions" [value]="option">{{ option }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="userForm.get('profissao').errors?.required">A profissão é obrigatória.</mat-error>
-      </mat-form-field>
-  
-      <button type="submit" mat-raised-button color="primary">Enviar</button>
-    </form
-  
+    <div>
+        <h2>Dados Pessoais</h2>
+        <div class="form-group">
+            <div class="form-group">
+                <label>Nome Completo</label>
+                <input formControlName="fullName" type="text" class="form-control" placeholder="Nome Completo" />
+                <div *ngIf="!userForm.get('fullName')?.pristine && userForm.get('fullName')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of userForm.get('fullName')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>E-mail</label>
+                <input formControlName="email" type="email" class="form-control" placeholder="E-mail" />
+                <div *ngIf="!userForm.get('email')?.pristine && userForm.get('email')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of userForm.get('email')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Telefone</label>
+                <input formControlName="phoneNumber" type="tel" class="form-control" placeholder="Telefone" />
+                <div class="example">Exemplo: (99) 99999-9999</div>
+                <div *ngIf="!userForm.get('phoneNumber')?.pristine && userForm.get('phoneNumber')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of userForm.get('phoneNumber')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Endereço</label>
+                <input formControlName="address" type="text" class="form-control" placeholder="Endereço" />
+                <div *ngIf="!userForm.get('address')?.pristine && userForm.get('address')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of userForm.get('address')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Data de Nascimento</label>
+                <input formControlName="birthDate" type="date" class="form-control" placeholder="Data de Nascimento" />
+                <div *ngIf="!userForm.get('birthDate')?.pristine && userForm.get('birthDate')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of userForm.get('birthDate')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Gênero</label>
+                <select formControlName="gender" class="form-control">
+                    <option value="" disabled selected>Selecione o gênero</option>
+                    <option *ngFor="let option of genderOptions" [value]="option.value">{{option.label}}</option>
+                </select>
+                <div *ngIf="!userForm.get('gender')?.pristine && userForm.get('gender')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of userForm.get('gender')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Profissão</label>
+                <select formControlName="profession" class="form-control">
+                    <option value="" disabled selected>Selecione a profissão</option>
+                    <option *ngFor="let option of professionOptions" [value]="option.value">{{option.label}}</option>
+                </select>
+                <div *ngIf="!userForm.get('profession')?.pristine && userForm.get('profession')?.errors" class="error-box">
+                    <p class="error-message" *ngFor="let error of userForm.get('profession')?.errors | keyvalue">{{error.value.message || "Necessário preencher este campo"}}</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="p-fluid">
+        <button class="btn btn-primary" type="submit">Fazer Cadastro</button>
+    </div>
+</form>

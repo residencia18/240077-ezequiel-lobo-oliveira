@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ezequiel/Secretária/FRONT-1/CRUD-FullStack/progrmaBD/exemplos/exemplos.csproj",
+      "projectUniqueName": "/home/ezequiel/Secretária/FRONT/CRUD-FullStack/progrmaBD/exemplos/exemplos.csproj",
       "projectName": "exemplos",
-      "projectPath": "/home/ezequiel/Secretária/FRONT-1/CRUD-FullStack/progrmaBD/exemplos/exemplos.csproj",
+      "projectPath": "/home/ezequiel/Secretária/FRONT/CRUD-FullStack/progrmaBD/exemplos/exemplos.csproj",
       "packagesPath": "/home/ezequiel/.nuget/packages/",
-      "outputPath": "/home/ezequiel/Secretária/FRONT-1/CRUD-FullStack/progrmaBD/exemplos/obj/",
+      "outputPath": "/home/ezequiel/Secretária/FRONT/CRUD-FullStack/progrmaBD/exemplos/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/ezequiel/.nuget/NuGet/NuGet.Config"
