@@ -1,25 +1,18 @@
 
-
-/* Estilização geral do formulário */
+/* Estilos para o container do formulário */
 .form-container {
     max-width: 400px;
-    margin: auto;
+    margin: 0 auto;
   }
   
-  /* Estilização dos campos de entrada */
+  /* Estilos para os campos de formulário */
   .mat-form-field {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   
-  /* Estilização do botão de envio */
+  /* Estilos para o botão de submit */
   .submit-button {
-    width: 100%;
-  }
-  
-  /* Estilização das mensagens de erro */
-  .error-message {
-    color: red;
-    font-size: 14px;
+    margin-top: 20px;
   }
   
