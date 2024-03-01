@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -7,57 +8,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form-usuario.component.css']
 })
 export class FormUsuarioComponent implements OnInit {
-  form: FormGroup;
+  userForm: FormGroup;
 
-  generos = ['Masculino', 'Feminino', 'Outro'];
-  profissoes = ['Engenheiro', 'Professor', 'Médico', 'Advogado'];
-
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.form = this.fb.group({
-      nomeUsuario: ['', [Validators.required, Validators.maxLength(12), this.noSpacesValidator]],
-      senha: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#$%^&*])/)]],
-      email: ['', [Validators.required, Validators.email]],
-      nomeCompleto: ['', [Validators.required, this.fullNameValidator]],
-      telefone: ['', [Validators.required, Validators.pattern(/^\(\d{2}\)\s?\d{4,5}\-\d{4}$/)]],
-      endereco: ['', Validators.required],
-      dataNascimento: ['', [Validators.required, this.minimumAgeValidator]],
-      genero: ['', Validators.required],
-      profissao: ['', Validators.required]
+  constructor(private formBuilder: FormBuilder) {
+    this.userForm = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.pattern(/^\S{1,12}$/)]],
+     
     });
   }
 
-  submitForm() {
-    if (this.form.valid) {
-      console.log(this.form.value); 
-    } else {
-      console.error('Formulário inválido. Verifique os campos.');
-    }
+  ngOnInit(): void {
   }
 
-  noSpacesValidator(control) {
-    if (control.value && control.value.trim().indexOf(' ') !== -1) {
-      return { noSpaces: true };
+  onSubmit() {
+    if (this.userForm.valid) {
+      const formData = this.userForm.value;
+      console.log(formData); 
     }
-    return null;
-  }
-
-  fullNameValidator(control) {
-    const fullName = control.value;
-    if (fullName && fullName.trim().split(' ').length < 2) {
-      return { fullName: true };
-    }
-    return null;
-  }
-
-  minimumAgeValidator(control) {
-    const birthDate = new Date(control.value);
-    const currentDate = new Date();
-    const age = currentDate.getFullYear() - birthDate.getFullYear();
-    if (age < 18) {
-      return { minimumAge: true };
-    }
-    return null;
   }
 }
