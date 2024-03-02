@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormInteractionService } from '../form-interaction.service';
 
 @Component({
   selector: 'app-form-usuario',
@@ -11,7 +12,7 @@ export class FormUsuarioComponent {
     { label: 'Masculino', value: 'M' },
     { label: 'Feminino', value: 'F' },
     { label: 'Outro', value: 'O' }
-  ]
+  ];
 
   public professionOptions = [
     { label: 'Artista', value: 'artista' },
@@ -31,8 +32,7 @@ export class FormUsuarioComponent {
     { label: 'Advogado(a)', value: 'advogado' },
     { label: 'Designer Gráfico(a)', value: 'designer' },
     { label: 'Engenheiro(a)', value: 'engenheiro' },
-]
-
+  ];
 
   public userForm = new FormGroup({
     "userName": new FormControl(null, [Validators.required, this.validUsername()]),
@@ -46,13 +46,15 @@ export class FormUsuarioComponent {
     "profession": new FormControl(null, [Validators.required, this.validProfession()]),
   });
 
+  // Lista de logs
+  public formLog: any[] = [];
+
+  constructor(private formInteractionService: FormInteractionService) {}
+
   submitForm() {
     if (this.userForm.valid) {
-      const jsonStr = JSON.stringify(this.userForm.value);
-      const blob = new Blob([jsonStr], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
+      this.formInteractionService.addEvent(this.userForm.value);
       this.userForm.reset();
-      window.open(url);
     }
   }
 
@@ -176,6 +178,7 @@ export class FormUsuarioComponent {
       return null;
     }
   }
+  
 
   validGender(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
