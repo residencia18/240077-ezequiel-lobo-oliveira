@@ -1,37 +1,53 @@
-/* Estilos para o formulário de cadastro */
-.form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-label {
-    font-weight: bold;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #0056b3;
-  }
-  
+/* styles.css (ou qualquer outro arquivo CSS que você estiver usando) */
+
+/* Estilos para o formulário */
+form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+/* Estilos para as divs que envolvem cada campo */
+div {
+  margin-bottom: 15px;
+}
+
+/* Estilos para os rótulos */
+label {
+  display: block;
+  font-weight: bold;
+  color: #333; /* Cor do texto dos rótulos */
+}
+
+/* Estilos para os campos de entrada de texto */
+input[type="text"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc; /* Cor da borda dos campos */
+  border-radius: 4px;
+}
+
+/* Estilos para o campo de data */
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Estilos para o botão de cadastrar */
+button[type="submit"] {
+  background-color: #007bff; /* Cor de fundo do botão */
+  color: #fff; /* Cor do texto do botão */
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
+}
+
+/* Estilo para quando o cursor está sobre o botão */
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+}

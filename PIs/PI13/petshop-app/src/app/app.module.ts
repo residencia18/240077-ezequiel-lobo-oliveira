@@ -1,19 +1,13 @@
-
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'; // Importe o HttpClientModule
-
-import { AngularFireModule } from '@angular/fire/compat';
-import { environment } from '../environments/environment';
-
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CadastroAtendimentoComponent } from './cadastro-atendimento/cadastro-atendimento.component';
 import { ListagemAtendimentosComponent } from './listagem-atendimentos/listagem-atendimentos.component';
 import { EdicaoAtendimentoComponent } from './edicao-atendimento/edicao-atendimento.component';
-import { DetalheAtendimentoComponent } from './detalhamento-atendimento/detalhamento-atendimento.component';
-import { AppRoutingModule } from './app-routing.module';
-import { NgModule } from '@angular/core';
+import { DetalhamentoAtendimentoComponent } from './detalhamento-atendimento/detalhamento-atendimento.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,16 +15,14 @@ import { NgModule } from '@angular/core';
     CadastroAtendimentoComponent,
     ListagemAtendimentosComponent,
     EdicaoAtendimentoComponent,
-    DetalheAtendimentoComponent
+    DetalhamentoAtendimentoComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

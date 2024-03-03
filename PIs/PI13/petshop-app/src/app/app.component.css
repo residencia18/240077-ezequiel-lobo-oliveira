@@ -1,72 +1,22 @@
-/* Estilos para o contêiner principal */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  /* Estilos para o título principal */
-  h1 {
-    font-size: 36px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  /* Estilos para o botão de cadastro */
-  button {
-    padding: 12px 24px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto 20px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  /* Estilos para a lista de atendimentos */
-  h2 {
-    font-size: 28px;
-    color: #333;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  /* Estilos para o botão de edição */
-  .edit-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #2196F3;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .edit-button:hover {
-    background-color: #0b7dda;
-  }
-  
+/* styles.css (ou outro arquivo CSS apropriado) */
+
+/* Estilos para a barra de navegação */
+nav {
+  background-color: #333; /* Cor de fundo da barra de navegação */
+  padding: 10px 20px; /* Espaçamento interno */
+}
+
+/* Estilos para os links de navegação */
+nav a {
+  color: #fff; /* Cor do texto dos links */
+  text-decoration: none; /* Remover sublinhado */
+  margin-right: 20px; /* Espaçamento entre os links */
+  transition: color 0.3s ease; /* Transição suave da cor do texto */
+}
+
+/* Estilos para os links de navegação ativos */
+nav a.active {
+  color: #ff8c00; /* Cor do texto do link ativo */
+}
+
+/* Estilos para o conteúdo do roteador */

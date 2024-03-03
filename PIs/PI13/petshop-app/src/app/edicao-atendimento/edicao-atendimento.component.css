@@ -1,38 +1,53 @@
 /* edicao-atendimento.component.css */
 
-.form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-label {
-    font-weight: bold;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #0056b3;
-  }
-  
+/* Estilos para o formulário */
+form {
+  width: 300px; /* Largura do formulário */
+  margin: 0 auto; /* Centralizar o formulário na página */
+}
+
+/* Estilos para as divs que envolvem cada campo */
+div {
+  margin-bottom: 15px; /* Espaçamento inferior entre os campos */
+}
+
+/* Estilos para os rótulos */
+label {
+  display: block; /* Exibir rótulos em bloco (um abaixo do outro) */
+  font-weight: bold; /* Fonte em negrito */
+  color: #333; /* Cor do texto dos rótulos */
+}
+
+/* Estilos para os campos de entrada de texto */
+input[type="text"],
+input[type="date"],
+textarea {
+  width: 100%; /* Largura total */
+  padding: 8px; /* Espaçamento interno */
+  font-size: 16px; /* Tamanho da fonte */
+  border: 1px solid #ccc; /* Borda cinza */
+  border-radius: 4px; /* Borda arredondada */
+}
+
+/* Estilos para o campo de data */
+input[type="date"] {
+  -webkit-appearance: none; /* Remover estilos padrão do navegador */
+  appearance: none;
+}
+
+/* Estilos para o botão de salvar alterações */
+button[type="submit"] {
+  background-color: #007bff; /* Cor de fundo do botão */
+  color: #fff; /* Cor do texto do botão */
+  padding: 10px 20px; /* Espaçamento interno */
+  font-size: 16px; /* Tamanho da fonte */
+  border: none; /* Sem borda */
+  border-radius: 4px; /* Borda arredondada */
+  cursor: pointer; /* Cursor do mouse */
+  transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
+}
+
+/* Estilo para quando o cursor está sobre o botão */
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+}

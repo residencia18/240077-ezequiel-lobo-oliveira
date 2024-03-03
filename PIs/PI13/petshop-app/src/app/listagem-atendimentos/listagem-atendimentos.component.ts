@@ -1,8 +1,7 @@
-// listagem-atendimentos.component.ts
-
+// Nome do arquivo: listagem-atendimentos.component.ts
 import { Component, OnInit } from '@angular/core';
-import { AtendimentoService } from '../Services/atendimento.service';
 import { Atendimento } from '../Models/atendimento.model';
+import { AtendimentoService } from '../Services/atendimento.service';
 
 @Component({
   selector: 'app-listagem-atendimentos',
@@ -15,19 +14,11 @@ export class ListagemAtendimentosComponent implements OnInit {
   constructor(private atendimentoService: AtendimentoService) {}
 
   ngOnInit(): void {
-    this.listarAtendimentos();
+    this.carregarAtendimentos();
   }
 
-  listarAtendimentos() {
+  carregarAtendimentos(): void {
     this.atendimentoService.listarAtendimentos()
-      .subscribe(
-        (data: Atendimento[]) => {
-          this.atendimentos = data;
-        },
-        (error: any) => { // Definindo explicitamente o tipo de error como any
-          console.error('Erro ao listar atendimentos:', error);
-          // Tratar erro (exibir mensagem de erro, etc.)
-        }
-      );
+      .subscribe(atendimentos => this.atendimentos = atendimentos);
   }
 }

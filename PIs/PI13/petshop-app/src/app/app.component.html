@@ -1,14 +1,5 @@
-<!-- ListagemAtendimentosComponent.html -->
-<h1>Bem-vindo ao PetShop!</h1>
-
-<!-- Botão para ir para a página de cadastro de atendimento -->
-<button routerLink="/cadastro">Cadastrar Novo Atendimento</button>
-
-<!-- Lista de atendimentos -->
-<h2>Lista de Atendimentos</h2>
-<ul>
-  <li *ngFor="let atendimento of listaAtendimentos">
-    {{ atendimento.nomeCliente }} - {{ atendimento.nomePet }}
-    <button routerLink="/edicao-atendimento/{{ atendimento.id }}">Editar</button>
-  </li>
-</ul>
+<nav>
+  <a routerLink="/listagem" routerLinkActive="active">Listagem de Atendimentos</a>
+  <a routerLink="/cadastro" routerLinkActive="active">Cadastro de Atendimento</a>
+</nav>
+<router-outlet></router-outlet>

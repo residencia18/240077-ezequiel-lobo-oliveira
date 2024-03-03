@@ -1,9 +1,7 @@
-// atendimento.model.ts
-
 export interface Atendimento {
-  id: number;
-  nomeCliente: string;
-  nomePet: string;
-  dataAtendimento: Date;
-  observacoes: string;
+  id?: number;
+  petName: string;
+  clienteName: string;
+  data: string;
+  observacoes?: string;
 }

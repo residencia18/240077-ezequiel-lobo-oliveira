@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "petshop-app",
+      "source": ".",
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

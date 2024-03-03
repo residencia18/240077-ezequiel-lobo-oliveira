@@ -1,17 +1,20 @@
-<h2>Editar Atendimento</h2>
-
-<form (submit)="atualizarAtendimento()">
-  <label for="nomeCliente">Nome do Cliente:</label>
-  <input type="text" id="nomeCliente" name="nomeCliente" required value="{{ atendimento.nomeCliente }}">
-
-  <label for="nomePet">Nome do Pet:</label>
-  <input type="text" id="nomePet" name="nomePet" required value="{{ atendimento.nomePet }}">
-
-  <label for="dataAtendimento">Data do Atendimento:</label>
-  <input type="date" id="dataAtendimento" name="dataAtendimento" required [value]="atendimento.dataAtendimento | date:'yyyy-MM-dd'">
-
-  <label for="observacoes">Observações:</label>
-  <textarea id="observacoes" name="observacoes">{{ atendimento.observacoes }}</textarea>
-
-  <button type="submit">Atualizar Atendimento</button>
+<!-- Nome do arquivo: edicao-atendimento.component.html -->
+<form (ngSubmit)="submitForm()">
+  <div>
+    <label for="petName">Nome do Pet:</label>
+    <input type="text" id="petName" name="petName" [(ngModel)]="atendimento.petName" required>
+  </div>
+  <div>
+    <label for="clienteName">Nome do Cliente:</label>
+    <input type="text" id="clienteName" name="clienteName" [(ngModel)]="atendimento.clienteName" required>
+  </div>
+  <div>
+    <label for="data">Data do Atendimento:</label>
+    <input type="date" id="data" name="data" [(ngModel)]="atendimento.data" required>
+  </div>
+  <div>
+    <label for="observacoes">Observações:</label>
+    <textarea id="observacoes" name="observacoes" [(ngModel)]="atendimento.observacoes"></textarea>
+  </div>
+  <button type="submit">Salvar Alterações</button>
 </form>

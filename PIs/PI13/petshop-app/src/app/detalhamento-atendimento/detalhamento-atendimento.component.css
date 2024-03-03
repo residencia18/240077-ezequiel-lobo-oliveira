@@ -1,0 +1,35 @@
+/* detalhamento-atendimento.component.css */
+
+/* Estilos para o parágrafo */
+p {
+  margin-bottom: 10px;
+}
+
+/* Estilos para os elementos fortes */
+strong {
+  font-weight: bold;
+}
+
+/* Estilos para os dados do atendimento */
+.data {
+  color: #333; /* Cor do texto */
+  font-size: 16px; /* Tamanho da fonte */
+  margin-bottom: 5px; /* Espaçamento inferior */
+}
+
+/* Estilos específicos para cada tipo de dado */
+.petName {
+  color: #007bff; /* Cor para o nome do pet */
+}
+
+.clienteName {
+  color: #28a745; /* Cor para o nome do cliente */
+}
+
+.dataAtendimento {
+  color: #dc3545; /* Cor para a data do atendimento */
+}
+
+.observacoes {
+  color: #6c757d; /* Cor para as observações */
+}

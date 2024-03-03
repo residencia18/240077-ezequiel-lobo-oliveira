@@ -1,7 +1,8 @@
+// Nome do arquivo: edicao-atendimento.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AtendimentoService } from '../Services/atendimento.service';
+import { ActivatedRoute } from '@angular/router';
 import { Atendimento } from '../Models/atendimento.model';
+import { AtendimentoService } from '../Services/atendimento.service';
 
 @Component({
   selector: 'app-edicao-atendimento',
@@ -11,38 +12,43 @@ import { Atendimento } from '../Models/atendimento.model';
 export class EdicaoAtendimentoComponent implements OnInit {
   atendimento: Atendimento = {
     id: 0,
-    nomeCliente: '',
-    nomePet: '',
-    dataAtendimento: new Date(),
+    petName: '',
+    clienteName: '',
+    data: '',
     observacoes: ''
   };
 
-  constructor(private route: ActivatedRoute, private router: Router, private atendimentoService: AtendimentoService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private atendimentoService: AtendimentoService
+  ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
-    this.buscarAtendimento(id);
+    this.obterDetalhesAtendimento();
   }
 
-  buscarAtendimento(id: number) {
-    this.atendimentoService.detalharAtendimento(id)
-      .subscribe((data: Atendimento) => {
-        this.atendimento = data;
-      }, (error: any) => {
-        console.error('Erro ao buscar atendimento:', error);
-        // Tratar erro (exibir mensagem de erro, etc.)
-      });
+  obterDetalhesAtendimento(): void {
+    const idParam = this.route.snapshot.paramMap.get('id');
+    if (idParam) {
+      const id = +idParam;
+      this.atendimentoService.buscarAtendimentoPorId(id)
+        .subscribe(atendimento => this.atendimento = atendimento);
+    } else {
+      console.error('Parâmetro ID não encontrado.');
+    }
   }
 
-  atualizarAtendimento() {
-    this.atendimentoService.editarAtendimento(this.atendimento.id, this.atendimento)
+  submitForm(): void {
+    this.atendimentoService.atualizarAtendimento(this.atendimento)
       .subscribe(() => {
-        console.log('Atendimento atualizado com sucesso');
-        // Redirecionar para a página de detalhes do atendimento atualizado
-        this.router.navigate(['/detalhe-atendimento', this.atendimento.id]);
-      }, (error: any) => {
-        console.error('Erro ao atualizar atendimento:', error);
-        // Tratar erro (exibir mensagem de erro, etc.)
+        // Redirecionar para a página de detalhes após a atualização
+        this.redirecionarParaDetalhes();
       });
+  }
+
+  redirecionarParaDetalhes(): void {
+    const id = this.atendimento.id;
+    // Redirecionar para a página de detalhes do atendimento
+    // Por exemplo: this.router.navigate(['/detalhamento', id]);
   }
 }
