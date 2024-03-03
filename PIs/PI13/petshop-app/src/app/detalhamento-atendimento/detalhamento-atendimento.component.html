@@ -1,16 +1,6 @@
-<!-- detalhe-atendimento.component.html -->
-
-<h2>Detalhes do Atendimento</h2>
-
-<div>
-  <strong>Nome do Cliente:</strong> {{ atendimento.nomeCliente }}
-</div>
-<div>
-  <strong>Nome do Pet:</strong> {{ atendimento.nomePet }}
-</div>
-<div>
-  <strong>Data do Atendimento:</strong> {{ atendimento.dataAtendimento | date: 'dd/MM/yyyy' }}
-</div>
-<div>
-  <strong>Observações:</strong> {{ atendimento.observacoes }}
-</div>
+<!-- Nome do arquivo: detalhamento-atendimento.component.html -->
+<p><strong>ID:</strong> {{ atendimento.id }}</p>
+<p><strong>Nome do Pet:</strong> {{ atendimento.petName }}</p>
+<p><strong>Nome do Cliente:</strong> {{ atendimento.clienteName }}</p>
+<p><strong>Data do Atendimento:</strong> {{ atendimento.data }}</p>
+<p><strong>Observações:</strong> {{ atendimento.observacoes }}</p>
