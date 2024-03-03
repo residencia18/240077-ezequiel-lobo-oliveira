@@ -1,0 +1,17 @@
+<h2>Editar Atendimento</h2>
+
+<form (submit)="atualizarAtendimento()">
+  <label for="nomeCliente">Nome do Cliente:</label>
+  <input type="text" id="nomeCliente" name="nomeCliente" required value="{{ atendimento.nomeCliente }}">
+
+  <label for="nomePet">Nome do Pet:</label>
+  <input type="text" id="nomePet" name="nomePet" required value="{{ atendimento.nomePet }}">
+
+  <label for="dataAtendimento">Data do Atendimento:</label>
+  <input type="date" id="dataAtendimento" name="dataAtendimento" required [value]="atendimento.dataAtendimento | date:'yyyy-MM-dd'">
+
+  <label for="observacoes">Observações:</label>
+  <textarea id="observacoes" name="observacoes">{{ atendimento.observacoes }}</textarea>
+
+  <button type="submit">Atualizar Atendimento</button>
+</form>
