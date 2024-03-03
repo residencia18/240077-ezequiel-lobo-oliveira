@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/ezequiel/Secretária/FRONT-1/CRUD-FullStack/progrmaBD/exemplos/exemplos.csproj": {}
+    "C:\\Users\\Acer\\OneDrive\\Área de Trabalho\\FRONT\\CRUD-FullStack\\progrmaBD\\exemplos\\exemplos.csproj": {}
   },
   "projects": {
-    "/home/ezequiel/Secretária/FRONT-1/CRUD-FullStack/progrmaBD/exemplos/exemplos.csproj": {
+    "C:\\Users\\Acer\\OneDrive\\Área de Trabalho\\FRONT\\CRUD-FullStack\\progrmaBD\\exemplos\\exemplos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ezequiel/Secretária/FRONT-1/CRUD-FullStack/progrmaBD/exemplos/exemplos.csproj",
+        "projectUniqueName": "C:\\Users\\Acer\\OneDrive\\Área de Trabalho\\FRONT\\CRUD-FullStack\\progrmaBD\\exemplos\\exemplos.csproj",
         "projectName": "exemplos",
-        "projectPath": "/home/ezequiel/Secretária/FRONT-1/CRUD-FullStack/progrmaBD/exemplos/exemplos.csproj",
-        "packagesPath": "/home/ezequiel/.nuget/packages/",
-        "outputPath": "/home/ezequiel/Secretária/FRONT-1/CRUD-FullStack/progrmaBD/exemplos/obj/",
+        "projectPath": "C:\\Users\\Acer\\OneDrive\\Área de Trabalho\\FRONT\\CRUD-FullStack\\progrmaBD\\exemplos\\exemplos.csproj",
+        "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Acer\\OneDrive\\Área de Trabalho\\FRONT\\CRUD-FullStack\\progrmaBD\\exemplos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/ezequiel/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -48,12 +50,30 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.115/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
