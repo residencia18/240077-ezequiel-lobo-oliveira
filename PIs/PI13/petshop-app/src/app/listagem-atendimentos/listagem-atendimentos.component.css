@@ -1,0 +1,39 @@
+/* listagem-atendimentos.component.css */
+
+/* Estilo para o contêiner da lista de atendimentos */
+.list-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+  }
+  
+  /* Estilo para o cabeçalho da lista */
+  .list-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo para cada item de atendimento na lista */
+  .list-item {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo para os rótulos */
+  .label {
+    font-weight: bold;
+  }
+  
+  /* Estilo para os detalhes do atendimento */
+  .details {
+    margin-top: 5px;
+  }
+  
+  /* Estilo para a linha divisória */
+  .divider {
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+  }
+  
