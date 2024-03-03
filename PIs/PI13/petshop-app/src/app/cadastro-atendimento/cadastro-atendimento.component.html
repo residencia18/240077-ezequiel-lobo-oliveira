@@ -1,0 +1,27 @@
+<div class="form-container">
+    <h2>Cadastro de Atendimento</h2>
+    <form [formGroup]="cadastroForm" (ngSubmit)="cadastrarAtendimento()">
+        <div class="form-group">
+            <label for="nomeCliente" class="form-label">Nome do Cliente:</label>
+            <input type="text" id="nomeCliente" formControlName="nomeCliente" class="input-field" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="nomePet" class="form-label">Nome do Pet:</label>
+            <input type="text" id="nomePet" formControlName="nomePet" class="input-field" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="dataAtendimento" class="form-label">Data do Atendimento:</label>
+            <input type="date" id="dataAtendimento" formControlName="dataAtendimento" class="input-field" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="observacoes" class="form-label">Observações:</label>
+            <textarea id="observacoes" formControlName="observacoes" class="input-field"></textarea>
+        </div>
+        
+        <button type="submit" class="button">Cadastrar Atendimento</button>
+    </form>
+  </div>
+  
