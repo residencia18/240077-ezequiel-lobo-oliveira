@@ -1,5 +1,5 @@
 <!-- Nome do arquivo: edicao-atendimento.component.html -->
-<form (ngSubmit)="submitForm()">
+<form *ngIf="atendimento" (ngSubmit)="submitForm()">
   <div>
     <label for="petName">Nome do Pet:</label>
     <input type="text" id="petName" name="petName" [(ngModel)]="atendimento.petName" required>

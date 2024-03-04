@@ -1,4 +1,3 @@
-// Nome do arquivo: detalhamento-atendimento.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Atendimento } from '../Models/atendimento.model';
@@ -10,13 +9,7 @@ import { AtendimentoService } from '../Services/atendimento.service';
   styleUrls: ['./detalhamento-atendimento.component.css']
 })
 export class DetalhamentoAtendimentoComponent implements OnInit {
-  atendimento: Atendimento = {
-    id: 0,
-    petName: '',
-    clienteName: '',
-    data: '',
-    observacoes: ''
-  };
+  atendimento: Atendimento | null = null; // Alterado para Atendimento | null
 
   constructor(
     private route: ActivatedRoute,
@@ -26,12 +19,19 @@ export class DetalhamentoAtendimentoComponent implements OnInit {
   ngOnInit(): void {
     this.obterDetalhesAtendimento();
   }
+
   obterDetalhesAtendimento(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam) {
-      const id = +idParam;
+      const id = idParam;
       this.atendimentoService.buscarAtendimentoPorId(id)
-        .subscribe(atendimento => this.atendimento = atendimento);
+        .subscribe(atendimento => {
+          if (atendimento) {
+            this.atendimento = atendimento;
+          } else {
+            console.error('Atendimento não encontrado.');
+          }
+        });
     } else {
       console.error('Parâmetro ID não encontrado.');
     }

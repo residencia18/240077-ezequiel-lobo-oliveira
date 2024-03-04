@@ -12,20 +12,25 @@ export class CadastroAtendimentoComponent {
     petName: '',
     clienteName: '',
     data: '',
-    observacoes: ''
+    observacoes: '',
+    clienteCpf: '' // Inicializando com string vazia
   };
 
   constructor(private atendimentoService: AtendimentoService) {}
 
   submitForm() {
-    this.atendimentoService.cadastrarAtendimento(this.atendimento).subscribe(() => {
-      // Limpar formulário ou redirecionar para outra página após o cadastro
-      this.atendimento = {
-        petName: '',
-        clienteName: '',
-        data: '',
-        observacoes: ''
-      };
-    });
+    this.atendimentoService.cadastrarAtendimento(this.atendimento)
+      .then(() => {
+        this.atendimento = { // Limpando o formulário após o cadastro
+          petName: '',
+          clienteName: '',
+          data: '',
+          observacoes: '',
+          clienteCpf: ''
+        };
+      })
+      .catch(error => {
+        console.error('Ocorreu um erro durante o cadastro:', error);
+      });
   }
 }

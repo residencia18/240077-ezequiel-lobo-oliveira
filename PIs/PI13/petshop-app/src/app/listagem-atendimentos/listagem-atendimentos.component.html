@@ -1,11 +1,10 @@
-<!-- Nome do arquivo: listagem-atendimentos.component.html -->
 <div>
   <h2>Listagem de Atendimentos</h2>
   <ul>
     <li *ngFor="let atendimento of atendimentos">
-      <p><strong>ID:</strong> {{ atendimento.id }}</p>
       <p><strong>Nome do Pet:</strong> {{ atendimento.petName }}</p>
       <p><strong>Nome do Cliente:</strong> {{ atendimento.clienteName }}</p>
+      <p><strong>CPF do Cliente:</strong> {{ atendimento.clienteCpf }}</p>
       <p><strong>Data do Atendimento:</strong> {{ atendimento.data }}</p>
       <p><strong>Observações:</strong> {{ atendimento.observacoes }}</p>
     </li>

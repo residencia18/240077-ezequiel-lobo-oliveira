@@ -1,4 +1,3 @@
-// Nome do arquivo: edicao-atendimento.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Atendimento } from '../Models/atendimento.model';
@@ -10,13 +9,7 @@ import { AtendimentoService } from '../Services/atendimento.service';
   styleUrls: ['./edicao-atendimento.component.css']
 })
 export class EdicaoAtendimentoComponent implements OnInit {
-  atendimento: Atendimento = {
-    id: 0,
-    petName: '',
-    clienteName: '',
-    data: '',
-    observacoes: ''
-  };
+  atendimento: Atendimento | null = null; // Alterado para Atendimento | null
 
   constructor(
     private route: ActivatedRoute,
@@ -30,25 +23,35 @@ export class EdicaoAtendimentoComponent implements OnInit {
   obterDetalhesAtendimento(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam) {
-      const id = +idParam;
+      const id = idParam;
       this.atendimentoService.buscarAtendimentoPorId(id)
-        .subscribe(atendimento => this.atendimento = atendimento);
+        .subscribe(atendimento => {
+          if (atendimento) {
+            this.atendimento = atendimento;
+          } else {
+            console.error('Atendimento não encontrado.');
+          }
+        });
     } else {
       console.error('Parâmetro ID não encontrado.');
     }
   }
 
   submitForm(): void {
-    this.atendimentoService.atualizarAtendimento(this.atendimento)
-      .subscribe(() => {
-        // Redirecionar para a página de detalhes após a atualização
-        this.redirecionarParaDetalhes();
-      });
+    if (this.atendimento) {
+      this.atendimentoService.atualizarAtendimento(this.atendimento)
+        .then(() => {
+          this.redirecionarParaDetalhes();
+        })
+        .catch(error => {
+          console.error('Erro ao atualizar o atendimento:', error);
+        });
+    } else {
+      console.error('Atendimento não encontrado.');
+    }
   }
 
   redirecionarParaDetalhes(): void {
-    const id = this.atendimento.id;
-    // Redirecionar para a página de detalhes do atendimento
-    // Por exemplo: this.router.navigate(['/detalhamento', id]);
+    // Lógica para redirecionar para a página de detalhes
   }
 }

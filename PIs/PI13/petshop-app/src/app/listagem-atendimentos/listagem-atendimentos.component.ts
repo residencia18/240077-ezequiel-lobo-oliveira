@@ -1,4 +1,3 @@
-// Nome do arquivo: listagem-atendimentos.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Atendimento } from '../Models/atendimento.model';
 import { AtendimentoService } from '../Services/atendimento.service';

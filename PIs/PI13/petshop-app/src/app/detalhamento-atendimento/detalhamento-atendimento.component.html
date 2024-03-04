@@ -1,6 +1,12 @@
-<!-- Nome do arquivo: detalhamento-atendimento.component.html -->
-<p><strong>ID:</strong> {{ atendimento.id }}</p>
-<p><strong>Nome do Pet:</strong> {{ atendimento.petName }}</p>
-<p><strong>Nome do Cliente:</strong> {{ atendimento.clienteName }}</p>
-<p><strong>Data do Atendimento:</strong> {{ atendimento.data }}</p>
-<p><strong>Observações:</strong> {{ atendimento.observacoes }}</p>
+<div *ngIf="atendimento">
+    <p><strong>Nome do Pet:</strong> {{ atendimento.petName }}</p>
+    <p><strong>Nome do Cliente:</strong> {{ atendimento.clienteName }}</p>
+    <p><strong>CPF do Cliente:</strong> {{ atendimento.clienteCpf }}</p>
+    <p><strong>Data do Atendimento:</strong> {{ atendimento.data }}</p>
+    <p><strong>Observações:</strong> {{ atendimento.observacoes }}</p>
+  </div>
+  
+  <div *ngIf="!atendimento">
+    <p>Atendimento não encontrado.</p>
+  </div>
+  

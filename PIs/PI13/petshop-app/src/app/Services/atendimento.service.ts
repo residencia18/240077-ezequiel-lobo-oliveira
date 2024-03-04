@@ -1,34 +1,44 @@
-// Nome do arquivo: atendimento.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Atendimento } from '../Models/atendimento.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AtendimentoService {
-  private apiUrl = 'http://exemplo.com/api/atendimentos';
+  private collectionName = 'atendimentos';
 
-  constructor(private http: HttpClient) {}
+  constructor(private firestore: AngularFirestore) {}
 
-  buscarAtendimentoPorId(id: number): Observable<Atendimento> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Atendimento>(url);
+  buscarAtendimentoPorId(id: string): Observable<Atendimento | null> {
+    return this.firestore.doc<Atendimento>(`${this.collectionName}/${id}`).valueChanges()
+      .pipe(
+        map(atendimento => atendimento || null)
+      );
   }
 
-  atualizarAtendimento(atendimento: Atendimento): Observable<any> {
-    const url = `${this.apiUrl}/${atendimento.id}`;
-    return this.http.put(url, atendimento);
+  atualizarAtendimento(atendimento: Atendimento): Promise<void> {
+    const { clienteCpf, ...atendimentoData } = atendimento; // Removendo clienteCpf da atualização
+    return this.firestore.doc(`${this.collectionName}/${clienteCpf}`).update(atendimentoData);
   }
 
-  cadastrarAtendimento(atendimento: Atendimento): Observable<Atendimento> {
-    const url = `${this.apiUrl}`;
-    return this.http.post<Atendimento>(url, atendimento);
+  cadastrarAtendimento(atendimento: Atendimento): Promise<string> {
+    return this.firestore.collection(this.collectionName).add(atendimento)
+      .then(docRef => docRef.id);
   }
 
- 
   listarAtendimentos(): Observable<Atendimento[]> {
-    return this.http.get<Atendimento[]>(this.apiUrl);
+    return this.firestore.collection<Atendimento>(this.collectionName).snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(action => {
+            const data = action.payload.doc.data() as Atendimento;
+            const clienteCpf = action.payload.doc.id;
+            return { ...data, clienteCpf };
+          });
+        })
+      );
   }
 }
