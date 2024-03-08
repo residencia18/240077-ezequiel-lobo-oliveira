@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Atendimento } from '../Models/atendimento.model';
 import { AtendimentoService } from '../Services/atendimento.service';
 
@@ -9,10 +9,13 @@ import { AtendimentoService } from '../Services/atendimento.service';
   styleUrls: ['./edicao-atendimento.component.css']
 })
 export class EdicaoAtendimentoComponent implements OnInit {
-  atendimento: Atendimento | null = null; // Alterado para Atendimento | null
+  atendimento: Atendimento | null = null;
+  atualizacaoConcluida: boolean = false;
+  mensagem: string = '';
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private atendimentoService: AtendimentoService
   ) {}
 
@@ -21,10 +24,10 @@ export class EdicaoAtendimentoComponent implements OnInit {
   }
 
   obterDetalhesAtendimento(): void {
-    const idParam = this.route.snapshot.paramMap.get('id');
-    if (idParam) {
-      const id = idParam;
-      this.atendimentoService.buscarAtendimentoPorId(id)
+    const clienteCpfParam = this.route.snapshot.paramMap.get('clienteCpf');
+    if (clienteCpfParam) {
+      const clienteCpf = clienteCpfParam;
+      this.atendimentoService.buscarAtendimentoPorCpf(clienteCpf)
         .subscribe(atendimento => {
           if (atendimento) {
             this.atendimento = atendimento;
@@ -33,7 +36,7 @@ export class EdicaoAtendimentoComponent implements OnInit {
           }
         });
     } else {
-      console.error('Parâmetro ID não encontrado.');
+      console.error('Parâmetro CPF não encontrado.');
     }
   }
 
@@ -41,17 +44,29 @@ export class EdicaoAtendimentoComponent implements OnInit {
     if (this.atendimento) {
       this.atendimentoService.atualizarAtendimento(this.atendimento)
         .then(() => {
+          this.atualizacaoConcluida = true;
+          this.mensagem = 'Atendimento atualizado!';
           this.redirecionarParaDetalhes();
+          // Limpar informações do formulário
+          this.atendimento = null;
         })
         .catch(error => {
           console.error('Erro ao atualizar o atendimento:', error);
+          this.mensagem = 'Erro ao atualizar o atendimento';
         });
     } else {
       console.error('Atendimento não encontrado.');
+      this.mensagem = 'Atendimento não encontrado.';
     }
   }
 
   redirecionarParaDetalhes(): void {
-    // Lógica para redirecionar para a página de detalhes
+    if (this.atendimento && this.atendimento.clienteCpf) {
+      const clienteCpf = this.atendimento.clienteCpf;
+      this.router.navigate(['/listagem', ]);
+    } else {
+      console.error('CPF do cliente não encontrado.');
+    }
   }
+  
 }

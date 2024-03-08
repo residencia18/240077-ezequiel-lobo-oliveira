@@ -8,7 +8,7 @@ import { DetalhamentoAtendimentoComponent } from './detalhamento-atendimento/det
 const routes: Routes = [
   { path: 'cadastro', component: CadastroAtendimentoComponent },
   { path: 'listagem', component: ListagemAtendimentosComponent },
-  { path: 'edicao/:id', component: EdicaoAtendimentoComponent },
+  { path: 'edicao/:clienteCpf', component: EdicaoAtendimentoComponent },
   { path: 'detalhamento/:id', component: DetalhamentoAtendimentoComponent },
   
 ];

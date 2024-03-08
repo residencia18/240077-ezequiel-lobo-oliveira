@@ -1,15 +1,30 @@
-<div>
-  <h2>Listagem de Atendimentos</h2>
-  <ul>
-    <li *ngFor="let atendimento of atendimentos">
-      <p><strong>Nome do Pet:</strong> {{ atendimento.petName }}</p>
-      <p><strong>Nome do Cliente:</strong> {{ atendimento.clienteName }}</p>
-      <p><strong>CPF do Cliente:</strong> {{ atendimento.clienteCpf }}</p>
-      <p><strong>Data do Atendimento:</strong> {{ atendimento.data }}</p>
-      <p><strong>Observações:</strong> {{ atendimento.observacoes }}</p>
-    </li>
-  </ul>
+<div class="atendimentos-container">
+  <h2>Detalhes de Atendimentos</h2>
+  <div class="atendimentos-grid">
+    <div class="atendimento-card" *ngFor="let atendimento of atendimentos">
+      <div>
+        <strong>Nome do Pet:</strong> {{ atendimento.petName }}
+      </div>
+      <div>
+        <strong>Nome do Cliente:</strong> {{ atendimento.clienteName }}
+      </div>
+      <div>
+        <strong>CPF do Cliente:</strong> {{ atendimento.clienteCpf }}
+      </div>
+      <div>
+        <strong>Data do Atendimento:</strong> {{ atendimento.data }}
+      </div>
+      <div>
+        <strong>Observações:</strong> {{ atendimento.observacoes }}
+      </div>
+      <!-- Botão de exclusão -->
+      <button (click)="deleteAtendimento(atendimento.clienteCpf)">Excluir</button>
+      <!-- Botão de edição -->
+      <button (click)="editarAtendimento(atendimento.clienteCpf)">Editar</button>
+    </div>
+  </div>
 </div>
+
 <div *ngIf="!atendimentos || atendimentos.length === 0">
   <p>Nenhum atendimento registrado.</p>
 </div>

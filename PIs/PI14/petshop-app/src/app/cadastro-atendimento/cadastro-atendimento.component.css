@@ -1,21 +1,38 @@
-/* styles.css (ou qualquer outro arquivo CSS que você estiver usando) */
+/* Estilos para o contêiner principal */
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para o contêiner do formulário */
+.form-container {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 50px; /* Distância do topo */
+}
 
 /* Estilos para o formulário */
 form {
-  width: 300px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 /* Estilos para as divs que envolvem cada campo */
 div {
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Estilos para os rótulos */
 label {
-  display: block;
   font-weight: bold;
-  color: #333; /* Cor do texto dos rótulos */
+  color: #333;
+  margin-bottom: 5px; /* Espaçamento inferior entre o rótulo e o campo */
 }
 
 /* Estilos para os campos de entrada de texto */
@@ -25,8 +42,9 @@ textarea {
   width: 100%;
   padding: 8px;
   font-size: 16px;
-  border: 1px solid #ccc; /* Cor da borda dos campos */
+  border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box; /* Garante que o padding não afete a largura total */
 }
 
 /* Estilos para o campo de data */
@@ -37,17 +55,19 @@ input[type="date"] {
 
 /* Estilos para o botão de cadastrar */
 button[type="submit"] {
-  background-color: #007bff; /* Cor de fundo do botão */
-  color: #fff; /* Cor do texto do botão */
+  background-color: #007bff;
+  color: #fff;
   padding: 10px 20px;
   font-size: 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
+  transition: background-color 0.3s ease;
+  width: 100%; /* Largura total */
+  box-sizing: border-box; /* Garante que o padding não afete a largura total */
 }
 
 /* Estilo para quando o cursor está sobre o botão */
 button[type="submit"]:hover {
-  background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+  background-color: #0056b3;
 }

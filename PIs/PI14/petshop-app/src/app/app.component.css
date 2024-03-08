@@ -19,4 +19,12 @@ nav a.active {
   color: #ff8c00; /* Cor do texto do link ativo */
 }
 
-/* Estilos para o conteúdo do roteador */
+
+.content {
+  background-image: url('./img/img.png'); /* Caminho corrigido para a imagem de plano de fundo */
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  color: #333;
+}
+

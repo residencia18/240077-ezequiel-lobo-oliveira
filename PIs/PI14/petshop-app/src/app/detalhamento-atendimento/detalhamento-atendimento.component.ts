@@ -21,10 +21,10 @@ export class DetalhamentoAtendimentoComponent implements OnInit {
   }
 
   obterDetalhesAtendimento(): void {
-    const idParam = this.route.snapshot.paramMap.get('id');
-    if (idParam) {
-      const id = idParam;
-      this.atendimentoService.buscarAtendimentoPorId(id)
+    const clienteCpfParam = this.route.snapshot.paramMap.get('clienteCpf');
+    if (clienteCpfParam) {
+      const clienteCpf = clienteCpfParam;
+      this.atendimentoService.buscarAtendimentoPorCpf(clienteCpf)
         .subscribe(atendimento => {
           if (atendimento) {
             this.atendimento = atendimento;
@@ -33,7 +33,7 @@ export class DetalhamentoAtendimentoComponent implements OnInit {
           }
         });
     } else {
-      console.error('Parâmetro ID não encontrado.');
+      console.error('Parâmetro CPF não encontrado.');
     }
   }
 }

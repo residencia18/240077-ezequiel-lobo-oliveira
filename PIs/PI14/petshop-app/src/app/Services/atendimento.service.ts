@@ -12,24 +12,49 @@ export class AtendimentoService {
 
   constructor(private firestore: AngularFirestore) {}
 
-  buscarAtendimentoPorId(id: string): Observable<Atendimento | null> {
-    console.log('Buscando atendimento por ID:', id);
-    return this.firestore.doc<Atendimento>(`${this.collectionName}/${id}`).valueChanges()
+  buscarAtendimentoPorCpf(clienteCpf: string): Observable<Atendimento | null> {
+    console.log('Buscando atendimento por CPF:', clienteCpf);
+    return this.firestore.collection<Atendimento>(this.collectionName, ref => ref.where('clienteCpf', '==', clienteCpf))
+      .valueChanges({ idField: 'id' })
       .pipe(
-        map(atendimento => {
-          console.log('Atendimento encontrado:', atendimento);
-          return atendimento || null;
+        map(atendimentos => {
+          if (atendimentos.length > 0) {
+            const atendimento = atendimentos[0];
+            console.log('Atendimento encontrado:', atendimento);
+            return atendimento;
+          } else {
+            console.log('Nenhum atendimento encontrado para o CPF fornecido.');
+            return null;
+          }
         })
       );
   }
+  
 
   atualizarAtendimento(atendimento: Atendimento): Promise<void> {
     console.log('Atualizando atendimento:', atendimento);
     const { clienteCpf, ...atendimentoData } = atendimento; // Removendo clienteCpf da atualização
-    return this.firestore.doc(`${this.collectionName}/${clienteCpf}`).update(atendimentoData)
-      .then(() => console.log('Atendimento atualizado com sucesso!'))
-      .catch(error => console.error('Erro ao atualizar atendimento:', error));
+    return this.firestore.collection(this.collectionName, ref => ref.where('clienteCpf', '==', clienteCpf))
+      .get()
+      .toPromise()
+      .then(querySnapshot => {
+        if (querySnapshot && !querySnapshot.empty) {
+          const docId = querySnapshot.docs[0].id;
+          return this.firestore.doc(`${this.collectionName}/${docId}`).update(atendimentoData)
+            .then(() => console.log('Atendimento atualizado com sucesso!'))
+            .catch(error => console.error('Erro ao atualizar atendimento:', error));
+        } else {
+          console.error('Nenhum documento encontrado para o CPF fornecido.');
+          throw new Error('Nenhum documento encontrado para o CPF fornecido.');
+        }
+      })
+      .catch(error => {
+        console.error('Erro ao buscar/atualizar atendimento:', error);
+        throw error;
+      });
   }
+  
+  
 
   cadastrarAtendimento(atendimento: Atendimento): Promise<string> {
     console.log('Cadastrando novo atendimento:', atendimento);
@@ -59,5 +84,25 @@ export class AtendimentoService {
         })
       );
   }
+
+  deletarAtendimentoPorCpf(clienteCpf: string): Promise<void> {
+    return this.firestore.collection(this.collectionName, ref => ref.where('clienteCpf', '==', clienteCpf))
+      .get()
+      .toPromise()
+      .then(querySnapshot => {
+        if (querySnapshot) {
+          querySnapshot.forEach(doc => {
+            doc.ref.delete();
+          });
+        } else {
+          console.error('Nenhum documento encontrado para o CPF fornecido.');
+        }
+      })
+      .catch(error => {
+        console.error('Erro ao excluir atendimento:', error);
+      });
+  }
+  
+  
   
 }

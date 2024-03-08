@@ -1,26 +1,36 @@
-/* Nome do arquivo: listagem-atendimentos.component.css */
+/* listagem-atendimentos.component.css */
 
-/* Estilo para a lista de atendimentos */
-ul {
-  list-style-type: none;
-  padding: 0;
+.atendimentos-container {
+  margin-bottom: 20px;
 }
 
-/* Estilo para cada item da lista */
-li {
+.atendimentos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.atendimento-card {
+  flex: 1 0 300px; /* Tamanho mínimo e máximo da caixa */
   border: 1px solid #ccc;
-  margin-bottom: 10px;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 15px;
   background-color: #f9f9f9;
 }
 
-/* Estilo para o cabeçalho da lista */
-h2 {
-  color: #333;
+.atendimento-card div {
+  margin-bottom: 10px;
 }
 
-/* Estilo para a mensagem de nenhum atendimento registrado */
-p {
-  font-style: italic;
-  color: #888;
+button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #c82333;
 }
