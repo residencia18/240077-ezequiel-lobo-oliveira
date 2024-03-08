@@ -13,32 +13,51 @@ export class AtendimentoService {
   constructor(private firestore: AngularFirestore) {}
 
   buscarAtendimentoPorId(id: string): Observable<Atendimento | null> {
+    console.log('Buscando atendimento por ID:', id);
     return this.firestore.doc<Atendimento>(`${this.collectionName}/${id}`).valueChanges()
       .pipe(
-        map(atendimento => atendimento || null)
+        map(atendimento => {
+          console.log('Atendimento encontrado:', atendimento);
+          return atendimento || null;
+        })
       );
   }
 
   atualizarAtendimento(atendimento: Atendimento): Promise<void> {
+    console.log('Atualizando atendimento:', atendimento);
     const { clienteCpf, ...atendimentoData } = atendimento; // Removendo clienteCpf da atualização
-    return this.firestore.doc(`${this.collectionName}/${clienteCpf}`).update(atendimentoData);
+    return this.firestore.doc(`${this.collectionName}/${clienteCpf}`).update(atendimentoData)
+      .then(() => console.log('Atendimento atualizado com sucesso!'))
+      .catch(error => console.error('Erro ao atualizar atendimento:', error));
   }
 
   cadastrarAtendimento(atendimento: Atendimento): Promise<string> {
+    console.log('Cadastrando novo atendimento:', atendimento);
     return this.firestore.collection(this.collectionName).add(atendimento)
-      .then(docRef => docRef.id);
+      .then(docRef => {
+        console.log('Atendimento cadastrado com ID:', docRef.id);
+        return docRef.id;
+      })
+      .catch(error => {
+        console.error('Erro ao cadastrar atendimento:', error);
+        throw error;
+      });
   }
 
   listarAtendimentos(): Observable<Atendimento[]> {
+    console.log('Listando atendimentos');
     return this.firestore.collection<Atendimento>(this.collectionName).snapshotChanges()
       .pipe(
         map(actions => {
-          return actions.map(action => {
+          const atendimentos = actions.map(action => {
             const data = action.payload.doc.data() as Atendimento;
-            const clienteCpf = action.payload.doc.id;
+            const clienteCpf = data.clienteCpf; // Acessando o CPF do cliente a partir dos dados
             return { ...data, clienteCpf };
           });
+          console.log('Atendimentos encontrados:', atendimentos);
+          return atendimentos;
         })
       );
   }
+  
 }

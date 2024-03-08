@@ -1,6 +1,7 @@
 // environment.ts
+
 export const environment = {
-  production: false,
+  production: false, // Defina como true se estiver em produção
   firebaseConfig: {
     apiKey: "AIzaSyCdC5ocAVY7ysRmD5HbShteLgO2Z0bzWPk",
     authDomain: "petshop-app-e1a76.firebaseapp.com",
