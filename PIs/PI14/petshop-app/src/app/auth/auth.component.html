@@ -1,7 +1,6 @@
-<form #authForm="ngForm" (ngSubmit)="submitForm()">
-    <input type="email" name="email" [(ngModel)]="email" placeholder="E-mail" required>
-    <input type="password" name="password" [(ngModel)]="password" placeholder="Senha" required>
-    <button type="submit">{{ isLoginMode ? 'Login' : 'Cadastrar' }}</button>
-  </form>
-  <button (click)="toggleMode()">{{ isLoginMode ? 'Cadastrar' : 'Login' }}</button>
-  
+<form [formGroup]="authForm" (ngSubmit)="submitForm()">
+  <input type="email" formControlName="email" placeholder="E-mail" required>
+  <input type="password" formControlName="password" placeholder="Senha" required>
+  <button type="submit">{{ isLoginMode ? 'Login' : 'Cadastrar' }}</button>
+</form>
+<button (click)="toggleMode()">{{ isLoginMode ? 'Cadastrar' : 'Login' }}</button>

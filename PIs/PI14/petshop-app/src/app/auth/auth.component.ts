@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { User } from '../Models/user.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -9,19 +8,26 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent {
-  email: string='';
-  password: string = ''; 
+  email: string = '';
+  password: string = '';
   isLoginMode = true;
+  authForm: FormGroup;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private fb: FormBuilder) {
+    this.authForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
   submitForm(): void {
+    const email = this.authForm.value.email;
+    const password = this.authForm.value.password;
+
     if (this.isLoginMode) {
-      // Chamar método de login do serviço
-      this.authService.login(this.email, this.password);
+      this.authService.login(email, password);
     } else {
-      // Chamar método de cadastro do serviço
-      this.authService.signUp(this.email, this.password);
+      this.authService.signUp(email, password);
     }
   }
 
