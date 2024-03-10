@@ -4,14 +4,16 @@ import { CadastroAtendimentoComponent } from './cadastro-atendimento/cadastro-at
 import { ListagemAtendimentosComponent } from './listagem-atendimentos/listagem-atendimentos.component';
 import { EdicaoAtendimentoComponent } from './edicao-atendimento/edicao-atendimento.component';
 import { DetalhamentoAtendimentoComponent } from './detalhamento-atendimento/detalhamento-atendimento.component';
-import { AuthComponent } from './auth/auth.component'; // Importe o componente de autenticação
+import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard'; // Importe o guarda de rota
 
 const routes: Routes = [
-  { path: 'cadastro', component: CadastroAtendimentoComponent },
-  { path: 'listagem', component: ListagemAtendimentosComponent },
-  { path: 'edicao/:clienteCpf', component: EdicaoAtendimentoComponent },
-  { path: 'detalhamento/:id', component: DetalhamentoAtendimentoComponent },
-  { path: 'login', component: AuthComponent }, // Rota para o componente de autenticação (login)
+  { path: 'cadastro', component: CadastroAtendimentoComponent, canActivate: [AuthGuard] },
+  { path: 'listagem', component: ListagemAtendimentosComponent, canActivate: [AuthGuard] },
+  { path: 'edicao/:clienteCpf', component: EdicaoAtendimentoComponent, canActivate: [AuthGuard] },
+  { path: 'detalhamento/:id', component: DetalhamentoAtendimentoComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: AuthComponent },
+  { path: '', redirectTo: '/listagem', pathMatch: 'full' }, // Redirecionar para a lista de atendimentos por padrão
 ];
 
 @NgModule({
