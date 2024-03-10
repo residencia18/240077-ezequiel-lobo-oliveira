@@ -22,7 +22,8 @@ export class AuthService {
       })
       .catch(error => {
         console.error('Erro no login:', error);
-        // Adicionar lógica para tratar o erro de autenticação, se necessário
+          alert('Email ou senha incorretos. Por favor, tente novamente.');
+        
       });
   }
 
