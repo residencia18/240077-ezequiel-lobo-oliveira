@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'edicao/:clienteCpf', component: EdicaoAtendimentoComponent, canActivate: [AuthGuard] },
   { path: 'detalhamento/:id', component: DetalhamentoAtendimentoComponent, canActivate: [AuthGuard] },
   { path: 'login', component: AuthComponent },
-  { path: '', redirectTo: '/listagem', pathMatch: 'full' }, // Redirecionar para a lista de atendimentos por padrão
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, 
 ];
 
 @NgModule({

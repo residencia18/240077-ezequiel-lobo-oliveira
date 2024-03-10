@@ -2,5 +2,9 @@
   <input type="email" formControlName="email" placeholder="E-mail" required>
   <input type="password" formControlName="password" placeholder="Senha" required>
   <button type="submit">{{ isLoginMode ? 'Login' : 'Cadastrar' }}</button>
+
+
+  <button type="button" (click)="toggleMode()">
+  {{ isLoginMode ? 'Não tem uma conta? Clique aqui para se cadastrar.' : 'Já tem uma conta? Clique aqui para fazer login.' }}
+  </button>
 </form>
-<button (click)="toggleMode()">{{ isLoginMode ? 'Cadastrar' : 'Login' }}</button>

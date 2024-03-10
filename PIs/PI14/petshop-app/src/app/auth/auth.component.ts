@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { uppercaseValidator } from '../validators/uppercase-validator'; // Importe o validador personalizado
 
 @Component({
   selector: 'app-auth',
@@ -16,7 +17,7 @@ export class AuthComponent {
   constructor(private authService: AuthService, private fb: FormBuilder) {
     this.authForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6), uppercaseValidator()]] // Adicione o validador personalizado
     });
   }
 
@@ -33,5 +34,6 @@ export class AuthComponent {
 
   toggleMode(): void {
     this.isLoginMode = !this.isLoginMode;
+    this.authForm.reset(); // Limpar o formulário ao alternar entre os modos
   }
 }
