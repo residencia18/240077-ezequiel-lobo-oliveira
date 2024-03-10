@@ -1,0 +1,7 @@
+<div *ngFor="let suino of suinos">
+    <p>Brinco: {{ suino.brinco }}</p>
+    <!-- Outros campos -->
+    <button (click)="editarSuino(suino)">Editar</button>
+    <button (click)="deletarSuino(suino)">Deletar</button>
+  </div>
+  
