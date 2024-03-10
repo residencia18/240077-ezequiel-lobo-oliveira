@@ -71,3 +71,51 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #0056b3;
 }
+
+
+/* Estilos para a barra de navegação */
+nav {
+  background-color: #333; /* Cor de fundo da barra de navegação */
+  padding: 10px 20px; /* Espaçamento interno */
+  display: flex; /* Tornar a barra de navegação flexível */
+  align-items: center; /* Alinhar os itens verticalmente */
+}
+
+/* Estilos para os links de navegação */
+nav a {
+  color: #fff; /* Cor do texto dos links */
+  text-decoration: none; /* Remover sublinhado */
+  margin-right: 20px; /* Espaçamento entre os links */
+  transition: color 0.3s ease; /* Transição suave da cor do texto */
+}
+
+/* Estilos para os links de navegação ativos */
+nav a.active {
+  color: #ff8c00; /* Cor do texto do link ativo */
+}
+/* Estilos para o botão de logout */
+.logout-button {
+  margin-left: auto;
+  align-items: center; /* Alinha verticalmente o conteúdo do div */
+  margin-bottom: 1px; /* Define a distância da margem inferior */
+ 
+}
+
+.logout-button button {
+  color: #fff; /* Cor do texto do botão */
+  background-color: #dc3545; /* Cor de fundo do botão */
+  border: none; /* Remove a borda do botão */
+  border-radius: 5px; /* Adiciona cantos arredondados */
+  padding: 8px 16px; /* Adiciona preenchimento interno */
+  font-size: 14px; /* Tamanho da fonte */
+  cursor: pointer; /* Altera o cursor para indicar que o botão é clicável */
+  transition: background-color 0.3s, color 0.3s; /* Adiciona transição suave para a cor de fundo e cor do texto */
+}
+
+.logout-button button:hover {
+  background-color: #c82333; /* Cor de fundo do botão ao passar o mouse sobre ele */
+}
+
+.logout-button button:focus {
+  outline: none; /* Remove a borda de foco */
+}

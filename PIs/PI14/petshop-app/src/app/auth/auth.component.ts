@@ -12,9 +12,10 @@ export class AuthComponent {
   email: string = '';
   password: string = '';
   isLoginMode = true;
-  authForm: FormGroup;
+  authForm!: FormGroup; // Adicione o operador de atribuição de não nulo para evitar o erro de inicialização nula
 
   constructor(private authService: AuthService, private fb: FormBuilder) {
+    // Inicialize authForm no construtor
     this.authForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), uppercaseValidator()]] // Adicione o validador personalizado

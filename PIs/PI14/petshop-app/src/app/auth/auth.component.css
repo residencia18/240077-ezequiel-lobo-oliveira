@@ -18,6 +18,8 @@ input {
 }
 
 button {
+  margin-top: 0.5rem; /* Adicione margem acima do botão */
+  margin-bottom: 0.5rem; /* Adicione margem abaixo do botão */
   padding: 0.5rem 1rem;
   background-color: #007bff;
   color: #fff;
@@ -34,3 +36,26 @@ button:hover {
 button:focus {
   outline: none;
 }
+/* styles.css (ou outro arquivo CSS apropriado) */
+
+/* Estilos para a barra de navegação */
+nav {
+  background-color: #333; /* Cor de fundo da barra de navegação */
+  padding: 10px 20px; /* Espaçamento interno */
+}
+
+/* Estilos para os links de navegação */
+nav a {
+  color: #fff; /* Cor do texto dos links */
+  text-decoration: none; /* Remover sublinhado */
+  margin-right: 20px; /* Espaçamento entre os links */
+  transition: color 0.3s ease; /* Transição suave da cor do texto */
+}
+
+/* Estilos para os links de navegação ativos */
+nav a.active {
+  color: #ff8c00; /* Cor do texto do link ativo */
+}
+
+
+

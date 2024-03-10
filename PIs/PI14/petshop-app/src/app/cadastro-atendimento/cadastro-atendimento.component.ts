@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Atendimento } from '../Models/atendimento.model';
 import { AtendimentoService } from '../Services/atendimento.service';
+import { AuthService } from '../auth/auth.service'; // Importe o AuthService
 
 @Component({
   selector: 'app-cadastro-atendimento',
@@ -19,7 +20,11 @@ export class CadastroAtendimentoComponent {
     clienteCpf: ''
   };
 
-  constructor(private formBuilder: FormBuilder, private atendimentoService: AtendimentoService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private atendimentoService: AtendimentoService,
+    private authService: AuthService // Injete o AuthService
+  ) {
     this.atendimentoForm = this.formBuilder.group({
       petName: ['', Validators.required],
       clienteName: ['', Validators.required],
@@ -54,5 +59,9 @@ export class CadastroAtendimentoComponent {
       .catch(error => {
         console.error('Ocorreu um erro durante o cadastro:', error);
       });
+  }
+
+  logout() {
+    this.authService.logout(); // Chame a função de logout do AuthService
   }
 }

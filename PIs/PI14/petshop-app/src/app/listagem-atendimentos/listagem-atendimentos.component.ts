@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // Importe Router aqui
+import { Router } from '@angular/router';
 import { Atendimento } from '../Models/atendimento.model';
 import { AtendimentoService } from '../Services/atendimento.service';
+import { AuthService } from '../auth/auth.service'; // Importe AuthService aqui
 
 @Component({
   selector: 'app-listagem-atendimentos',
@@ -11,7 +12,11 @@ import { AtendimentoService } from '../Services/atendimento.service';
 export class ListagemAtendimentosComponent implements OnInit {
   atendimentos: Atendimento[] = [];
 
-  constructor(private atendimentoService: AtendimentoService, private router: Router) {} // Corrija aqui
+  constructor(
+    private atendimentoService: AtendimentoService, 
+    private router: Router,
+    private authService: AuthService // Adicione AuthService aqui
+  ) {} 
 
   ngOnInit(): void {
     this.carregarAtendimentos();
@@ -27,7 +32,6 @@ export class ListagemAtendimentosComponent implements OnInit {
       this.atendimentoService.deletarAtendimentoPorCpf(clienteCpf)
         .then(() => {
           console.log('Atendimento excluído com sucesso!');
-          // Atualiza a lista de atendimentos após a exclusão
           this.carregarAtendimentos();
         })
         .catch(error => {
@@ -38,5 +42,9 @@ export class ListagemAtendimentosComponent implements OnInit {
 
   editarAtendimento(clienteCpf: string): void {
     this.router.navigate(['/edicao', clienteCpf]);
+  }
+
+  logout(): void {
+    this.authService.logout(); // Chame a função logout do AuthService
   }
 }

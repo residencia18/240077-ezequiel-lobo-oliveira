@@ -1,3 +1,4 @@
+// auth.guard.ts
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AuthService } from './auth.service';
@@ -13,12 +14,12 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.authService.user$.pipe(
-      take(1), // Para se inscrever apenas uma vez e depois cancelar a inscrição automaticamente
+      take(1),
       map(user => {
         if (user) {
-          return true; // Se o usuário estiver autenticado, permite o acesso à rota
+          return true; // Permitir o acesso se houver um usuário autenticado
         } else {
-          this.router.navigate(['/login']); // Se o usuário não estiver autenticado, redireciona para a página de login
+          this.router.navigate(['/login']); // Redirecionar para a página de login se não houver usuário autenticado
           return false;
         }
       })
