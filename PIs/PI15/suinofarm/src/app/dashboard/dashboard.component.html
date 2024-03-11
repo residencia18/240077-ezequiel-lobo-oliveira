@@ -2,14 +2,34 @@
 <div class="dashboard">
     <div class="header">Header</div>
     <div class="content">
-      <div class="sidebar">Sidebar</div>
+      <div class="sidebar">
+        <div class="button-container">
+          <button (click)="showCadastro()" [class.active]="currentComponent === 'cadastro'">Cadastro de Suíno</button>
+        </div>
+        <div class="button-container">
+          <button (click)="showListagem()" [class.active]="currentComponent === 'listagem'">Listagem de Suínos</button>
+        </div>
+        <div class="button-container">
+          <button (click)="showControlePeso()" [class.active]="currentComponent === 'controlePeso'">Controle de Peso</button>
+        </div>
+        <div class="button-container">
+          <button (click)="showEdicaoPeso()" [class.active]="currentComponent === 'edicaoPeso'">Edição de Peso</button>
+        </div>
+      </div>
       <div class="main-content">
-        <app-suino-cadastro></app-suino-cadastro>
-        <app-suino-listagem></app-suino-listagem>
-        <app-controle-peso></app-controle-peso>
-        <app-edicao-peso></app-edicao-peso>
+        <ng-container *ngIf="currentComponent === 'cadastro'">
+          <app-suino-cadastro></app-suino-cadastro>
+        </ng-container>
+        <ng-container *ngIf="currentComponent === 'listagem'">
+          <app-suino-listagem></app-suino-listagem>
+        </ng-container>
+        <ng-container *ngIf="currentComponent === 'controlePeso'">
+          <app-controle-peso></app-controle-peso>
+        </ng-container>
+        <ng-container *ngIf="currentComponent === 'edicaoPeso'">
+          <app-edicao-peso></app-edicao-peso>
+        </ng-container>
       </div>
     </div>
     <div class="footer">Footer</div>
-  </div>
-  
+</div>
