@@ -16,10 +16,12 @@ import { EdicaoPesoComponent } from './edicao-peso/edicao-peso.component';
 import { SuinoCadastroComponent } from './suino-cadastro/suino-cadastro.component';
 import { SuinoListagemComponent } from './suino-listagem/suino-listagem.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CadastroPesoComponent } from './cadastro-peso/cadastro-peso.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CadastroPesoComponent,
     ControlePesoComponent,
     EdicaoPesoComponent,
     SuinoCadastroComponent,

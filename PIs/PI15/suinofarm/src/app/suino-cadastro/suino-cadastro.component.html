@@ -2,9 +2,9 @@
     <h2>Cadastro de Suíno</h2>
     <form [formGroup]="suinoForm" (ngSubmit)="cadastrarSuino()">
       <div>
-        <label for="brincoAnimal">Brinco do Animal:</label>
-        <input type="number" id="brincoAnimal" formControlName="brincoAnimal">
-        <small *ngIf="suinoForm.get('brincoAnimal')?.invalid && suinoForm.get('brincoAnimal')?.touched">
+        <label for="brinco">Brinco do Animal:</label>
+        <input type="number" id="brinco" formControlName="brinco">
+        <small *ngIf="suinoForm.get('brinco')?.invalid && suinoForm.get('brinco')?.touched">
           O brinco do animal é obrigatório.
         </small>
       </div>
