@@ -7,24 +7,34 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
   currentComponent: string = ''; // Variável para controlar o componente atualmente exibido
+  currentYear: number = new Date().getFullYear();
+  sidebarHidden: boolean = false; // Estado inicial da barra lateral
+   // Obtém o ano atual // Propriedade para armazenar o ano atual
 
-  // Método para exibir o componente de cadastro de suínos
+  // Métodos para exibir os diferentes componentes
   showCadastro() {
     this.currentComponent = 'cadastro';
   }
 
-  // Método para exibir o componente de listagem de suínos
   showListagem() {
     this.currentComponent = 'listagem';
   }
 
-  // Método para exibir o componente de controle de peso
   showControlePeso() {
     this.currentComponent = 'controlePeso';
   }
 
-  // Método para exibir o componente de edição de peso
   showEdicaoPeso() {
     this.currentComponent = 'edicaoPeso';
+  }
+
+  showCadastroPeso() {
+    this.currentComponent = 'cadastroPeso';
+  }
+
+
+   
+   toggleSidebar() {
+    this.sidebarHidden = !this.sidebarHidden;
   }
 }
