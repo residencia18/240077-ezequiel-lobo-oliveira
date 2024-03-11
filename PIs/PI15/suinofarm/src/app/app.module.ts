@@ -15,6 +15,7 @@ import { ControlePesoComponent } from './controle-peso/controle-peso.component';
 import { EdicaoPesoComponent } from './edicao-peso/edicao-peso.component';
 import { SuinoCadastroComponent } from './suino-cadastro/suino-cadastro.component';
 import { SuinoListagemComponent } from './suino-listagem/suino-listagem.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SuinoListagemComponent } from './suino-listagem/suino-listagem.componen
     ControlePesoComponent,
     EdicaoPesoComponent,
     SuinoCadastroComponent,
-    SuinoListagemComponent
+    SuinoListagemComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
