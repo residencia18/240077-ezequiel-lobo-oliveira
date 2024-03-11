@@ -8,10 +8,9 @@ import { Suino } from '../models/suino.model';
   styleUrls: ['./suino-listagem.component.css']
 })
 export class SuinoListagemComponent implements OnInit {
-  suinos: Suino[] = []; // Inicialize a propriedade suinos como um array vazio
-  suinosFiltrados: Suino[] = []; // Inicialize a propriedade suinosFiltrados também
-
-  filtro: any = {}; // Objeto para armazenar os filtros
+  suinos: Suino[] = [];
+  suinosFiltrados: Suino[] = [];
+  filtro: any = {};
 
   constructor(private suinoService: SuinoService) { }
 
@@ -22,7 +21,7 @@ export class SuinoListagemComponent implements OnInit {
   carregarSuinos(): void {
     this.suinoService.getSuinos().subscribe(suinos => {
       this.suinos = suinos;
-      this.aplicarFiltro(); // Aplica o filtro inicial ao carregar os suínos
+      this.aplicarFiltro();
     });
   }
 
@@ -34,22 +33,30 @@ export class SuinoListagemComponent implements OnInit {
     return meses.toFixed(0) + ' meses';
   }
 
-  editarSuino(id: number): void {
-    // Converta o número para uma string antes de passá-lo como argumento
-    console.log('Editar suíno com ID:', id.toString());
+  editarSuino(suino: Suino): void {
+    console.log('Editar suíno com ID:', suino.brinco);
+    // Implemente aqui a lógica para a edição do suíno
   }
 
-  deletarSuino(id: number): void {
-    // Converta o número para uma string antes de passá-lo como argumento
-    console.log('Deletar suíno com ID:', id.toString());
+  deletarSuino(brinco: string): void {
+    // Implemente aqui a lógica para a exclusão do suíno
+    this.suinoService.deleteSuino(brinco)
+      .then(() => {
+        // Atualizar a lista de suínos após a exclusão
+        this.carregarSuinos();
+        console.log('Suíno deletado com sucesso');
+      })
+      .catch(error => console.error('Erro ao deletar suíno:', error));
   }
+  
+  
+  
+  
 
   aplicarFiltro(): void {
-    // Filtra os suínos com base nos filtros fornecidos
     this.suinosFiltrados = this.suinos.filter(suino => {
       let passouFiltro = true;
 
-      // Verifica cada filtro individualmente
       if (this.filtro.brincoPai && suino.brincoPai !== this.filtro.brincoPai) {
         passouFiltro = false;
       }
@@ -79,8 +86,7 @@ export class SuinoListagemComponent implements OnInit {
   }
 
   limparFiltro(): void {
-    // Limpa os filtros
     this.filtro = {};
-    this.aplicarFiltro(); // Aplica o filtro limpo aos suínos
+    this.aplicarFiltro();
   }
 }

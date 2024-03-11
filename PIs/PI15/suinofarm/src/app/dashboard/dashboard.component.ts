@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth/auth.service'; // Importe o serviço de autenticação
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,8 @@ export class DashboardComponent {
   currentComponent: string = ''; // Variável para controlar o componente atualmente exibido
   currentYear: number = new Date().getFullYear();
   sidebarHidden: boolean = false; // Estado inicial da barra lateral
-   // Obtém o ano atual // Propriedade para armazenar o ano atual
+
+  constructor(private authService: AuthService) {} // Injete o serviço de autenticação
 
   // Métodos para exibir os diferentes componentes
   showCadastro() {
@@ -32,9 +34,12 @@ export class DashboardComponent {
     this.currentComponent = 'cadastroPeso';
   }
 
-
-   
-   toggleSidebar() {
+  toggleSidebar() {
     this.sidebarHidden = !this.sidebarHidden;
+  }
+
+  // Método para realizar o logout
+  logout() {
+    this.authService.logout();
   }
 }

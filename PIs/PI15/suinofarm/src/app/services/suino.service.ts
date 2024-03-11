@@ -24,15 +24,16 @@ export class SuinoService {
     });
   }
 
-  updateSuino(key: string, suino: Suino): Promise<void> {
-    const suinoRef = this.db.object(`/suinos/${key}`);
+  updateSuino(numeroBrinco: string, suino: Suino): Promise<void> {
+    const suinoRef = this.db.object(`/suinos/${numeroBrinco}`);
     return suinoRef.update(suino);
   }
 
-  deleteSuino(key: string): Promise<void> {
-    const suinoRef = this.db.object(`/suinos/${key}`);
+  deleteSuino(numeroBrinco: string): Promise<void> {
+    const suinoRef = this.db.object(`/suinos/${numeroBrinco}`);
     return suinoRef.remove();
   }
+  
 
   cadastrarPeso(numeroBrinco: string, dataPesagem: Date, peso: number): Promise<any> {
     return this.db.list(`/pesos/${numeroBrinco}`).push({ dataPesagem, peso }).then((ref: firebase.default.database.Reference) => {
