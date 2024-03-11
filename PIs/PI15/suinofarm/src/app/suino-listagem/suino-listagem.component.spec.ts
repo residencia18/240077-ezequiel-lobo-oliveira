@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CadastroSuinoComponent } from './cadastro-suino.component';
+import { SuinoListagemComponent } from './suino-listagem.component';
 
-describe('CadastroSuinoComponent', () => {
-  let component: CadastroSuinoComponent;
-  let fixture: ComponentFixture<CadastroSuinoComponent>;
+describe('SuinoListagemComponent', () => {
+  let component: SuinoListagemComponent;
+  let fixture: ComponentFixture<SuinoListagemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CadastroSuinoComponent]
+      imports: [SuinoListagemComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CadastroSuinoComponent);
+    fixture = TestBed.createComponent(SuinoListagemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

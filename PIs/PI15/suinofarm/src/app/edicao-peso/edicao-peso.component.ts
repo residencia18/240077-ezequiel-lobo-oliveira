@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-edicao-peso',
-  standalone: true,
-  imports: [],
   templateUrl: './edicao-peso.component.html',
-  styleUrl: './edicao-peso.component.css'
+  styleUrls: ['./edicao-peso.component.css']
 })
-export class EdicaoPesoComponent {
+export class EdicaoPesoComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 
 }

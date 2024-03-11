@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-controle-peso',
-  standalone: true,
-  imports: [],
   templateUrl: './controle-peso.component.html',
-  styleUrl: './controle-peso.component.css'
+  styleUrls: ['./controle-peso.component.css']
 })
-export class ControlePesoComponent {
+export class ControlePesoComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 
 }
