@@ -24,10 +24,33 @@ export class SuinoService {
     });
   }
 
-  updateSuino(numeroBrinco: string, suino: Suino): Promise<void> {
-    const suinoRef = this.db.object(`/suinos/${numeroBrinco}`);
-    return suinoRef.update(suino);
-  }
+  updateSuino(suino: Suino): Promise<void> {
+    // Encontrar o suíno com base no número do brinco
+    return new Promise<void>((resolve, reject) => {
+        this.db.list('/suinos', ref => ref.orderByChild('brinco').equalTo(suino.brinco).limitToFirst(1)).snapshotChanges().subscribe(snapshots => {
+            if (snapshots.length > 0) {
+                const key = snapshots[0].payload.key;
+                this.db.object(`/suinos/${key}`).update(suino)
+                    .then(() => {
+                        console.log('Suíno atualizado com sucesso.');
+                        resolve();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao atualizar suíno:', error);
+                        reject(error);
+                    });
+            } else {
+                console.error('Suíno não encontrado.');
+                reject('Suíno não encontrado.');
+            }
+        }, error => {
+            console.error('Erro ao buscar suíno:', error);
+            reject(error);
+        });
+    });
+}
+
+
 
  
   

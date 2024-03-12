@@ -60,6 +60,7 @@
         <div class="botoes-acao">
           <button (click)="editarSuino(suino)">Editar</button>
           <button (click)="excluirSuino(suino)">Excluir</button>
+          <app-suino-edicao *ngIf="editando && suinoSelecionado" [suino]="suinoSelecionado"></app-suino-edicao>
         </div>
       </div>
     </div>

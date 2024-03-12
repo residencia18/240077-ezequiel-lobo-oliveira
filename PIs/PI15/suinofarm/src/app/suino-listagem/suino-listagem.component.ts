@@ -11,6 +11,8 @@ export class SuinoListagemComponent implements OnInit {
   suinos: Suino[] = [];
   suinosFiltrados: Suino[] = [];
   filtro: any = {};
+  suinoSelecionado: Suino | null = null;
+  editando: boolean = false;
 
   constructor(private suinoService: SuinoService) { }
 
@@ -35,10 +37,31 @@ export class SuinoListagemComponent implements OnInit {
 
   editarSuino(suino: Suino): void {
     console.log('Editar suíno com ID:', suino.brinco);
-    // Implemente aqui a lógica para a edição do suíno
+    // Define o suíno selecionado para edição e ativa o modo de edição
+    this.suinoSelecionado = suino;
+    this.editando = true;
   }
 
- 
+  salvarEdicao(): void {
+    if (this.suinoSelecionado) {
+      this.suinoService.updateSuino(this.suinoSelecionado)
+        .then(() => {
+          console.log('Suíno editado com sucesso.');
+          this.carregarSuinos();
+          // Desativa o modo de edição após salvar as alterações
+          this.editando = false;
+          this.suinoSelecionado = null; // Limpa o suíno selecionado
+        })
+        .catch(error => console.error('Erro ao editar suíno:', error));
+    }
+  }
+
+  cancelarEdicao(): void {
+    // Cancela a edição, limpando o suíno selecionado e desativando o modo de edição
+    this.suinoSelecionado = null;
+    this.editando = false;
+  }
+
   excluirSuino(suino: Suino): void {
     this.suinoService.excluirSuino(suino)
       .then(() => {
@@ -48,10 +71,6 @@ export class SuinoListagemComponent implements OnInit {
       })
       .catch(error => console.error('Erro ao excluir suíno:', error));
   }
-  
-  
-  
-  
 
   aplicarFiltro(): void {
     this.suinosFiltrados = this.suinos.filter(suino => {
