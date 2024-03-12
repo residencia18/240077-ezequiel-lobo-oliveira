@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from './auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { uppercaseValidator } from '../validators/uppercase-validator'; // Importe o validador personalizado
 
