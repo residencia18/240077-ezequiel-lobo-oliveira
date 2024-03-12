@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
-import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
@@ -36,7 +35,15 @@ import { AuthComponent } from './auth/auth.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyAEenTbuLW6QkWSCPd-gMNr93VQPP9AwVk",
+      authDomain: "suinofarm-manager.firebaseapp.com",
+      databaseURL: "https://suinofarm-manager-default-rtdb.firebaseio.com",
+      projectId: "suinofarm-manager",
+      storageBucket: "suinofarm-manager.appspot.com",
+      messagingSenderId: "960113480429",
+      appId: "1:960113480429:web:4fc9a410a1ca5c9d2cf2e4"
+    }),
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],

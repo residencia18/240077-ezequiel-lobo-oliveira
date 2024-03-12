@@ -38,15 +38,15 @@ export class SuinoListagemComponent implements OnInit {
     // Implemente aqui a lógica para a edição do suíno
   }
 
-  deletarSuino(brinco: string): void {
-    // Implemente aqui a lógica para a exclusão do suíno
-    this.suinoService.deleteSuino(brinco)
+ 
+  excluirSuino(suino: Suino): void {
+    this.suinoService.excluirSuino(suino)
       .then(() => {
-        // Atualizar a lista de suínos após a exclusão
-        this.carregarSuinos();
-        console.log('Suíno deletado com sucesso');
+        console.log('Suíno excluído com sucesso.');
+        // Remover o suíno excluído do array de suínos
+        this.suinos = this.suinos.filter(item => item !== suino);
       })
-      .catch(error => console.error('Erro ao deletar suíno:', error));
+      .catch(error => console.error('Erro ao excluir suíno:', error));
   }
   
   

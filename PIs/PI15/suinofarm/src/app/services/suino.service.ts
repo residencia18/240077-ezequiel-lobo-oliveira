@@ -29,10 +29,7 @@ export class SuinoService {
     return suinoRef.update(suino);
   }
 
-  deleteSuino(numeroBrinco: string): Promise<void> {
-    const suinoRef = this.db.object(`/suinos/${numeroBrinco}`);
-    return suinoRef.remove();
-  }
+ 
   
 
   cadastrarPeso(numeroBrinco: string, dataPesagem: Date, peso: number): Promise<any> {
@@ -49,4 +46,31 @@ export class SuinoService {
     const pesoRef: AngularFireObject<any> = this.db.object(`/pesos/${numeroBrinco}/${pesoId}`);
     return pesoRef.update({ dataPesagem, peso });
   }
+
+  
+  excluirSuino(suino: Suino): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.db.list('/suinos', ref => ref.orderByChild('brinco').equalTo(suino.brinco).limitToFirst(1)).snapshotChanges().subscribe(snapshots => {
+        const key = snapshots[0].key;
+        if (key) {
+          this.db.object(`/suinos/${key}`).remove()
+            .then(() => {
+              console.log('Suíno excluído com sucesso.');
+              resolve();
+            })
+            .catch(error => {
+              console.error('Erro ao excluir suíno:', error);
+              reject(error);
+            });
+        } else {
+          console.error('Suíno não encontrado.');
+          reject('Suíno não encontrado.');
+        }
+      }, error => {
+        console.error('Erro ao buscar suíno:', error);
+        reject(error);
+      });
+    });
+  }
 }
+
