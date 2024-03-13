@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="form-container">
+    <form [formGroup]="atendimentoForm" (ngSubmit)="submitForm()">
+      <div>
+        <label for="petName">Nome do Pet:</label>
+        <input type="text" id="petName" name="petName" formControlName="petName">
+        <div *ngIf="atendimentoForm.get('petName')?.invalid && (atendimentoForm.get('petName')?.dirty || atendimentoForm.get('petName')?.touched)">
+          Nome do Pet é obrigatório.
+        </div>
+      </div>
+      <div>
+        <label for="clienteName">Nome do Cliente:</label>
+        <input type="text" id="clienteName" name="clienteName" formControlName="clienteName">
+        <div *ngIf="atendimentoForm.get('clienteName')?.invalid && (atendimentoForm.get('clienteName')?.dirty || atendimentoForm.get('clienteName')?.touched)">
+          Nome do Cliente é obrigatório.
+        </div>
+      </div>
+      <div>
+        <label for="clienteCpf">CPF do Cliente:</label>
+        <input type="text" id="clienteCpf" name="clienteCpf" formControlName="clienteCpf">
+        <div *ngIf="atendimentoForm.get('clienteCpf')?.invalid && (atendimentoForm.get('clienteCpf')?.dirty || atendimentoForm.get('clienteCpf')?.touched)">
+          CPF do Cliente é obrigatório.
+        </div>
+      </div>
+      <div>
+        <label for="data">Data do Atendimento:</label>
+        <input type="date" id="data" name="data" formControlName="data">
+        <div *ngIf="atendimentoForm.get('data')?.invalid && (atendimentoForm.get('data')?.dirty || atendimentoForm.get('data')?.touched)">
+          Data do Atendimento é obrigatória.
+        </div>
+      </div>
+      <div>
+        <label for="observacoes">Observações:</label>
+        <textarea id="observacoes" name="observacoes" formControlName="observacoes"></textarea>
+      </div>
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+</div>
