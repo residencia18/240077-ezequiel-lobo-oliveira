@@ -6,6 +6,7 @@ import { SuinoListagemComponent } from './suino-listagem/suino-listagem.componen
 import { EdicaoPesoComponent } from './edicao-peso/edicao-peso.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthComponent } from './auth/auth.component';
+import { ManejoSanitarioComponent } from './manejo-sanitario/manejo-sanitario.component';
 
 const routes: Routes = [
   { path: 'login', component:AuthComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'controle-peso', component: ControlePesoComponent },
   { path: 'edicao/:id', component: EdicaoPesoComponent },
   { path: 'listagem', component: SuinoListagemComponent },
+  { path: 'manejo-sanitario', component: ManejoSanitarioComponent },
   { path: '**', redirectTo: '/login', pathMatch: 'full' } // Redireciona para a página de cadastro se a rota não for encontrada
 ];
 
