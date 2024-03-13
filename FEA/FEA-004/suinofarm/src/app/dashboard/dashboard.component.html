@@ -21,6 +21,9 @@
       <div class="button-container">
         <button (click)="showCadastroPeso()" [class.active]="currentComponent === 'cadastroPeso'">Cadastro de Peso</button>
       </div>
+      <div class="button-container">
+        <button (click)="showManejoSanitario()" [class.active]="currentComponent === 'manejo-sanitario'">Cadastro de Peso</button>
+      </div>
     </div>
     <div class="main-content">
       <!-- Adicione os componentes aqui conforme necessário -->
@@ -38,6 +41,9 @@
       </ng-container>
       <ng-container *ngIf="currentComponent === 'cadastroPeso'">
         <app-cadastro-peso></app-cadastro-peso>
+      </ng-container>
+      <ng-container *ngIf="currentComponent === 'manejo-sanitario'">
+        <app-manejo-sanitario></app-manejo-sanitario>
       </ng-container>
     </div>
   </div>
