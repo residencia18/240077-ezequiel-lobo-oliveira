@@ -34,8 +34,13 @@ export class DashboardComponent {
     this.currentComponent = 'cadastroPeso';
   }
 
+
   toggleSidebar() {
     this.sidebarHidden = !this.sidebarHidden;
+  }
+
+  showManejoSanitario() {
+    this.currentComponent = 'manejo-sanitario';
   }
 
   // Método para realizar o logout
