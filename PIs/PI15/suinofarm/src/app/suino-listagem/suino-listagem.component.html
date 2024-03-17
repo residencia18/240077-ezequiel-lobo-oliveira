@@ -60,11 +60,12 @@
       <div class="botoes-acao">
         <button (click)="editarSuino(suino)">Editar</button>
         <button (click)="excluirSuino(suino)">Excluir</button>
-        <button (click)="mostrarControlePeso(suino.brinco.toString())">Controle Peso</button>
+        <button (click)="mostrarControlePeso(suino)">Controle Peso</button>
         <app-suino-edicao *ngIf="editando && suinoSelecionado && suinoSelecionado.brinco === suino.brinco" [suino]="suinoSelecionado"></app-suino-edicao>
         <!-- Aqui é onde o gráfico será renderizado -->
-        <div *ngIf="exibirControlePeso">
-          <canvas #pesosChart width="400" height="400"></canvas>
+        <div class="grafico-container" *ngIf="exibirControlePeso && suinoSelecionado && suinoSelecionado.brinco === suino.brinco">
+          
+          <canvas #pesosChart></canvas>
         </div>
         
       </div>

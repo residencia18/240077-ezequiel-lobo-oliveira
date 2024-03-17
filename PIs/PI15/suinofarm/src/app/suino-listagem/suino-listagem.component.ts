@@ -56,6 +56,7 @@ export class SuinoListagemComponent implements OnInit, AfterViewInit, OnDestroy 
 
   editarSuino(suino: Suino): void {
     console.log('Editar suíno com ID:', suino.brinco);
+    // Define o suíno selecionado para edição e ativa o modo de edição
     this.suinoSelecionado = suino;
     this.editando = true;
   }
@@ -66,8 +67,9 @@ export class SuinoListagemComponent implements OnInit, AfterViewInit, OnDestroy 
         .then(() => {
           console.log('Suíno editado com sucesso.');
           this.carregarSuinos();
+          // Desativa o modo de edição após salvar as alterações
           this.editando = false;
-          this.suinoSelecionado = null;
+          this.suinoSelecionado = null; // Limpa o suíno selecionado
         })
         .catch(error => console.error('Erro ao editar suíno:', error));
     }
@@ -87,16 +89,16 @@ export class SuinoListagemComponent implements OnInit, AfterViewInit, OnDestroy 
       .catch(error => console.error('Erro ao excluir suíno:', error));
   }
 
-  mostrarControlePeso(brinco: string): void {
+  mostrarControlePeso(suino: Suino): void {
     this.pesos = [];
     this.datas = [];
 
-    this.suinoService.getPeso(brinco).subscribe((historicoPesos: HistoricoPeso[]) => {
+    this.suinoService.getPeso(suino.brinco.toString()).subscribe((historicoPesos: HistoricoPeso[]) => {
       historicoPesos.forEach(item => {
         this.pesos.push(item.peso);
         this.datas.push(item.dataPesagem.toString());
       });
-
+      this.suinoSelecionado = suino;
       this.exibirControlePeso = true;
       setTimeout(() => {
         this.renderizarGrafico();

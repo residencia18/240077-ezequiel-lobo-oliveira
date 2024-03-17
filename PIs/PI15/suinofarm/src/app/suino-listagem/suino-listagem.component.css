@@ -69,3 +69,18 @@
     background-color: #f0f0f0;
   }
   
+  /* Estilos para o contêiner do gráfico */
+.grafico-container {
+  margin-top: 20px; /* Adiciona um espaço superior */
+  border: 1px solid #ccc; /* Adiciona uma borda ao redor do contêiner */
+  border-radius: 5px; /* Arredonda as bordas do contêiner */
+  padding: 20px; /* Adiciona espaço interno ao contêiner */
+  width: 400px; /* Define a largura do contêiner como 400px */
+  height: 400px; /* Define a altura do contêiner como 400px */
+}
+
+/* Estilos para o gráfico */
+.grafico {
+  width: 100%; /* O gráfico ocupa toda a largura do contêiner */
+  /* O gráfico ocupa toda a altura do contêiner */
+}
