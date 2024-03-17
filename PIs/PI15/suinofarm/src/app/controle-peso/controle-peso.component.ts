@@ -49,4 +49,8 @@ export class ControlePesoComponent implements OnInit {
       }
     });
   }
+
+
+
+  
 }
