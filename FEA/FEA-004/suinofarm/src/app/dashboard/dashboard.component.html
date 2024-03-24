@@ -22,7 +22,10 @@
         <button (click)="showCadastroPeso()" [class.active]="currentComponent === 'cadastroPeso'">Cadastro de Peso</button>
       </div>
       <div class="button-container">
-        <button (click)="showManejoSanitario()" [class.active]="currentComponent === 'manejo-sanitario'">Cadastro de Peso</button>
+        <button (click)="showManejoSanitario()" [class.active]="currentComponent === 'manejo-sanitario'">Manejo Sanitario</button>
+      </div>
+      <div class="button-container">
+        <button (click)="showHistoricoManejo()" [class.active]="currentComponent === 'historico-manejo'">Historico Manejo</button>
       </div>
     </div>
     <div class="main-content">
@@ -44,6 +47,9 @@
       </ng-container>
       <ng-container *ngIf="currentComponent === 'manejo-sanitario'">
         <app-manejo-sanitario></app-manejo-sanitario>
+      </ng-container>
+      <ng-container *ngIf="currentComponent === 'historico-manejo'">
+        <app-historico-manejo></app-historico-manejo>
       </ng-container>
     </div>
   </div>

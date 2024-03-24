@@ -1,37 +1,38 @@
 <div>
-    <h2>Cadastro de Manejo Sanitário</h2>
-    <form [formGroup]="manejoForm" (ngSubmit)="cadastrarManejo()">
-      <div>
-        <label for="data">Data:</label>
-        <input type="date" id="data" formControlName="data">
-        <small *ngIf="manejoForm.get('data')?.invalid && manejoForm.get('data')?.touched">
-          A data é obrigatória.
-        </small>
-      </div>
-      <div>
-        <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao" formControlName="descricao">
-        <small *ngIf="manejoForm.get('descricao')?.invalid && manejoForm.get('descricao')?.touched">
-          A descrição é obrigatória.
-        </small>
-      </div>
-      <div>
-        <label for="brincos">Brincos:</label>
-        <select id="brincos" formControlName="brincos" multiple>
-          <option *ngFor="let suino of suinos" [value]="suino.brinco">{{ suino.brinco }}</option>
-        </select>
-        <small *ngIf="manejoForm.get('brincos')?.invalid && manejoForm.get('brincos')?.touched">
-          Selecione pelo menos um brinco.
-        </small>
-      </div>
-      <div>
-        <label for="atividades">Atividades:</label>
-        <textarea id="atividades" formControlName="atividades"></textarea>
-        <small *ngIf="manejoForm.get('atividades')?.invalid && manejoForm.get('atividades')?.touched">
-          As atividades são obrigatórias.
-        </small>
-      </div>
-      <button type="submit" [disabled]="!manejoForm.valid">Cadastrar Manejo</button>
-    </form>
-  </div>
-  
+  <h2>Cadastro de Manejo Sanitário</h2>
+  <form [formGroup]="manejoForm" (ngSubmit)="cadastrarManejo()">
+    <div>
+      <label for="data">Data:</label>
+      <input type="date" id="data" formControlName="data">
+      <small *ngIf="manejoForm.get('data')?.invalid && manejoForm.get('data')?.touched">
+        A data é obrigatória.
+      </small>
+    </div>
+    <div>
+      <label for="descricao">Descrição:</label>
+      <input type="text" id="descricao" formControlName="descricao">
+      <small *ngIf="manejoForm.get('descricao')?.invalid && manejoForm.get('descricao')?.touched">
+        A descrição é obrigatória.
+      </small>
+    </div>
+    <div>
+      <label for="suinosSelecionados">Suínos Selecionados:</label>
+      <select id="suinosSelecionados" formControlName="suinosSelecionados" multiple>
+        <option *ngFor="let suino of suinosSelecionados" [value]="suino">{{ suino }}</option>
+      </select>
+    </div>
+    <div>
+      <select id="suinosDisponiveis" #selectSuinosDisponiveis (change)="adicionarSuino(selectSuinosDisponiveis.value)">
+        <option *ngFor="let suino of suinos" [value]="suino?.brinco">{{ suino?.brinco }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="atividades">Atividades:</label>
+      <textarea id="atividades" formControlName="atividades"></textarea>
+      <small *ngIf="manejoForm.get('atividades')?.invalid && manejoForm.get('atividades')?.touched">
+        As atividades são obrigatórias.
+      </small>
+    </div>
+    <button type="submit" [disabled]="!manejoForm.valid">Cadastrar Manejo</button>
+  </form>
+</div>

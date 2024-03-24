@@ -43,6 +43,10 @@ export class DashboardComponent {
     this.currentComponent = 'manejo-sanitario';
   }
 
+  showHistoricoManejo() {
+    this.currentComponent = 'historico-manejo';
+  }
+
   // Método para realizar o logout
   logout() {
     this.authService.logout();

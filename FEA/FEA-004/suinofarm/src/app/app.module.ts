@@ -19,6 +19,8 @@ import { CadastroPesoComponent } from './cadastro-peso/cadastro-peso.component';
 import { AuthComponent } from './auth/auth.component';
 import { SuinoEdicaoComponent } from './suino-edicao/suino-edicao.component';
 import { CadastroManejoComponent } from './manejo-sanitario/manejo-sanitario.component';
+import { HistoricoManejoComponent } from './historico-manejo/historico-manejo.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { CadastroManejoComponent } from './manejo-sanitario/manejo-sanitario.com
     SuinoListagemComponent,
     DashboardComponent,
     SuinoEdicaoComponent,
-    CadastroManejoComponent
+    CadastroManejoComponent,
+    HistoricoManejoComponent
   ],
   imports: [
     BrowserModule,

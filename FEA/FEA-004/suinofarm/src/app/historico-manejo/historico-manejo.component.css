@@ -1,0 +1,55 @@
+/* historico-manejo.component.css */
+
+/* Estilo para o contêiner do componente */
+div {
+    margin-top: 20px;
+  }
+  
+  /* Estilo para o título */
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo para a tabela */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  /* Estilo para as células do cabeçalho */
+  th {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Estilo para as células de dados */
+  td {
+    padding: 10px;
+  }
+  
+  /* Estilo para as linhas ímpares da tabela */
+  tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Estilo para as listas dentro das células */
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  /* Estilo para os itens da lista */
+  li {
+    margin-bottom: 5px;
+  }
+  
+  /* Estilo para destacar os brincos e atividades */
+  li.highlight {
+    font-weight: bold;
+    color: #007bff;
+  }
+  

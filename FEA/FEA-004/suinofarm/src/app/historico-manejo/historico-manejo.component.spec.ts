@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CadastroManejoComponent } from './manejo-sanitario.component';
+import { HistoricoManejoComponent } from './historico-manejo.component';
 
-describe('ManejoSanitarioComponent', () => {
-  let component: CadastroManejoComponent;
-  let fixture: ComponentFixture<CadastroManejoComponent>;
+describe('HistoricoManejoComponent', () => {
+  let component: HistoricoManejoComponent;
+  let fixture: ComponentFixture<HistoricoManejoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CadastroManejoComponent]
+      declarations: [HistoricoManejoComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CadastroManejoComponent);
+    fixture = TestBed.createComponent(HistoricoManejoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,31 @@
+<div>
+    <h2>Histórico de Manejo Sanitário</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Descrição</th>
+          <th>Brincos</th>
+          <th>Atividades</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let manejo of historicoManejos">
+          <td>{{ manejo.data | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ manejo.descricao }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let brinco of manejo.brincos">{{ brinco }}</li>
+            </ul>
+          </td>
+          
+          <td>
+            <ul>
+              <li *ngFor="let atividade of manejo.atividades">{{ atividade }}</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

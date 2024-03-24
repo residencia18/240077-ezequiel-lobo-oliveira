@@ -7,8 +7,10 @@ import { EdicaoPesoComponent } from './edicao-peso/edicao-peso.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthComponent } from './auth/auth.component';
 import { CadastroManejoComponent } from './manejo-sanitario/manejo-sanitario.component';
+import { HistoricoManejoComponent } from './historico-manejo/historico-manejo.component';
 
 const routes: Routes = [
+  { path: 'historico-manejo', component: HistoricoManejoComponent},
   { path: 'login', component:AuthComponent },
   { path: 'dashboard', component:DashboardComponent },
   { path: 'cadastro', component: SuinoCadastroComponent },
