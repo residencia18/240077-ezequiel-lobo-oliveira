@@ -9,6 +9,7 @@ import { ManejoSanitarioService } from '../services/manejo-sanitario.service';
 })
 export class HistoricoManejoComponent implements OnInit {
   historicoManejos: ManejoSanitario[] = [];
+  atividades: string[] = []; // Array para armazenar todas as atividades
 
   constructor(private manejoService: ManejoSanitarioService) { }
 
@@ -17,20 +18,26 @@ export class HistoricoManejoComponent implements OnInit {
   }
 
   carregarHistoricoManejos(): void {
-  this.manejoService.getHistoricoManejos().subscribe((manejos: ManejoSanitario[]) => {
-    this.historicoManejos = manejos.map(manejo => {
-      // Verifica se a propriedade 'brincos' é um array
-      if (Array.isArray(manejo.brincos)) {
-        // Se for um array, retorna o manejo sem modificação
-        return manejo;
-      } else {
-        // Se não for um array, trata como um array vazio
-        return { ...manejo, brincos: [] };
-      }
+    this.manejoService.getHistoricoManejos().subscribe((manejos: ManejoSanitario[]) => {
+      this.historicoManejos = manejos.map(manejo => {
+        // Verifica se a propriedade 'brincos' é um array
+        if (Array.isArray(manejo.brincos)) {
+          // Se for um array, retorna o manejo sem modificação
+          return manejo;
+        } else {
+          // Se não for um array, trata como um array vazio
+          return { ...manejo, brincos: [] };
+        }
+      });
+      
+      // Itera sobre todos os manejo sanitários para extrair todas as atividades
+      this.historicoManejos.forEach(manejo => {
+        manejo.atividades.forEach(atividade => {
+          if (!this.atividades.includes(atividade)) {
+            this.atividades.push(atividade);
+          }
+        });
+      });
     });
-  });
-}
-
-  
-  
+  }
 }
