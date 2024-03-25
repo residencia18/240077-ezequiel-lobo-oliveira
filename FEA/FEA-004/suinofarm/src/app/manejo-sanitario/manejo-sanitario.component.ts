@@ -44,7 +44,7 @@ export class CadastroManejoComponent implements OnInit {
 
   cadastrarManejo(): void {
     if (this.manejoForm.valid) {
-      const { data, descricao, suinosSelecionados, atividades } = this.manejoForm.value;
+      const { data, descricao, suinosSelecionados, atividades, realizadas } = this.manejoForm.value;
 
       // Dividir a string de atividades por vírgulas para criar um array
       const atividadesArray = atividades.split(',').map((atividade: string) => atividade.trim());
@@ -53,8 +53,10 @@ export class CadastroManejoComponent implements OnInit {
         data: data,
         descricao: descricao,
         brincos: suinosSelecionados, // Utilizar os brincos selecionados diretamente
-        atividades: atividadesArray
+        atividades: atividadesArray,
+        atividadesRealizadas: realizadas // Inicializa o mapa de atividades realizadas vazio
       };
+      
 
       this.suinoService.cadastrarManejo(novoManejo).then(() => {
         console.log('Manejo sanitário cadastrado com sucesso.');

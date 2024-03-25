@@ -13,8 +13,7 @@
         <td>{{ brinco }}</td> <!-- Mostra o número do brinco na primeira coluna -->
         <!-- Para cada atividade do manejo atual, verifica se o manejo a possui e exibe 'X' ou 'Não aplicada' -->
         <td *ngFor="let atividade of manejo.atividades">
-          <span *ngIf="manejo.atividades.includes(atividade)">X</span>
-          <span *ngIf="!manejo.atividades.includes(atividade)">Não aplicada</span>
+          <input type="text" [(ngModel)]="manejo.atividadesRealizadas[atividade]" *ngIf="manejo.atividades.includes(atividade)">
         </td>
       </tr>
     </tbody>

@@ -9,7 +9,7 @@ import { ManejoSanitarioService } from '../services/manejo-sanitario.service';
 })
 export class HistoricoManejoComponent implements OnInit {
   historicoManejos: ManejoSanitario[] = [];
-  atividades: string[] = []; // Array para armazenar todas as atividades
+  atividades: string[] = [];
 
   constructor(private manejoService: ManejoSanitarioService) { }
 
@@ -20,24 +20,38 @@ export class HistoricoManejoComponent implements OnInit {
   carregarHistoricoManejos(): void {
     this.manejoService.getHistoricoManejos().subscribe((manejos: ManejoSanitario[]) => {
       this.historicoManejos = manejos.map(manejo => {
-        // Verifica se a propriedade 'brincos' é um array
-        if (Array.isArray(manejo.brincos)) {
-          // Se for um array, retorna o manejo sem modificação
-          return manejo;
-        } else {
-          // Se não for um array, trata como um array vazio
-          return { ...manejo, brincos: [] };
-        }
+        const atividadesRealizadas: { [brinco: string]: { [atividade: string]: boolean } } = {};
+        manejo.brincos.forEach((brinco: string) => {
+          atividadesRealizadas[brinco] = this.criarEstadoAtividades(manejo.atividades);
+        });
+        return { ...manejo, atividadesRealizadas };
       });
       
-      // Itera sobre todos os manejo sanitários para extrair todas as atividades
-      this.historicoManejos.forEach(manejo => {
-        manejo.atividades.forEach(atividade => {
-          if (!this.atividades.includes(atividade)) {
-            this.atividades.push(atividade);
-          }
-        });
+      this.atividades = this.extrairAtividades(this.historicoManejos);
+    });
+  }
+  
+  criarEstadoAtividades(atividades: string[]): { [key: string]: boolean } {
+    const estadoAtividades: { [key: string]: boolean } = {};
+    atividades.forEach(atividade => estadoAtividades[atividade] = false);
+    return estadoAtividades;
+  }
+  
+  toggleAtividade(manejo: ManejoSanitario, brinco: string, atividade: string): void {
+    if (manejo.atividadesRealizadas[brinco].hasOwnProperty(atividade)) {
+      manejo.atividadesRealizadas[brinco][atividade] = !manejo.atividadesRealizadas[brinco][atividade];
+    }
+  }
+
+  extrairAtividades(manejos: ManejoSanitario[]): string[] {
+    const atividades: string[] = [];
+    manejos.forEach(manejo => {
+      manejo.atividades.forEach(atividade => {
+        if (!atividades.includes(atividade)) {
+          atividades.push(atividade);
+        }
       });
     });
+    return atividades;
   }
 }
