@@ -1,28 +1,27 @@
 <div>
-    <h2>Cadastro de Peso</h2>
-    <form [formGroup]="cadastroPesoForm" (ngSubmit)="cadastrarPeso()">
-      <div>
-        <label for="numeroBrinco">Número de Brinco:</label>
-        <input type="number" id="numeroBrinco" formControlName="numeroBrinco">
-        <small *ngIf="cadastroPesoForm.get('numeroBrinco')?.invalid && cadastroPesoForm.get('numeroBrinco')?.touched">
-          O número de brinco é obrigatório.
-        </small>
-      </div>
-      <div>
-        <label for="dataPesagem">Data da Pesagem:</label>
-        <input type="date" id="dataPesagem" formControlName="dataPesagem">
-        <small *ngIf="cadastroPesoForm.get('dataPesagem')?.invalid && cadastroPesoForm.get('dataPesagem')?.touched">
-          A data da pesagem é obrigatória.
-        </small>
-      </div>
-      <div>
-        <label for="peso">Peso (em Kg):</label>
-        <input type="text" id="peso" formControlName="peso">
-        <small *ngIf="cadastroPesoForm.get('peso')?.invalid && cadastroPesoForm.get('peso')?.touched">
-          O peso é obrigatório e deve ser um número válido.
-        </small>
-      </div>
-      <button type="submit" [disabled]="!cadastroPesoForm.valid">Cadastrar Peso</button>
-    </form>
-  </div>
-  
+  <h2>Cadastro de Peso</h2>
+  <form [formGroup]="cadastroPesoForm" (ngSubmit)="cadastrarPeso()">
+    <div>
+      <label for="numeroBrinco">Número de Brinco:</label>
+      <input type="number" id="numeroBrinco" formControlName="numeroBrinco">
+      <small *ngIf="cadastroPesoForm.get('numeroBrinco')?.invalid && cadastroPesoForm.get('numeroBrinco')?.touched">
+        O número de brinco é obrigatório.
+      </small>
+    </div>
+    <div>
+      <label for="dataPesagem">Data da Pesagem:</label>
+      <input type="date" id="dataPesagem" formControlName="dataPesagem">
+      <small *ngIf="cadastroPesoForm.get('dataPesagem')?.invalid && cadastroPesoForm.get('dataPesagem')?.touched">
+        A data da pesagem é obrigatória.
+      </small>
+    </div>
+    <div>
+      <label for="peso">Peso (em Kg):</label>
+      <input type="text" id="peso" formControlName="peso">
+      <small *ngIf="cadastroPesoForm.get('peso')?.invalid && cadastroPesoForm.get('peso')?.touched">
+        O peso é obrigatório e deve ser um número válido.
+      </small>
+    </div>
+    <button type="submit" [disabled]="!cadastroPesoForm.valid">Cadastrar Peso</button>
+  </form>
+</div>
