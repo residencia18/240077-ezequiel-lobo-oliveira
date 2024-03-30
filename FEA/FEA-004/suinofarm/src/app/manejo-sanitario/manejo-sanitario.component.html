@@ -15,10 +15,10 @@
         A descrição é obrigatória.
       </small>
     </div>
-    <div>
+    <div *ngIf="suinosSelecionados.length > 0">
       <label for="suinosSelecionados">Suínos Selecionados:</label>
       <select id="suinosSelecionados" formControlName="suinosSelecionados" multiple>
-        <option *ngFor="let suino of suinos" [value]="suino?.brinco">{{ suino?.brinco }}</option>
+        <option *ngFor="let brinco of suinosSelecionados" [value]="brinco">{{ brinco }}</option>
       </select>
     </div>
     <div>

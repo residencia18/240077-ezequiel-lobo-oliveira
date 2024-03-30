@@ -18,7 +18,7 @@ export class CadastroManejoComponent implements OnInit {
     this.manejoForm = this.formBuilder.group({
       data: ['', Validators.required],
       descricao: ['', Validators.required],
-      suinosSelecionados: [[]], // Inicializa como um array vazio
+      suinosSelecionados: [[], Validators.required], // Inicializa como um array vazio e torna obrigatório
       atividades: ['', Validators.required],
       realizadas: [[]] // Inicializa como um array vazio
     });
