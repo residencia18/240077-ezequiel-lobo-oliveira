@@ -4,5 +4,5 @@ export interface ManejoSanitario {
   descricao: string; // Descrição do manejo sanitário
   brincos: string[]; // Lista de brincos (identificadores dos suínos) que participaram do manejo sanitário
   atividades: string[]; // Lista de atividades planejadas para o manejo sanitário
-  atividadesRealizadas: { [brinco: string]: { [atividade: string]: boolean } };// Lista de atividades realizadas
+  atividadesRealizadas: { [brinco: string]: string[] }; // Lista de atividades realizadas por cada suíno
 }

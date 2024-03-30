@@ -20,7 +20,7 @@ export class HistoricoManejoComponent implements OnInit {
   carregarHistoricoManejos(): void {
     this.manejoService.getHistoricoManejos().subscribe((manejos: ManejoSanitario[]) => {
       this.historicoManejos = manejos.map(manejo => {
-        const atividadesRealizadas: { [brinco: string]: { [atividade: string]: boolean } } = {};
+        const atividadesRealizadas: { [brinco: string]: string[] } = {};
         manejo.brincos.forEach((brinco: string) => {
           atividadesRealizadas[brinco] = this.criarEstadoAtividades(manejo.atividades);
         });
@@ -31,18 +31,12 @@ export class HistoricoManejoComponent implements OnInit {
     });
   }
   
-  criarEstadoAtividades(atividades: string[]): { [key: string]: boolean } {
-    const estadoAtividades: { [key: string]: boolean } = {};
-    atividades.forEach(atividade => estadoAtividades[atividade] = false);
+  criarEstadoAtividades(atividades: string[]): string[] {
+    const estadoAtividades: string[] = [];
+    atividades.forEach(() => estadoAtividades.push('Não'));
     return estadoAtividades;
   }
   
-  toggleAtividade(manejo: ManejoSanitario, brinco: string, atividade: string): void {
-    if (manejo.atividadesRealizadas[brinco].hasOwnProperty(atividade)) {
-      manejo.atividadesRealizadas[brinco][atividade] = !manejo.atividadesRealizadas[brinco][atividade];
-    }
-  }
-
   extrairAtividades(manejos: ManejoSanitario[]): string[] {
     const atividades: string[] = [];
     manejos.forEach(manejo => {

@@ -4,15 +4,14 @@
     <thead>
       <tr>
         <th>Brinco</th>
-        <th *ngFor="let atividade of manejo.atividades">{{ atividade }}</th> <!-- Cria uma coluna para cada atividade do manejo atual -->
+        <th *ngFor="let atividade of atividades">{{ atividade }}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let brinco of manejo.brincos">
-        <td>{{ brinco }}</td> <!-- Mostra o número do brinco na primeira coluna -->
-        <!-- Para cada atividade do manejo atual, verifica se o manejo a possui e exibe 'X' ou 'Não aplicada' -->
+        <td>{{ brinco }}</td>
         <td *ngFor="let atividade of manejo.atividades">
-          <input type="text" [(ngModel)]="manejo.atividadesRealizadas[atividade]" *ngIf="manejo.atividades.includes(atividade)">
+          <input type="text" [value]="manejo.atividadesRealizadas[brinco][manejo.atividades.indexOf(atividade)]">
         </td>
       </tr>
     </tbody>

@@ -18,7 +18,7 @@
     <div>
       <label for="suinosSelecionados">Suínos Selecionados:</label>
       <select id="suinosSelecionados" formControlName="suinosSelecionados" multiple>
-        <option *ngFor="let suino of suinosSelecionados" [value]="suino">{{ suino }}</option>
+        <option *ngFor="let suino of suinos" [value]="suino?.brinco">{{ suino?.brinco }}</option>
       </select>
     </div>
     <div>

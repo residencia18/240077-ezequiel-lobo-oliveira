@@ -18,8 +18,9 @@ export class CadastroManejoComponent implements OnInit {
     this.manejoForm = this.formBuilder.group({
       data: ['', Validators.required],
       descricao: ['', Validators.required],
-      suinosSelecionados: [[], Validators.required],
-      atividades: ['', Validators.required]
+      suinosSelecionados: [[]], // Inicializa como um array vazio
+      atividades: ['', Validators.required],
+      realizadas: [[]] // Inicializa como um array vazio
     });
   }
 
@@ -44,24 +45,29 @@ export class CadastroManejoComponent implements OnInit {
 
   cadastrarManejo(): void {
     if (this.manejoForm.valid) {
-      const { data, descricao, suinosSelecionados, atividades, realizadas } = this.manejoForm.value;
+      const { data, descricao, suinosSelecionados, atividades } = this.manejoForm.value;
 
       // Dividir a string de atividades por vírgulas para criar um array
       const atividadesArray = atividades.split(',').map((atividade: string) => atividade.trim());
+
+      // Inicializar todas as atividades como "não realizadas" para todos os suínos selecionados
+      const atividadesConcluidas: { [brinco: string]: string[] } = {};
+      for (const brinco of suinosSelecionados) {
+        atividadesConcluidas[brinco] = atividadesArray.map(() => 'não');
+      }
 
       const novoManejo: ManejoSanitario = {
         data: data,
         descricao: descricao,
         brincos: suinosSelecionados, // Utilizar os brincos selecionados diretamente
         atividades: atividadesArray,
-        atividadesRealizadas: realizadas // Inicializa o mapa de atividades realizadas vazio
+        atividadesRealizadas: atividadesConcluidas
       };
-      
 
       this.suinoService.cadastrarManejo(novoManejo).then(() => {
         console.log('Manejo sanitário cadastrado com sucesso.');
         this.manejoForm.reset();
-        this.suinosSelecionados = []; // Limpar a lista de suínos selecionados após o cadastro
+        this.suinosSelecionados = [];
       }).catch((error: any) => {
         console.error('Erro ao cadastrar manejo sanitário:', error);
       });
@@ -69,4 +75,5 @@ export class CadastroManejoComponent implements OnInit {
       this.manejoForm.markAllAsTouched();
     }
   }
+
 }

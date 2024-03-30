@@ -16,6 +16,4 @@ export class ManejoSanitarioService {
   getHistoricoManejos(): Observable<ManejoSanitario[]> {
     return this.manejoRef.valueChanges() as Observable<ManejoSanitario[]>;
   }
-
- 
 }
