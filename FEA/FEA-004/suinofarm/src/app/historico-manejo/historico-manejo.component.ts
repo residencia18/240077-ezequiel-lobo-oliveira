@@ -16,6 +16,7 @@ export class HistoricoManejoComponent implements OnInit {
   ngOnInit(): void {
     this.carregarHistoricoManejos();
   }
+  
 
   carregarHistoricoManejos(): void {
     this.manejoService.getHistoricoManejos().subscribe((manejos: ManejoSanitario[]) => {
