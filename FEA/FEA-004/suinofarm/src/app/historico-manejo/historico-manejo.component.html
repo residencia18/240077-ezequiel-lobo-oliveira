@@ -1,13 +1,19 @@
+<h2>Histórico de Manejo Sanitário</h2>
 <div *ngFor="let manejo of historicoManejos">
-  <h2>Histórico de Manejo Sanitário</h2>
   <table>
     <thead>
+      <!-- Linha para exibir a data e descrição do manejo -->
+      <tr>
+        <th [attr.colspan]="manejo.atividades.length + 1">{{ manejo.data | date:'dd/MM/yyyy' }} # {{ manejo.descricao }}</th>
+      </tr>
+      <!-- Linha para os cabeçalhos das atividades -->
       <tr>
         <th>Brinco</th>
         <th *ngFor="let atividade of manejo.atividades">{{ atividade }}</th>
       </tr>
     </thead>
     <tbody>
+      <!-- Linha para cada brinco e suas atividades realizadas -->
       <tr *ngFor="let brinco of manejo.brincos">
         <td>{{ brinco }}</td>
         <td *ngFor="let atividade of manejo.atividades; let i = index">
@@ -16,5 +22,9 @@
       </tr>
     </tbody>
   </table>
+  <!-- Botão para salvar as atividades -->
   <button (click)="salvarAtividades(manejo)">Salvar</button>
+  
+  <!-- Texto explicativo para o usuário -->
+  
 </div>
