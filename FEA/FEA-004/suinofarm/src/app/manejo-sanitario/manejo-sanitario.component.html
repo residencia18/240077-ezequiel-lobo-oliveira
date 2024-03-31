@@ -31,7 +31,9 @@
       <textarea id="atividades" formControlName="atividades"></textarea>
       <small *ngIf="manejoForm.get('atividades')?.invalid && manejoForm.get('atividades')?.touched">
         As atividades são obrigatórias.
+
       </small>
+      <p  style="color: red;">Por favor, insira as atividades separadas por vírgula.</p>
     </div>
     <button type="submit" [disabled]="!manejoForm.valid">Cadastrar Manejo</button>
   </form>

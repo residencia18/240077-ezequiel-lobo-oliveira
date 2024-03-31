@@ -71,6 +71,17 @@ export class HistoricoManejoComponent implements OnInit {
     }
   }
   
+  deletarManejo(manejo: ManejoSanitario): void {
+    if (manejo.id) { // Verifica se manejo.id é válido
+      this.manejoService.deletarManejo(manejo.id).then(() => {
+        console.log('Manejo deletado com sucesso.');
+      }).catch((error: any) => {
+        console.error('Erro ao deletar manejo:', error);
+      });
+    } else {
+      console.error('ID do manejo inválido:', manejo.id);
+    }
+  }
   
 
 

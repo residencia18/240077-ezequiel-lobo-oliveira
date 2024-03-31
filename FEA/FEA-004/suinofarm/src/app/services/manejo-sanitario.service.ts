@@ -20,4 +20,9 @@ export class ManejoSanitarioService {
   atualizarAtividades(manejoId: string, atividadesRealizadas: any): Promise<void> {
     return this.manejoRef.update(`${manejoId}/atividadesRealizadas`, atividadesRealizadas);
   }
+
+  deletarManejo(manejoId: string): Promise<void> {
+    return this.manejoRef.remove(manejoId);
+  }
+  
 }
