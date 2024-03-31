@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BackendService } from './suino.service';
+import { SuinoService } from './suino.service';
 
-describe('BackendService', () => {
-  let service: BackendService;
+describe('SuinoService', () => {
+  let service: SuinoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BackendService);
+    service = TestBed.inject(SuinoService);
   });
 
   it('should be created', () => {

@@ -94,11 +94,24 @@ export class SuinoService {
 
   cadastrarManejo(manejo: ManejoSanitario): Promise<any> {
     // Adiciona o manejo sanitário à lista de manejo no Firebase
-    return this.manejoRef.push(manejo).then((ref: firebase.default.database.Reference) => {
-      return Promise.resolve(ref.key);
-    }).catch(error => {
-      console.error('Erro ao cadastrar manejo sanitário:', error);
-      return Promise.reject(error);
+    return new Promise<any>((resolve, reject) => {
+        this.manejoRef.push(manejo).then((ref: firebase.default.database.Reference) => {
+            const id = ref.key; // Recupera o ID gerado pelo Firebase
+            if (id) {
+                // Atualiza o campo 'id' do objeto ManejoSanitario com o ID gerado
+                this.manejoRef.update(id, { id }).then(() => {
+                    resolve(id); // Resolve a promise com o ID
+                }).catch(error => {
+                    reject(error); // Rejeita a promise em caso de erro na atualização
+                });
+            } else {
+                reject('ID não disponível'); // Rejeita a promise se o ID não estiver disponível
+            }
+        }).catch(error => {
+            console.error('Erro ao cadastrar manejo sanitário:', error);
+            reject(error); // Rejeita a promise em caso de erro ao adicionar o manejo sanitário
+        });
     });
-  }
+}
+
 }

@@ -58,4 +58,22 @@ export class HistoricoManejoComponent implements OnInit {
     });
     return atividades;
   }
+
+  salvarAtividades(manejo: ManejoSanitario): void {
+    if (manejo.id) { // Verifica se manejo.id é válido
+      this.manejoService.atualizarAtividades(manejo.id, manejo.atividadesRealizadas).then(() => {
+        console.log('Atividades atualizadas com sucesso.');
+      }).catch(error => {
+        console.error('Erro ao atualizar atividades:', error);
+      });
+    } else {
+      console.error('ID do manejo inválido:', manejo.id);
+    }
+  }
+  
+  
+
+
+
+
 }

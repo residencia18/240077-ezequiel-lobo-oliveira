@@ -16,4 +16,8 @@ export class ManejoSanitarioService {
   getHistoricoManejos(): Observable<ManejoSanitario[]> {
     return this.manejoRef.valueChanges() as Observable<ManejoSanitario[]>;
   }
+
+  atualizarAtividades(manejoId: string, atividadesRealizadas: any): Promise<void> {
+    return this.manejoRef.update(`${manejoId}/atividadesRealizadas`, atividadesRealizadas);
+  }
 }

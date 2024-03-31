@@ -10,10 +10,11 @@
     <tbody>
       <tr *ngFor="let brinco of manejo.brincos">
         <td>{{ brinco }}</td>
-        <td *ngFor="let atividade of manejo.atividades">
-          <input type="text" [value]="manejo.atividadesRealizadas[brinco][manejo.atividades.indexOf(atividade)]">
+        <td *ngFor="let atividade of manejo.atividades; let i = index">
+          <input type="text" [(ngModel)]="manejo.atividadesRealizadas[brinco][i]">
         </td>
       </tr>
     </tbody>
   </table>
+  <button (click)="salvarAtividades(manejo)">Salvar</button>
 </div>
