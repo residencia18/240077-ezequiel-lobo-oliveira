@@ -22,7 +22,9 @@
       </select>
     </div>
     <div>
+      <!-- Adicionando uma opção vazia no início da lista de opções -->
       <select id="suinosDisponiveis" #selectSuinosDisponiveis (change)="adicionarSuino(selectSuinosDisponiveis.value)">
+        <option value="" disabled selected hidden>Selecione um suíno</option>
         <option *ngFor="let suino of suinos" [value]="suino?.brinco">{{ suino?.brinco }}</option>
       </select>
     </div>
@@ -31,9 +33,8 @@
       <textarea id="atividades" formControlName="atividades"></textarea>
       <small *ngIf="manejoForm.get('atividades')?.invalid && manejoForm.get('atividades')?.touched">
         As atividades são obrigatórias.
-
       </small>
-      <p  style="color: red;">Por favor, insira as atividades separadas por vírgula.</p>
+      <p style="color: red;">Por favor, insira as atividades separadas por vírgula.</p>
     </div>
     <button type="submit" [disabled]="!manejoForm.valid">Cadastrar Manejo</button>
   </form>
