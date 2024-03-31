@@ -18,23 +18,32 @@ export class HistoricoManejoComponent implements OnInit {
   }
   
 
+  // Dentro do método carregarHistoricoManejos em HistoricoManejoComponent
   carregarHistoricoManejos(): void {
     this.manejoService.getHistoricoManejos().subscribe((manejos: ManejoSanitario[]) => {
+      console.log("Dados obtidos do Firebase:", manejos);
+  
       this.historicoManejos = manejos.map(manejo => {
-        const atividadesRealizadas: { [brinco: string]: string[] } = {};
-        manejo.brincos.forEach((brinco: string) => {
-          atividadesRealizadas[brinco] = this.criarEstadoAtividades(manejo.atividades);
+        // Cria uma cópia das atividades realizadas sem modificá-las
+        const atividadesRealizadasCopy: { [brinco: string]: string[] } = {};
+        Object.keys(manejo.atividadesRealizadas).forEach(brinco => {
+          atividadesRealizadasCopy[brinco] = [...manejo.atividadesRealizadas[brinco]];
         });
-        return { ...manejo, atividadesRealizadas };
+        return { ...manejo, atividadesRealizadas: atividadesRealizadasCopy };
       });
-      
+  
+      console.log("Histórico de manejo sanitário:", this.historicoManejos);
+  
       this.atividades = this.extrairAtividades(this.historicoManejos);
+      console.log("Atividades extraídas:", this.atividades);
     });
   }
   
+
+  
   criarEstadoAtividades(atividades: string[]): string[] {
     const estadoAtividades: string[] = [];
-    atividades.forEach(() => estadoAtividades.push('Não'));
+    
     return estadoAtividades;
   }
   
