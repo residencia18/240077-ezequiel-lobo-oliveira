@@ -1,0 +1,25 @@
+[debug] [2024-03-31T22:32:05.937Z] ----------------------------------------------------------------------
+[debug] [2024-03-31T22:32:05.943Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-31T22:32:05.944Z] CLI Version:   13.6.0
+[debug] [2024-03-31T22:32:05.944Z] Platform:      win32
+[debug] [2024-03-31T22:32:05.945Z] Node Version:  v20.10.0
+[debug] [2024-03-31T22:32:05.945Z] Time:          Sun Mar 31 2024 19:32:05 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2024-03-31T22:32:05.945Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-31T22:32:06.121Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-31T22:32:06.122Z] > authorizing via signed-in user (ezequiel.lobo.oliveira@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Acer\OneDrive\Área de Trabalho\240077-ezequiel-lobo-oliveira\FEA\FEA-004\suinofarm
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
