@@ -1,0 +1,12 @@
+<!-- form-builder.component.html -->
+<div class="container">
+    <h2>Formulário Dinâmico</h2>
+    <form>
+      <div *ngFor="let field of formData" class="form-field">
+        <label for="{{ field.nome }}" class="form-label">{{ field.rotulo }}</label>
+        <input [type]="field.type" [id]="field.nome" [name]="field.nome" class="form-input">
+      </div>
+    </form>
+    <button type="submit" class="submit-button">Enviar</button>
+  </div>
+  
