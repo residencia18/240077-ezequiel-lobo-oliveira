@@ -1,0 +1,17 @@
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/bin/Debug/net7.0/Cepedi.Data.deps.json
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/bin/Debug/net7.0/Cepedi.Data.dll
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/bin/Debug/net7.0/Cepedi.Data.pdb
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/bin/Debug/net7.0/Cepedi.Domain.dll
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/bin/Debug/net7.0/Cepedi.Shareable.dll
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/bin/Debug/net7.0/Cepedi.Domain.pdb
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/bin/Debug/net7.0/Cepedi.Shareable.pdb
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/obj/Debug/net7.0/Cepedi.Data.csproj.AssemblyReference.cache
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/obj/Debug/net7.0/Cepedi.Data.GeneratedMSBuildEditorConfig.editorconfig
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/obj/Debug/net7.0/Cepedi.Data.AssemblyInfoInputs.cache
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/obj/Debug/net7.0/Cepedi.Data.AssemblyInfo.cs
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/obj/Debug/net7.0/Cepedi.Data.csproj.CoreCompileInputs.cache
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/obj/Debug/net7.0/Cepedi.Data.csproj.CopyComplete
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/obj/Debug/net7.0/Cepedi.Data.dll
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/obj/Debug/net7.0/refint/Cepedi.Data.dll
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/obj/Debug/net7.0/Cepedi.Data.pdb
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Data/obj/Debug/net7.0/ref/Cepedi.Data.dll

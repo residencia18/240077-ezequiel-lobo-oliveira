@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/tests/Cepedi.Domain.Tests/Cepedi.Domain.Tests.csproj": {}
+  },
+  "projects": {
+    "/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/tests/Cepedi.Domain.Tests/Cepedi.Domain.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/tests/Cepedi.Domain.Tests/Cepedi.Domain.Tests.csproj",
+        "projectName": "Cepedi.Domain.Tests",
+        "projectPath": "/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/tests/Cepedi.Domain.Tests/Cepedi.Domain.Tests.csproj",
+        "packagesPath": "/home/ezequiel/.nuget/packages/",
+        "outputPath": "/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/tests/Cepedi.Domain.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ezequiel/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.115/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/Cepedi.WebApi.props" />
+</Project>

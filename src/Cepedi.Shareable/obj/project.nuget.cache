@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "H2iwiQgXm4yWMw8uzcBZFRUAZxzNKWDFESB4SKb3aJbucSfqctZDWdwMfmGZ/RAufzsa96tUaLbxZKrEC10Qcw==",
+  "success": true,
+  "projectFilePath": "/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/Cepedi.Shareable.csproj",
+  "expectedPackageFiles": [
+    "/home/ezequiel/.nuget/packages/refit/7.0.0/refit.7.0.0.nupkg.sha512",
+    "/home/ezequiel/.nuget/packages/system.net.http.json/7.0.1/system.net.http.json.7.0.1.nupkg.sha512",
+    "/home/ezequiel/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
+    "/home/ezequiel/.nuget/packages/system.text.json/7.0.3/system.text.json.7.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,12 @@
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/bin/Debug/net7.0/Cepedi.Shareable.deps.json
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/bin/Debug/net7.0/Cepedi.Shareable.dll
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/bin/Debug/net7.0/Cepedi.Shareable.pdb
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.Shareable.csproj.AssemblyReference.cache
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.Shareable.GeneratedMSBuildEditorConfig.editorconfig
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.Shareable.AssemblyInfoInputs.cache
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.Shareable.AssemblyInfo.cs
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.Shareable.csproj.CoreCompileInputs.cache
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.Shareable.dll
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/obj/Debug/net7.0/refint/Cepedi.Shareable.dll
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/obj/Debug/net7.0/Cepedi.Shareable.pdb
+/home/ezequiel/Secretária/240077-ezequiel-lobo-oliveira/src/Cepedi.Shareable/obj/Debug/net7.0/ref/Cepedi.Shareable.dll

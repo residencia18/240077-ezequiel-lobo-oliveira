@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "F0zcOYCc1frGyF72O3XCzlxl/6chNGn2vY7KUv1POw0=",
+  "Source": "Cepedi.WebApi",
+  "BasePath": "_content/Cepedi.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
