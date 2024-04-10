@@ -1,63 +1,39 @@
-﻿using Cepedi.Domain;
-using Cepedi.Domain.Services;
-using Cepedi.Shareable;
+﻿using Cepedi.Domain.Services;
 using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
+using MediatR;
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
-namespace Cepedi.WebApi.Controllers;
+using System.Threading.Tasks;
 
-[ApiController]
-[Route("[controller]")]
-public class CursoController : ControllerBase
+namespace Cepedi.WebApi.Controllers
 {
-    private readonly ILogger<CursoController> _logger;
-    private readonly IObtemCursoHandler _obtemCursoHandler;
-    private readonly IObtemTodosCursosHandler _obtemTodosCursosHandler;
-    private readonly ICadastraCursoHandler _cadastraCursoHandler;
-    private readonly IEditaCursoHandler _editaCursoHandler;
-    private readonly IDeletaCursoHandler _deletaCursoHandler;
+    [ApiController]
+    [Route("[controller]")]
+    public class CursoController : ControllerBase
+    {
+        private readonly ILogger<CursoController> _logger;
+        private readonly IMediator _mediator;
 
-    public CursoController(
-        ILogger<CursoController> logger,
-        IObtemCursoHandler obtemCursoHandler,
-        IObtemTodosCursosHandler obtemTodosCursosHandler,
-        ICadastraCursoHandler cadastraCursoHandler,
-        IEditaCursoHandler editaCursoHandler,
-        IDeletaCursoHandler deletaCursoHandler
-    )
-    {
-        _logger = logger;
-        _obtemCursoHandler = obtemCursoHandler;
-        _obtemTodosCursosHandler = obtemTodosCursosHandler;
-        _cadastraCursoHandler = cadastraCursoHandler;
-        _editaCursoHandler = editaCursoHandler;
-        _deletaCursoHandler = deletaCursoHandler;
-    }
-    [HttpGet("{idCurso}")]
-    public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
-    {
-        return Ok(await _obtemCursoHandler.ObterCursoAsync(idCurso));
-    }
+        public CursoController(ILogger<CursoController> logger, IMediator mediator)
+        {
+            _logger = logger;
+            _mediator = mediator;
+        }
 
-    [HttpGet]
-    public async Task<ActionResult<ObtemTodosCursosResponse>> ConsultarTodosCursosAsync()
-    {
-        return Ok(await _obtemTodosCursosHandler.ObterTodosCursosAsync());
-    }
-
-    [HttpPost]
-    public async Task<ActionResult<ObtemCursoResponse>> CadastrarCursoAsync([FromBody] CadastraCursoRequest curso)
-    {
-        return Ok(await _cadastraCursoHandler.CadastraCursoAsync(curso));
-    }
-    [HttpPut("{cursoId}")]
-    public async Task<ActionResult<EditaCursoResponse>> EditarCursoAsync([FromRoute] int cursoId, [FromBody] EditaCursoRequest curso)
-    {
-        return Ok(await _editaCursoHandler.EditaCursoAsync(cursoId, curso));
-    }
-    [HttpDelete("{cursoId}")]
-    public async Task<ActionResult<ObtemCursoResponse>> DeletarCursoAsync([FromRoute] int cursoId)
-    {
-        return Ok(await _deletaCursoHandler.DeletaCursoAsync(cursoId));
+        [HttpPost]
+        public async Task<ActionResult<ObtemCursoResponse>> CadastrarCursoAsync([FromBody] CadastraCursoRequest request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocorreu um erro ao cadastrar o curso.");
+                return StatusCode(500, "Ocorreu um erro interno ao processar a requisição.");
+            }
+        }
     }
 }

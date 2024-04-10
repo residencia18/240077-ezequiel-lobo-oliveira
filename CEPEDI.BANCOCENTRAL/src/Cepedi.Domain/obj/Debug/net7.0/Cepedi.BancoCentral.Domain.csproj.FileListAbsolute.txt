@@ -1,0 +1,15 @@
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/bin/Debug/net7.0/Cepedi.BancoCentral.Domain.deps.json
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/bin/Debug/net7.0/Cepedi.BancoCentral.Domain.dll
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/bin/Debug/net7.0/Cepedi.BancoCentral.Domain.pdb
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/bin/Debug/net7.0/Cepedi.BancoCentral.Shareable.dll
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/bin/Debug/net7.0/Cepedi.BancoCentral.Shareable.pdb
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.csproj.AssemblyReference.cache
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.AssemblyInfoInputs.cache
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.AssemblyInfo.cs
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.csproj.CoreCompileInputs.cache
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.csproj.CopyComplete
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.dll
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/obj/Debug/net7.0/refint/Cepedi.BancoCentral.Domain.dll
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/obj/Debug/net7.0/Cepedi.BancoCentral.Domain.pdb
+/home/ezequiel/Música/Cepedi.BancoCentral/src/Cepedi.Domain/obj/Debug/net7.0/ref/Cepedi.BancoCentral.Domain.dll
