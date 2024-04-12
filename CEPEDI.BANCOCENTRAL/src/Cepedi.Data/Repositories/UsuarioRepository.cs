@@ -32,5 +32,19 @@ namespace Cepedi.BancoCentral.Data.Repositories
             _context.Usuario.Update(usuario);
             return await _context.SaveChangesAsync();
         }
+
+        public async Task<int> ExcluirUsuarioAsync(int idUsuario)
+        {
+            var usuario = await _context.Usuario.FindAsync(idUsuario);
+            if (usuario == null)
+            {
+                throw new Exception($"Usuário com ID {idUsuario} não encontrado.");
+            }
+            
+            _context.Usuario.Remove(usuario);
+            return await _context.SaveChangesAsync();
+        }
+
+        
     }
 }

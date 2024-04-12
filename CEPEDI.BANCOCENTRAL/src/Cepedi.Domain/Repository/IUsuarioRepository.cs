@@ -5,4 +5,6 @@ public interface IUsuarioRepository
     Task<UsuarioEntity> CriarUsuarioAsync(UsuarioEntity usuario);
     Task<UsuarioEntity> ObterUsuarioAsync(int idUsuario);
     Task<int> AtualizarUsuarioAsync(UsuarioEntity usuario);
+    Task<int> ExcluirUsuarioAsync(int idUsuario);
+
 }

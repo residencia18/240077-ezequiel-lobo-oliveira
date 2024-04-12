@@ -3,8 +3,6 @@ using Cepedi.BancoCentral.Domain.Repository;
 using Cepedi.BancoCentral.Shareable.Requests;
 using Cepedi.BancoCentral.Shareable.Responses;
 using Cepedi.Shareable.Exceptions;
-using Cepedi.Shareable.Requests;
-using Cepedi.Shareable.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 namespace Cepedi.BancoCentral.WebApi.Controllers;
@@ -21,11 +19,7 @@ public class UserController : ControllerBase
         _mediator = mediator;
     }
 
-    //[HttpGet("{idUsuario}")]
-    //public async Task<ActionResult<CriarUsuarioResponse>> ObterUsuarioAsync([FromRoute] int idUsuario)
-    //{
-    //    return await _mediator.Send(new CriarUsuarioRequest();
-    //}
+    
 
     [HttpGet("{idUsuario}")]
     [ProducesResponseType(typeof(CriarUsuarioResponse), StatusCodes.Status200OK)]
@@ -40,12 +34,6 @@ public class UserController : ControllerBase
         return await _mediator.Send(request);
     }
 
-    //[HttpGet()]
-    //public async Task<ActionResult<IEnumerable<CriarUsuarioResponse>>> ConsultarCursosAsync()
-    //{
-    //    return Ok(await _obtemCursoHandler.ObterCursosAsync());
-    //}
-    
 
     [HttpPost]
     [ProducesResponseType(typeof(CriarUsuarioResponse), StatusCodes.Status200OK)]
@@ -56,17 +44,21 @@ public class UserController : ControllerBase
         return await _mediator.Send(request);
     }
 
-    //[HttpPut]
-    //public async Task<ActionResult<int>> AlterarCursoAsync([FromBody] CriarUsuarioRequest request)
-    //{
-    //    var cursoId = await _alteraCursoHandler.AlterarCursoAsync(request);
-    //    return Ok(cursoId);
-    //}
     [HttpPut]
     [ProducesResponseType(typeof(CriarUsuarioResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<AtualizarUsuarioResponse>> AlterarUsuarioAsync([FromBody] AtualizarUsuarioRequest request)
     {
        return await _mediator.Send(request);
+    }
+
+    [HttpDelete("{idUsuario}")]
+    [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ExcluirUsuarioAsync([FromRoute] int idUsuario)
+    {
+        var request = new ExcluirUsuarioRequest() { IdUsuario = idUsuario };
+        await _mediator.Send(request);
+        return NoContent();
     }
 }
