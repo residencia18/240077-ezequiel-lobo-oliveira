@@ -1,0 +1,61 @@
+/* auth.component.css */
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: center; /* Centraliza verticalmente */
+  height: 100vh; /* Altura total da tela */
+}
+
+input {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 300px; /* largura do input */
+}
+
+button {
+  margin-top: 0.5rem; /* Adicione margem acima do botão */
+  margin-bottom: 0.5rem; /* Adicione margem abaixo do botão */
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:focus {
+  outline: none;
+}
+/* styles.css (ou outro arquivo CSS apropriado) */
+
+/* Estilos para a barra de navegação */
+nav {
+  background-color: #333; /* Cor de fundo da barra de navegação */
+  padding: 10px 20px; /* Espaçamento interno */
+}
+
+/* Estilos para os links de navegação */
+nav a {
+  color: #fff; /* Cor do texto dos links */
+  text-decoration: none; /* Remover sublinhado */
+  margin-right: 20px; /* Espaçamento entre os links */
+  transition: color 0.3s ease; /* Transição suave da cor do texto */
+}
+
+/* Estilos para os links de navegação ativos */
+nav a.active {
+  color: #ff8c00; /* Cor do texto do link ativo */
+}
+
+
+
