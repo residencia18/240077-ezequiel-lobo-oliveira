@@ -1,0 +1,8 @@
+/* src/app/valor-propriedade/valor-propriedade.component.css */
+:host {
+    display: block;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  

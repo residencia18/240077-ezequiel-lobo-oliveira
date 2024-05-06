@@ -1,0 +1,16 @@
+
+h1 {
+    color: #FF0000; /* Altere para a cor desejada */
+}
+h2 {
+    color: #00FF00; /* Altere para a cor desejada */
+}
+
+* {
+    font-weight: normal;
+}
+img {
+    width: 200px;
+    height: 200px;
+}
+

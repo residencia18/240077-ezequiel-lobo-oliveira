@@ -1,0 +1,18 @@
+/* src/app/classes/classes.component.css */
+:host {
+    display: block;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+  }
+  
+  

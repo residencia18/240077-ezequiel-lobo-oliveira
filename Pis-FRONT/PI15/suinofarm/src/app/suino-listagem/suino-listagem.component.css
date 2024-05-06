@@ -1,0 +1,86 @@
+.suino-listagem {
+    margin: 20px auto;
+    width: 80%;
+  }
+  
+  .filtros {
+    margin-bottom: 20px;
+  }
+  
+  .filtros h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .filtros div {
+    margin-bottom: 10px;
+  }
+  
+  .filtros label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .filtros input[type="text"],
+  .filtros input[type="date"],
+  .filtros select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .lista-suinos {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .lista-suinos h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .lista-suinos div {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .lista-suinos div:last-child {
+    border-bottom: none;
+  }
+  
+  .lista-suinos p {
+    margin: 5px 0;
+  }
+  
+  .botoes-acao button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .botoes-acao button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Estilos para o contêiner do gráfico */
+.grafico-container {
+  margin-top: 20px; /* Adiciona um espaço superior */
+  border: 1px solid #ccc; /* Adiciona uma borda ao redor do contêiner */
+  border-radius: 5px; /* Arredonda as bordas do contêiner */
+  padding: 20px; /* Adiciona espaço interno ao contêiner */
+  width: 400px; /* Define a largura do contêiner como 400px */
+  height: 400px; /* Define a altura do contêiner como 400px */
+}
+
+/* Estilos para o gráfico */
+.grafico {
+  width: 100%; /* O gráfico ocupa toda a largura do contêiner */
+  /* O gráfico ocupa toda a altura do contêiner */
+}

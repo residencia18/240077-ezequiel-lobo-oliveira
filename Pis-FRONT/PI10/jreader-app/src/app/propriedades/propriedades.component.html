@@ -1,0 +1,14 @@
+<!-- propriedades.component.html -->
+<div>
+  <h2>Propriedades do Veículo</h2>
+  <ul>
+    <li *ngFor="let propriedade of propriedadesVeiculoSelecionado" (click)="selecionarPropriedade(propriedade)">
+      {{ propriedade }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="propriedadeSelecionada">
+  <h2>Valor da Propriedade {{ propriedadeSelecionada }}</h2>
+  <p>{{ valorPropriedade }}</p>
+</div>

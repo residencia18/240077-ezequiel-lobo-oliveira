@@ -1,0 +1,21 @@
+<div>
+    <h2>Edição de Peso</h2>
+    <form [formGroup]="edicaoPesoForm" (ngSubmit)="salvarEdicao()">
+      <div>
+        <label for="dataPesagem">Data da Pesagem:</label>
+        <input type="date" id="dataPesagem" formControlName="dataPesagem">
+        <small *ngIf="edicaoPesoForm.get('dataPesagem')?.invalid && edicaoPesoForm.get('dataPesagem')?.touched">
+          A data da pesagem é obrigatória.
+        </small>
+      </div>
+      <div>
+        <label for="peso">Peso (em Kg):</label>
+        <input type="text" id="peso" formControlName="peso">
+        <small *ngIf="edicaoPesoForm.get('peso')?.invalid && edicaoPesoForm.get('peso')?.touched">
+          O peso é obrigatório e deve ser um número válido.
+        </small>
+      </div>
+      <button type="submit" [disabled]="!edicaoPesoForm.valid">Salvar Edição</button>
+    </form>
+  </div>
+  

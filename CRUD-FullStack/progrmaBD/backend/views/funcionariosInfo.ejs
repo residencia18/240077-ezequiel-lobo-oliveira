@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Sua Página</title>
+    <style>
+
+            /* Adiciona estilos para as linhas pares e ímpares */
+            .table-striped tbody tr:nth-of-type(odd) {
+                background-color: #f9f9f9; /* Cor de fundo para linhas ímpares */
+            }
+    
+            .table-striped tbody tr:nth-of-type(even) {
+                background-color: #d9d9d9; /* Cor de fundo para linhas pares */
+            }
+            body {
+                background: #2c3e50; /* Fundo escuro */
+                color: #000000; /* Cor do texto */
+            }
+            .navbar {
+                background: #000000; /* Cor do cabeçalho */
+                
+            }
+            .navbar-brand span {
+                font-size: 1.5rem;
+                font-weight: bold;
+                cursor: pointer; /* Adiciona cursor pointer para indicar que é clicável */
+            }
+            .navbar-item {
+                margin: right;
+            }
+            .nav-titulo {
+                color: #ffffff;
+            }
+            .nav-link {
+                color: #ffffff !important; /* Cor do texto das opções no cabeçalho */
+            }
+            .car-card {
+                background-color: #cbd2d8;
+                margin-bottom: 20px;
+                border-radius: 15px;
+                box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+                transition: all 0.3s linear;
+            }
+            .car-card:hover {
+                transform: scale(1.03);
+            }
+            .car-card .card-body {
+                padding: 15px;
+            }
+        
+        .table-responsive-sm {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .table th {
+            background-color: #343a40;
+            color: #ffffff;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table tbody tr:hover {
+            background-color: #e9ecef;
+        }
+
+        .btn {
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #28a745;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/">
+            <img src="logo.png" width="50px" alt="Fiat Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-titulo">
+                    <h1><a class="nav-titulo" href="/">Santa Cruz</a></h1>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/funcionarios">Funcionarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientes">Clientes</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Informações dos Funcionários</h2>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nome do Funcionário</th>
+                    <th>Total de Vendas</th>
+                    <th>Data da Primeira Venda</th>
+                    <th>Data da Última Venda</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% dados.forEach(function(row) { %>
+                    <tr>
+                        <td><%= row.nome %></td>
+                        <td><%= row.totalCompras %></td>
+                        <td><%= row.primeiraCompra %></td>
+                        <td><%= row.ultimaCompra %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

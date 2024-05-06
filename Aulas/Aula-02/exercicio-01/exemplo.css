@@ -1,0 +1,19 @@
+h1 {
+    color: red;
+    text-align: center;
+}
+h2 {
+    color: blue;
+    text-align: center;
+}
+h3 {
+    color: green;
+    text-align: center;
+}
+
+ol{text-align: center;
+    color: orangered}
+
+    body {
+background-color: #151524;
+}
