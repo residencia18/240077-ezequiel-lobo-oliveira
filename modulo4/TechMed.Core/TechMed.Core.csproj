@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TechMed.Core\TechMed.Core.csproj" />
+    <Folder Include="Repositories/" />
   </ItemGroup>
 
 </Project>
