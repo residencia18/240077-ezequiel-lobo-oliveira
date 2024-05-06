@@ -45,6 +45,6 @@ export class ListagemAtendimentosComponent implements OnInit {
   }
 
   logout(): void {
-    this.authService.logout(); // Chame a função logout do AuthService
+    this.authService.logout(); 
   }
 }

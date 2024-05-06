@@ -1,0 +1,41 @@
+<!-- suino-edicao.component.html -->
+
+<form (ngSubmit)="salvarEdicao()">
+    <div>
+      <label for="brinco">Brinco:</label>
+      <input type="text" id="brinco" name="brinco" [(ngModel)]="suino.brinco" required>
+    </div>
+    <div>
+      <label for="brincoPai">Brinco do Pai:</label>
+      <input type="text" id="brincoPai" name="brincoPai" [(ngModel)]="suino.brincoPai">
+    </div>
+    <div>
+      <label for="brincoMae">Brinco da Mãe:</label>
+      <input type="text" id="brincoMae" name="brincoMae" [(ngModel)]="suino.brincoMae">
+    </div>
+    <div>
+      <label for="dataNascimento">Data de Nascimento:</label>
+      <input type="date" id="dataNascimento" name="dataNascimento" [(ngModel)]="suino.dataNascimento">
+    </div>
+    <div>
+      <label for="dataSaida">Data de Saída:</label>
+      <input type="date" id="dataSaida" name="dataSaida" [(ngModel)]="suino.dataSaida">
+    </div>
+    <div>
+      <label for="status">Status:</label>
+      <select id="status" name="status" [(ngModel)]="suino.status">
+        <option value="Ativo">Ativo</option>
+        <option value="Vendido">Vendido</option>
+        <option value="Morto">Morto</option>
+      </select>
+    </div>
+    <div>
+      <label for="sexo">Sexo:</label>
+      <select id="sexo" name="sexo" [(ngModel)]="suino.sexo">
+        <option value="M">Macho</option>
+        <option value="F">Fêmea</option>
+      </select>
+    </div>
+    <button type="submit">Salvar</button>
+  </form>
+  

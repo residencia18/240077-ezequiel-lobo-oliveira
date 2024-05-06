@@ -1,0 +1,116 @@
+[debug] [2024-03-11T19:45:07.374Z] ----------------------------------------------------------------------
+[debug] [2024-03-11T19:45:07.377Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-11T19:45:07.378Z] CLI Version:   13.4.1
+[debug] [2024-03-11T19:45:07.378Z] Platform:      win32
+[debug] [2024-03-11T19:45:07.378Z] Node Version:  v20.10.0
+[debug] [2024-03-11T19:45:07.378Z] Time:          Mon Mar 11 2024 16:45:07 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2024-03-11T19:45:07.378Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-11T19:45:07.388Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-11T19:45:07.388Z] > authorizing via signed-in user (ezequiel.lobo.oliveira@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Acer\OneDrive\Área de Trabalho\FRONT\PIs\PI15\suinofarm
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-03-11T19:45:25.815Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2024-03-11T19:45:26.643Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2024-03-11T19:45:26.643Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project suinofarm-manager (suinofarm-manager) 
+[info] 
+=== Hosting Setup
+[debug] [2024-03-11T19:45:30.870Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/suinofarm-manager [none]
+[debug] [2024-03-11T19:45:31.215Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/suinofarm-manager 200
+[debug] [2024-03-11T19:45:31.215Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/suinofarm-manager {"projectId":"suinofarm-manager","projectNumber":"960113480429","displayName":"suinofarm-manager","name":"projects/suinofarm-manager","resources":{"hostingSite":"suinofarm-manager","realtimeDatabaseInstance":"suinofarm-manager-default-rtdb"},"state":"ACTIVE","etag":"1_0c8d9c0d-1f9d-443a-a5ff-16f23672985e"}
+[debug] [2024-03-11T19:46:11.646Z] Error: Cannot find module 'vite'
+Require stack:
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\utils.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\controller.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\commandUtils.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\database-get.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\index.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\index.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1144:15)
+    at Function.resolve (node:internal/modules/helpers:187:19)
+    at relativeRequire (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\utils.js:195:34)
+    at getConfig (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\vite\index.js:111:65)
+    at discover (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\vite\index.js:60:68)
+    at async C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\vite\index.js:38:55
+    at async discover (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js:47:32)
+    at async doSetup (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\hosting\index.js:54:11)
+    at async init (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:37:9)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2024-03-11T19:55:56.685Z] ----------------------------------------------------------------------
+[debug] [2024-03-11T19:55:56.688Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-11T19:55:56.688Z] CLI Version:   13.4.1
+[debug] [2024-03-11T19:55:56.689Z] Platform:      win32
+[debug] [2024-03-11T19:55:56.689Z] Node Version:  v20.10.0
+[debug] [2024-03-11T19:55:56.689Z] Time:          Mon Mar 11 2024 16:55:56 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2024-03-11T19:55:56.689Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-11T19:55:56.698Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-11T19:55:56.698Z] > authorizing via signed-in user (ezequiel.lobo.oliveira@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Acer\OneDrive\Área de Trabalho\FRONT\PIs\PI15\suinofarm
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-03-11T19:56:05.869Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2024-03-11T19:56:06.779Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2024-03-11T19:56:06.779Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project suinofarm-manager (suinofarm-manager) 
+[info] 
+=== Hosting Setup
+[debug] [2024-03-11T19:56:11.218Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/suinofarm-manager [none]
+[debug] [2024-03-11T19:56:11.664Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/suinofarm-manager 200
+[debug] [2024-03-11T19:56:11.664Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/suinofarm-manager {"projectId":"suinofarm-manager","projectNumber":"960113480429","displayName":"suinofarm-manager","name":"projects/suinofarm-manager","resources":{"hostingSite":"suinofarm-manager","realtimeDatabaseInstance":"suinofarm-manager-default-rtdb"},"state":"ACTIVE","etag":"1_0c8d9c0d-1f9d-443a-a5ff-16f23672985e"}
+[debug] [2024-03-11T19:56:51.763Z] Error: Cannot find module 'vite'
+Require stack:
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\utils.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\controller.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\commandUtils.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\database-get.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\index.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\index.js
+- C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1144:15)
+    at Function.resolve (node:internal/modules/helpers:187:19)
+    at relativeRequire (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\utils.js:195:34)
+    at getConfig (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\vite\index.js:111:65)
+    at discover (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\vite\index.js:60:68)
+    at async C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\vite\index.js:38:55
+    at async discover (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js:47:32)
+    at async doSetup (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\hosting\index.js:54:11)
+    at async init (C:\Users\Acer\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:37:9)
+[error] 
+[error] Error: An unexpected error has occurred.

@@ -1,0 +1,63 @@
+<div>
+    <h2>Cadastro de Suíno</h2>
+    <form [formGroup]="suinoForm" (ngSubmit)="cadastrarSuino()">
+      <div>
+        <label for="brinco">Brinco do Animal:</label>
+        <input type="number" id="brinco" formControlName="brinco">
+        <small *ngIf="suinoForm.get('brinco')?.invalid && suinoForm.get('brinco')?.touched">
+          O brinco do animal é obrigatório.
+        </small>
+      </div>
+      <div>
+        <label for="brincoPai">Brinco do Pai:</label>
+        <input type="number" id="brincoPai" formControlName="brincoPai">
+        <small *ngIf="suinoForm.get('brincoPai')?.invalid && suinoForm.get('brincoPai')?.touched">
+          O brinco do pai é obrigatório.
+        </small>
+      </div>
+      <div>
+        <label for="brincoMae">Brinco da Mãe:</label>
+        <input type="number" id="brincoMae" formControlName="brincoMae">
+        <small *ngIf="suinoForm.get('brincoMae')?.invalid && suinoForm.get('brincoMae')?.touched">
+          O brinco da mãe é obrigatório.
+        </small>
+      </div>
+      <div>
+        <label for="dataNascimento">Data de Nascimento:</label>
+        <input type="date" id="dataNascimento" formControlName="dataNascimento">
+        <small *ngIf="suinoForm.get('dataNascimento')?.invalid && suinoForm.get('dataNascimento')?.touched">
+          A data de nascimento é obrigatória.
+        </small>
+      </div>
+      <div>
+        <label for="dataSaida">Data de Saída:</label>
+        <input type="date" id="dataSaida" formControlName="dataSaida">
+        <small *ngIf="suinoForm.get('dataSaida')?.invalid && suinoForm.get('dataSaida')?.touched">
+          A data de saída é obrigatória.
+        </small>
+      </div>
+      <div>
+        <label for="status">Status:</label>
+        <select id="status" formControlName="status">
+          <option value="Ativo">Ativo</option>
+          <option value="Vendido">Vendido</option>
+          <option value="Morto">Morto</option>
+        </select>
+        <small *ngIf="suinoForm.get('status')?.invalid && suinoForm.get('status')?.touched">
+          O status é obrigatório.
+        </small>
+      </div>
+      <div>
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" formControlName="sexo">
+          <option value="M">Macho</option>
+          <option value="F">Fêmea</option>
+        </select>
+        <small *ngIf="suinoForm.get('sexo')?.invalid && suinoForm.get('sexo')?.touched">
+          O sexo é obrigatório.
+        </small>
+      </div>
+      <button type="submit" [disabled]="!suinoForm.valid">Cadastrar</button>
+    </form>
+  </div>
+  
