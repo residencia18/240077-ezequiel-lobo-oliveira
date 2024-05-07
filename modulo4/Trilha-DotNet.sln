@@ -3,6 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
+<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechMed.Infras", "TechMed.Infras\TechMed.Infras.csproj", "{4DB01CBC-BA81-4032-BC82-71632E6A2CA5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechMed.Application", "TechMed.Application\TechMed.Application.csproj", "{B778E36A-75BC-49E9-B172-FBC94FD5B8C2}"
@@ -10,6 +11,19 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechMed.WebAPI", "TechMed.WebAPI\TechMed.WebAPI.csproj", "{9089C4D6-036B-46F4-B969-AB8563BFE4C6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechMed.Core", "TechMed.Core\TechMed.Core.csproj", "{3DC2F015-986C-4853-811B-DCB6C48E3CBD}"
+=======
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "semana2", "semana2", "{6E17A2B5-8A7E-4E8F-807F-2D251321EB43}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techmed.EFCore", "semana2\techmed.EFCore\techmed.EFCore.csproj", "{8088933B-FC09-4B24-8D33-BFC69CCE0349}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techmed.Domain", "semana2\techmed.Domain\techmed.Domain.csproj", "{7B6AD0F0-B10B-487D-BF67-FFF492A20959}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techmed.Infra", "semana2\techmed.Infra\techmed.Infra.csproj", "{9F2C1D4A-B95B-442B-B8CE-4291E20EFCB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "semana3", "semana3", "{9D51FE2E-97FF-4A6D-B0BD-9A023AC62B21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cliente", "semana3\techmed\Cliente.csproj", "{48EC5A6E-DCD6-48A0-AD46-AB11D4907E08}"
+>>>>>>> origin/modulo4_aula1
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +31,7 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+<<<<<<< HEAD
 		{4DB01CBC-BA81-4032-BC82-71632E6A2CA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DB01CBC-BA81-4032-BC82-71632E6A2CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DB01CBC-BA81-4032-BC82-71632E6A2CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,11 +48,40 @@ Global
 		{3DC2F015-986C-4853-811B-DCB6C48E3CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DC2F015-986C-4853-811B-DCB6C48E3CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DC2F015-986C-4853-811B-DCB6C48E3CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{8088933B-FC09-4B24-8D33-BFC69CCE0349}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8088933B-FC09-4B24-8D33-BFC69CCE0349}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8088933B-FC09-4B24-8D33-BFC69CCE0349}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8088933B-FC09-4B24-8D33-BFC69CCE0349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B6AD0F0-B10B-487D-BF67-FFF492A20959}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B6AD0F0-B10B-487D-BF67-FFF492A20959}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B6AD0F0-B10B-487D-BF67-FFF492A20959}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B6AD0F0-B10B-487D-BF67-FFF492A20959}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F2C1D4A-B95B-442B-B8CE-4291E20EFCB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F2C1D4A-B95B-442B-B8CE-4291E20EFCB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F2C1D4A-B95B-442B-B8CE-4291E20EFCB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F2C1D4A-B95B-442B-B8CE-4291E20EFCB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48EC5A6E-DCD6-48A0-AD46-AB11D4907E08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48EC5A6E-DCD6-48A0-AD46-AB11D4907E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48EC5A6E-DCD6-48A0-AD46-AB11D4907E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48EC5A6E-DCD6-48A0-AD46-AB11D4907E08}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> origin/modulo4_aula1
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+<<<<<<< HEAD
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C19B94E6-348B-46D1-808C-BA56A7966556}
+=======
+	GlobalSection(NestedProjects) = preSolution
+		{8088933B-FC09-4B24-8D33-BFC69CCE0349} = {6E17A2B5-8A7E-4E8F-807F-2D251321EB43}
+		{7B6AD0F0-B10B-487D-BF67-FFF492A20959} = {6E17A2B5-8A7E-4E8F-807F-2D251321EB43}
+		{9F2C1D4A-B95B-442B-B8CE-4291E20EFCB3} = {6E17A2B5-8A7E-4E8F-807F-2D251321EB43}
+		{48EC5A6E-DCD6-48A0-AD46-AB11D4907E08} = {9D51FE2E-97FF-4A6D-B0BD-9A023AC62B21}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33E3331E-5B11-49AD-A0DF-92693B151A85}
+>>>>>>> origin/modulo4_aula1
 	EndGlobalSection
 EndGlobal
