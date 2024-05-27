@@ -1,0 +1,145 @@
+/* Contêiner Principal */
+.container {
+  display: flex;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagem */
+.image {
+  flex: 1 1 30%;
+  max-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.image img:hover {
+  transform: scale(1.05);
+}
+
+/* Contêiner de Detalhes */
+.details-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  justify-content: space-between;
+}
+
+/* Detalhes */
+.details {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.details .title {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.details .price {
+  text-align: right;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #130503;
+}
+
+.details .list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.details .list .in-stock {
+  color: #27ae60;
+}
+
+.details .list .out-of-stock {
+  color: #e74c3c;
+}
+
+.details .list li {
+  padding: 5px 0;
+  font-size: 1em;
+}
+
+/* Ações */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.actions button {
+  padding: 12px 24px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #2980b9;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.actions button:hover {
+  background-color: #1abc9c;
+  transform: translateY(-2px);
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .container {
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+  }
+
+  .image {
+      margin-right: 0;
+      margin-bottom: 15px;
+      max-width: 100%;
+  }
+
+  .details {
+      grid-template-columns: 1fr;
+      text-align: center;
+  }
+
+  .details .price {
+      text-align: center;
+  }
+
+  .details .list li {
+      justify-content: center;
+  }
+
+  .actions {
+      justify-content: center;
+      width: 100%;
+  }
+
+  .actions button {
+      width: 100%;
+      max-width: 200px;
+  }
+}
