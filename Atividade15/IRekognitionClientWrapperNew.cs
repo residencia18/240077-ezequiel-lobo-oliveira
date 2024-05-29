@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Atividade15
 {
-    public interface IRekognitionClientWrapper
+    public interface IRekognitionClientWrapperNew
     {
         Task<DetectTextResponse> DetectTextAsync(DetectTextRequest request);
     }

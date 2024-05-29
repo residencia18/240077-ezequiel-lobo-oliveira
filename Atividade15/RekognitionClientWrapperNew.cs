@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Atividade15
 {
-    public class RekognitionClientWrapper : IRekognitionClientWrapper
+    public class RekognitionClientWrapperNew : IRekognitionClientWrapperNew
     {
         private readonly AmazonRekognitionClient _rekognitionClient;
 
-        public RekognitionClientWrapper(AmazonRekognitionClient rekognitionClient)
+        public RekognitionClientWrapperNew(AmazonRekognitionClient rekognitionClient)
         {
             _rekognitionClient = rekognitionClient;
         }
