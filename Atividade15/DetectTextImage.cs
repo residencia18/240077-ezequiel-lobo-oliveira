@@ -4,12 +4,12 @@ using Amazon.Runtime;
 
 namespace Atividade15
 {
-    public class DetectTextImageNew
+    public class DetectTextImage
     {
         public string SourceImage { get; set; }
-        public IRekognitionClientWrapperNew RekognitionClient { get; set; }
+        public IRekognitionClientWrapper RekognitionClient { get; set; }
 
-        public DetectTextImageNew()
+        public DetectTextImage()
         {
             SourceImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "img-example-for-aws-task.jpg");
             var credentials = new StoredProfileAWSCredentials("default");
@@ -17,11 +17,11 @@ namespace Atividade15
                 credentials,
                 Amazon.RegionEndpoint.USWest2
             );
-            RekognitionClient = new RekognitionClientWrapperNew(rekClient);
+            RekognitionClient = new RekognitionClientWrapper(rekClient);
         }
 
         // Construtor para injeção de dependências (útil para testes)
-        public DetectTextImageNew(string sourceImage, IRekognitionClientWrapperNew rekognitionClient )
+        public DetectTextImage(string sourceImage, IRekognitionClientWrapper rekognitionClient )
         {
             SourceImage = sourceImage;
             RekognitionClient = rekognitionClient;
