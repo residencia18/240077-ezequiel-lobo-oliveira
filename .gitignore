@@ -373,3 +373,5 @@ FodyWeavers.xsd
 /Atividade06.Tests/PointTests.cs
 /Atividade06.Tests/PointTests.cs
 
+/Atividade15.Tests/DetectTextImageIntegrationTests.cs
+/Atividade15.Tests/DetectTextimageUnitTests.cs
